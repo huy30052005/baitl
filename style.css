@@ -1,0 +1,108 @@
+/* KIỂM TRA CSS CÓ LOAD CHƯA: body sẽ nền #faf7f6  */
+:root{
+  --bg:#faf7f6;
+  --text:#111827;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --btn:#f8ded5;
+  --btn-hover:#f4cab9;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+/* ----- Layout ----- */
+.page{
+  max-width:1200px;
+  margin:0 auto;
+  padding:24px;
+  min-height:100%;
+  display:flex;
+  gap:36px;
+}
+.left{
+  flex:1 1 520px;
+  display:flex;
+  align-items:center;
+}
+.panel{width:100%;max-width:520px}
+
+/* ----- Logo ----- */
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.logo svg{width:26px;height:26px}
+.brand{font-weight:700;font-size:22px}
+
+/* ----- Heading & sub text ----- */
+h1{font-size:28px;margin:10px 0 8px}
+.sub{color:var(--muted);margin-bottom:20px}
+
+/* ----- Form ----- */
+label{display:block;font-size:14px;margin:12px 0 6px}
+input[type="text"], input[type="email"], input[type="password"]{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fff;
+  outline:none;
+  transition:border-color .15s ease;
+}
+input:focus{border-color:#9ab7ff}
+
+.row-between{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:12px 0 18px;font-size:14px;color:var(--muted);
+}
+.remember{display:flex;align-items:center;gap:8px;cursor:pointer}
+.link{color:#64748b;text-decoration:none}
+.link:hover{text-decoration:underline}
+
+.btn{
+  width:100%;padding:12px 14px;border:none;border-radius:10px;
+  background:var(--btn);font-weight:600;cursor:pointer;
+}
+.btn:hover{background:var(--btn-hover)}
+
+/* ----- Divider & SSO ----- */
+.divider{
+  display:flex;align-items:center;gap:12px;
+  margin:18px 0;color:var(--muted);font-size:13px;
+}
+.divider:before,.divider:after{
+  content:"";flex:1;height:1px;background:var(--line);
+}
+
+.sso{display:grid;gap:10px}
+.sso-btn{
+  display:block;text-align:center;padding:10px;border-radius:8px;
+  text-decoration:none;font-weight:600;border:1px solid var(--line);
+  background:#fff;color:#111;
+}
+.sso-fb{background:#eef3ff;border-color:#d8e2ff}
+
+/* ----- Footer text ----- */
+.signup{margin-top:16px;text-align:center;font-size:14px;color:#ef4444}
+.brand-link{color:#111827;text-decoration:none;font-weight:700}
+.brand-link:hover{text-decoration:underline}
+
+/* ----- Right image column ----- */
+.right{flex:0 0 520px;border-radius:14px;overflow:hidden;background:#e5e5e5}
+.hero{
+  width:100%;height:100%;
+  background:
+    linear-gradient(90deg,#0000 98%,#d9d9d9 0) 0 0/60px 60px,
+    linear-gradient(#efefef,#e4e4e4);
+  filter:grayscale(100%);
+}
+
+/* ----- Responsive ----- */
+@media (max-width:1100px){
+  .right{display:none}
+  .page{justify-content:center}
+  .left{flex:0 1 640px}
+}
