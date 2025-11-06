@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Demo Header</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container">
+        <!-- Logo -->
+        <a class="brand" href="#">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#23ff67"
+            stroke-width="2"
+          >
+            <path d="M4 12c5-8 11-8 16 0-5 8-11 8-16 0Z" />
+            <path d="M10 13l2-3 2 3-2 3-2-3Z" stroke="#8efc9d" />
+          </svg>
+          <strong>HUYDOMINIC</strong> <span>SPORTS</span>
+        </a>
+
+        <!-- Menu -->
+        <div class="menu">
+          <a href="#">Hàng Mới</a>
+          <a href="#">Nam</a>
+          <a href="#">Nữ</a>
+          <a href="#">Trẻ Em</a>
+          <a href="#">Phụ Kiện</a>
+          <a href="#">Thể Thao</a>
+          <a href="#" style="color: #23ff67">Ưu Đãi</a>
+        </div>
+
+        <!-- Search -->
+        <form class="search" role="search">
+          <input type="search" placeholder="Bạn đang tìm gì" />
+          <button type="submit">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          </button>
+        </form>
+
+        <!-- Actions -->
+        <div class="actions">
+          <!-- Khi nhấn vào sẽ chuyển đến login.html -->
+          <button class="act" id="btnAccount" title="Tài khoản">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M6 20c2-3 10-3 12 0" />
+            </svg>
+          </button>
+
+          <button class="act" title="Giỏ hàng">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M6 6h15l-1.5 9.5a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.7L6 6Z"
+              />
+              <circle cx="9" cy="20" r="1.5" />
+              <circle cx="17" cy="20" r="1.5" />
+            </svg>
+          </button>
+          <button class="act hide-sm" title="Đơn hàng">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M6 6h15l-1.5 9.5a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.7L6 6Z"
+              />
+              <path d="M6 6 5 3H2" />
+            </svg>
+          </button>
+          <button class="act hide-sm" title="Địa điểm">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </button>
+
+          <a class="flag" href="#">
+            <img src="https://flagcdn.com/w20/vn.png" alt="VN" /> VN
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="hero" id="hero">
+      <!-- Đổi đường dẫn ảnh theo thư mục của bạn (ví dụ jpg/banner1.jpg ...) -->
+      <div class="slide active">
+        <img src="jpg/anh1.jpg" alt="Hàng mới màu mới" />
+        <a href="#" class="cta">MUA NGAY</a>
+      </div>
+      <div class="slide">
+        <img src="jpg/anh2.jpg" alt="Khuyến mãi hot" />
+        <a href="#" class="cta">KHÁM PHÁ</a>
+      </div>
+      <div class="slide">
+        <img src="jpg/anh3.jpg" alt="Sản phẩm nổi bật" />
+        <a href="#" class="cta">XEM THÊM</a>
+      </div>
+
+      <button class="arrow prev" aria-label="Trước">❮</button>
+      <button class="arrow next" aria-label="Sau">❯</button>
+
+      <div class="dots"></div>
+    </section>
+    <section class="category-section">
+      <h2>DANH MỤC SẢN PHẨM</h2>
+      <div class="categories">
+        <div class="category">
+          <img src="jpg/anh4.jpg" alt="" /><span>Giày Chạy Bộ</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh5.jpg" alt="" /><span>Giày Thời Trang</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh6.jpg" alt="" /><span>Áo Thun</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh7.jpg" alt="" /><span>Áo Khoác</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh8.jpg" alt="" /><span>Giày Luyện Tập</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh9.jpg" alt="" /><span>Xăng Đan & Dép</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh10.jpg" alt="" /><span>Quần Ngắn</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh11.jpg" alt="" /><span>Quần Dài</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh12.jpg" alt="" /><span>Đồ Bơi</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh13.jpg" alt="" /><span>Ba Lô</span>
+        </div>
+      </div>
+    </section>
+    <section class="sale-banner">
+      <img src="jpg/anh9.jpg" alt="Khuyến mãi 50%" />
+      <a href="#" class="cta-sale">MUA NGAY</a>
+    </section>
+    <section class="category-section">
+      <h2>CÁC HÃNG HOT NHẤT</h2>
+      <div class="categories">
+        <div class="category">
+          <img src="jpg/anh4.jpg" alt="" /><span>Giày Chạy Bộ</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh5.jpg" alt="" /><span>Giày Thời Trang</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh6.jpg" alt="" /><span>Áo Thun</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh7.jpg" alt="" /><span>Áo Khoác</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh8.jpg" alt="" /><span>Giày Luyện Tập</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh9.jpg" alt="" /><span>Xăng Đan & Dép</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh10.jpg" alt="" /><span>Quần Ngắn</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh11.jpg" alt="" /><span>Quần Dài</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh12.jpg" alt="" /><span>Đồ Bơi</span>
+        </div>
+        <div class="category">
+          <img src="jpg/anh13.jpg" alt="" /><span>Ba Lô</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section">
+      <h2>SẢN PHẨM NỔI BẬT</h2>
+      <div class="products">
+        <!-- SP 1 -->
+        <div class="product">
+          <div class="tag">-30%</div>
+          <img src="jpg/anh10.jpg" alt="Giày Running 1" />
+          <h3>Giày Chạy Bộ Nam HOKA Speedgoat 6</h3>
+          <div class="price">
+            <span class="new">2.799.000đ</span>
+            <span class="old">3.999.000đ</span>
+          </div>
+        </div>
+
+        <!-- SP 2 -->
+        <div class="product">
+          <div class="tag">-40%</div>
+          <img src="jpg/anh11.jpg" alt="Giày Running 2" />
+          <h3>Giày Chạy Bộ Nữ HOKA Rincon Trắng</h3>
+          <div class="price">
+            <span class="new">1.799.000đ</span>
+            <span class="old">2.999.000đ</span>
+          </div>
+        </div>
+
+        <!-- SP 3 -->
+        <div class="product">
+          <div class="tag">-30%</div>
+          <img src="jpg/anh12.jpg" alt="Giày Xanh" />
+          <h3>Giày Leo Núi HOKA Hopara Xanh Dương</h3>
+          <div class="price">
+            <span class="new">2.519.000đ</span>
+            <span class="old">3.599.000đ</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">30%</div>
+          <img src="jpg/anh13.jpg" alt="Giày" />
+          <h3>Giày thể theo ADIDAS</h3>
+          <div class="price">
+            <span class="new">2.500.000</span>
+            <span class="new">3.500.000</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">30%</div>
+          <img src="jpg/anh14.jpg" alt="Giày" />
+          <h3>Giày thể thao PUMA</h3>
+          <div class="price">
+            <span class="new">2.000.000</span>
+            <span class="old">3.500.000</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">30%</div>
+          <img src="jpg/anh15.jpg" alt="Giày" />
+          <h3>Giày thể thao COLOMBIA</h3>
+          <div class="price">
+            <span class="new">2.000.000</span>
+            <span class="old">3.500.000</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">30%</div>
+          <img src="jpg/anh13.jpg" alt="Giày" />
+          <h3>Giày thể thao COLOMBIA</h3>
+          <div class="price">
+            <span class="new">2.000.000</span>
+            <span class="old">3.500.000</span>
+          </div>
+        </div>
+        <!-- SP 4 -->
+        <div class="product">
+          <div class="tag">-30%</div>
+          <img src="jpg/anh15.jpg" alt="Giày xanh" />
+          <h3>Giày Chạy Bộ Nam HOKA Mach X</h3>
+          <div class="price">
+            <span class="new">3.185.000đ</span>
+            <span class="old">4.550.000đ</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">-30%</div>
+          <img src="jpg/anh11.jpg" alt="Giày xanh" />
+          <h3>Giày Chạy Bộ Nam HOKA Mach X</h3>
+          <div class="price">
+            <span class="new">3.185.000đ</span>
+            <span class="old">4.550.000đ</span>
+          </div>
+        </div>
+        <div class="product">
+          <div class="tag">-30%</div>
+          <img src="jpg/anh14.jpg" alt="Giày xanh" />
+          <h3>Giày Chạy Bộ Nam HOKA Mach X</h3>
+          <div class="price">
+            <span class="new">3.185.000đ</span>
+            <span class="old">4.550.000đ</span>
+          </div>
+        </div>
+        <h2>Xem tất cả</h2>
+      </div>
+    </section>
+    <section class="sale-banner">
+      <img src="jpg/anh16.jpg" alt="Khuyến mãi 50%" />
+      <a href="#" class="cta-sale">MUA NGAY</a>
+    </section>
+    <section class="information">
+      <h3 class="info-title">Sản phẩm mới nhất</h3>
+
+      <div class="info-wrapper">
+        <!-- nút trái -->
+        <button class="slide-btn slide-left">❮</button>
+
+        <div class="informationns">
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh17.jpg" alt="Giày" />
+            <h3>Giày ADIDAS</h3>
+            <span class="price">2.000.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh18.jpg" alt="Giày" />
+            <h3>Giày NIKE</h3>
+            <span class="price">1.850.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh20.jpg" alt="Giày" />
+            <h3>Giày Crocs</h3>
+            <span class="price">900.000đ</span>
+          </div>
+        </div>
+
+        <!-- nút phải -->
+        <button class="slide-btn slide-right">❯</button>
+      </div>
+    </section>
+    <section class="information">
+      <div class="info-wrapper">
+        <!-- nút trái -->
+        <button class="slide-btn slide-left">❮</button>
+
+        <div class="informationns">
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh17.jpg" alt="Giày" />
+            <h3>Giày ADIDAS</h3>
+            <span class="price">2.000.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh18.jpg" alt="Giày" />
+            <h3>Giày NIKE</h3>
+            <span class="price">1.850.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh19.jpg" alt="Giày" />
+            <h3>Giày PUMA</h3>
+            <span class="price">1.600.000đ</span>
+          </div>
+
+          <div class="great">
+            <div class="new1">MỚI</div>
+            <img src="jpg/anh20.jpg" alt="Giày" />
+            <h3>Giày Crocs</h3>
+            <span class="price">900.000đ</span>
+          </div>
+        </div>
+
+        <!-- nút phải -->
+        <button class="slide-btn slide-right">❯</button>
+      </div>
+    </section>
+    <section class="news-block">
+      <h3 class="news-heading">Tin Tức Thể Thao Mới Nhất</h3>
+
+      <div class="news-grid">
+        <!-- Card 1 -->
+        <article class="news-card">
+          <a href="#" class="news-thumb">
+            <img src="jpg/anh21.jpg" alt="Check giày Adidas chính hãng" />
+          </a>
+          <h4 class="news-title">
+            Tham Khảo 13 Cách Check Giày Adidas Chính Hãng Cực Chuẩn Và Nhanh
+            Chóng
+          </h4>
+          <a href="#" class="news-more">Xem thêm <span>→</span></a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="news-card">
+          <a href="#" class="news-thumb">
+            <img src="jpg/anh22.jpg" alt="Vietnam Mountain Marathon 2025" />
+          </a>
+          <h4 class="news-title">
+            Vietnam Mountain Marathon 2025: Checklist Trang Bị Trail Run Theo Cự
+            Ly
+          </h4>
+          <a href="#" class="news-more">Xem thêm <span>→</span></a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="news-card">
+          <a href="#" class="news-thumb">
+            <img src="jpg/anh23.jpg" alt="UA Velociti Elite bí quyết kỷ lục" />
+          </a>
+          <h4 class="news-title">
+            Giày Chạy Đua UA Velociti Elite: Bí Quyết Chinh Phục Kỷ Lục Marathon
+          </h4>
+          <a href="#" class="news-more">Xem thêm <span>→</span></a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="news-card">
+          <a href="#" class="news-thumb">
+            <img src="jpg/anh24.jpg" alt="HOKA Clifton 10" />
+          </a>
+          <h4 class="news-title">
+            HOKA Clifton 10 – Siêu Phẩm Chạy Bộ Êm Cho Mọi Cung Đường
+          </h4>
+          <a href="#" class="news-more">Xem thêm <span>→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== FOOTER ============== -->
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-grid">
+          <!-- Cột 1: Công ty -->
+          <div class="f-col">
+            <h4>CÔNG TY TNHH MTV THƯƠNG MẠI<br />THỜI TRANG TỔNG HỢP (GTF)</h4>
+            <p>
+              <strong>Văn phòng:</strong> Thôn Cát Dương- Xã Tống Phan- Huyện
+              Phù Cừ- Tỉnh Hưng Yên
+            </p>
+            <p>
+              <strong>Địa chỉ kho:</strong> Thôn Cát Dương- Xã Tống Phan- Huyện
+              Phù Cừ- Tỉnh Hưng Yên
+            </p>
+            <p><strong>Tổng đài:</strong> 0964382408</p>
+            <p>
+              <strong>Mã số Doanh Nghiệp:</strong> 0314635071, đổi ngày
+              20/04/2020
+            </p>
+          </div>
+
+          <!-- Cột 2: Về Supersports -->
+          <div class="f-col">
+            <h4>VỀ HUYDOMINIC</h4>
+            <ul>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">Hệ thống cửa hàng</a></li>
+              <li><a href="#">Thông tin liên hệ</a></li>
+              <li><a href="#">Các điều khoản &amp; điều kiện</a></li>
+              <li><a href="#">Hợp tác cùng chúng tôi</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 3: Hỗ trợ KH -->
+          <div class="f-col">
+            <h4>Hỗ trợ khách hàng</h4>
+            <ul>
+              <li><a href="#">Chính sách giao hàng</a></li>
+              <li><a href="#">Đổi trả hàng - Bảo hành</a></li>
+              <li><a href="#">Chính sách trả góp</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giải đáp thắc mắc</a></li>
+              <li><a href="#">Hướng dẫn mua hàng</a></li>
+              <li><a href="#">Hướng dẫn chọn size</a></li>
+              <li><a href="#">Tra cứu đơn hàng</a></li>
+              <li><a href="#">Đóng góp ý kiến</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 4: Group -->
+          <div class="f-col">
+            <h4>Group Business</h4>
+            <ul>
+              <li><a href="#">Nguyễn Kim</a></li>
+              <li><a href="#">GO! Việt Nam</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 5: Thanh toán -->
+          <div class="f-col">
+            <h4>PHƯƠNG THỨC THANH TOÁN</h4>
+            <div class="pay-logos">
+              <!-- Đặt đúng ảnh trong thư mục /jpg, đổi tên nếu khác -->
+              <img src="jpg/momo.png" alt="MoMo" />
+              <img src="jpg/zalopay.png" alt="ZaloPay" />
+              <img src="jpg/cod.png" alt="COD" />
+              <img src="jpg/visa.png" alt="VISA" />
+              <img src="jpg/atm.png" alt="ATM" />
+              <img src="jpg/installment.png" alt="Trả góp" />
+            </div>
+            <div class="badges">
+              <img src="jpg/bocongthuong.png" alt="Bộ Công Thương" />
+              <img src="jpg/dmca.png" alt="DMCA" />
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 HUYDOMINIC SPORTS. All rights reserved.
+        </div>
+      </div>
+
+      <!-- nút lên đầu trang -->
+      <button id="toTop" aria-label="Lên đầu trang">▲</button>
+    </footer>
+
+    <script src="js/total.js"></script>
+  </body>
+</html>
