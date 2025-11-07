@@ -1,33 +1,72 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Signup</title>
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
-    <body>
-        <div class="main">
-            <h1>SHOPHUYDOMINIC
-            </h1>
-            <h3>Đăng ký</h3>
-        
-       <form id="signupForm">
-  <label for="email">EMAIL:</label>
-  <input id="email" type="email" required>
-  <label for="phone">Số điện thoại</label>
-  <input id="phone" type="text" required>
-  <label for="signupPassword">Mật khẩu</label>
-  <input id="signupPassword" type="password" required>
-  <div class="wrap"><button type="submit">Đăng ký</button></div>
-</form>
-<p><a href="login.html">Đăng nhập</a></p>
-<script src="js/total.js"></script>
+  <body>
+    <main class="page">
+      <section class="left">
+        <div class="panel">
+          <h1>Đăng ký</h1>
+          <p class="sub">Mất chưa tới một phút để tạo tài khoản mới.</p>
 
+          <form>
+            <label for="name">Họ và tên</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nhập họ và tên"
+              required
+            />
 
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Nhập email của bạn"
+              required
+            />
 
+            <label for="password">Mật khẩu</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Tạo mật khẩu"
+              required
+            />
 
-    </body>
-    
-  
+            <div
+              class="row-between"
+              style="margin-top: 12px; margin-bottom: 18px"
+            >
+              <label class="remember">
+                <input type="checkbox" required />
+                Tôi đồng ý với Điều khoản sử dụng
+              </label>
+            </div>
+
+            <button class="btn" type="submit">Tạo tài khoản</button>
+
+            <div class="divider">HOẶC đăng ký bằng</div>
+            <div class="sso">
+              <a class="sso-btn" href="#">Đăng ký với Google</a>
+              <a class="sso-btn sso-fb" href="#">Đăng ký với Facebook</a>
+            </div>
+          </form>
+
+          <p class="signup">
+            Đã có tài khoản?
+            <a class="brand-link" href="login.html">Đăng nhập</a>
+          </p>
+        </div>
+      </section>
+
+      <aside class="right" aria-hidden="true">
+        <div class="hero"></div>
+      </aside>
+    </main>
+  </body>
 </html>

@@ -5,142 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Danh sách Sản phẩm - Larkon</title>
     <link rel="stylesheet" href="./css/product.css" />
-    <script src="./js/auth-guard.js"></script>
-    <style>
-      /* Giỏ hàng (drawer) tự chứa, không đụng file CSS ngoài */
-      .cart-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(17, 24, 39, 0.45);
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.2s;
-        z-index: 90;
-      }
-      .cart-backdrop.show {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .cart-drawer {
-        position: fixed;
-        top: 0;
-        right: -380px;
-        height: 100%;
-        width: 360px;
-        max-width: 90vw;
-        background: var(--panel, #0f172a);
-        color: var(--text, #e5e7eb);
-        border-left: 1px solid var(--line, #23304d);
-        box-shadow: -8px 0 24px rgba(0, 0, 0, 0.25);
-        display: flex;
-        flex-direction: column;
-        transition: right 0.25s ease;
-        z-index: 99;
-      }
-      .cart-drawer.show {
-        right: 0;
-      }
-      .cart-hd {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--line, #23304d);
-        font-weight: 700;
-      }
-      .cart-list {
-        flex: 1;
-        overflow: auto;
-        padding: 8px 12px;
-      }
-      .cart-item {
-        display: flex;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid var(--line, #23304d);
-        border-radius: 10px;
-        margin: 8px 0;
-        background: var(--panel, #0f172a);
-      }
-      .cart-item img {
-        width: 56px;
-        height: 56px;
-        border-radius: 8px;
-        object-fit: cover;
-      }
-      .cart-it-name {
-        font-weight: 700;
-      }
-      .cart-it-sub {
-        color: var(--muted, #94a3b8);
-        font-size: 12px;
-      }
-      .qty {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 6px;
-      }
-      .qty button {
-        width: 24px;
-        height: 24px;
-        border: 1px solid var(--line, #23304d);
-        border-radius: 6px;
-        background: transparent;
-        color: inherit;
-        cursor: pointer;
-      }
-      .cart-ft {
-        border-top: 1px solid var(--line, #23304d);
-        padding: 12px 16px;
-      }
-      .cart-row {
-        display: flex;
-        justify-content: space-between;
-        margin: 6px 0;
-      }
-      .btn-primary {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--accent, #f9a44d);
-        background: var(--accent, #f9a44d);
-        color: #2b1606;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .icon-btn.badged {
-        position: relative;
-      }
-      .badge {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        min-width: 18px;
-        height: 18px;
-        padding: 0 5px;
-        border-radius: 999px;
-        background: #ef4444;
-        color: #fff;
-        font-size: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .pill.cart {
-        background: #0ea5e922;
-        border: 1px solid #0ea5e988;
-        color: #7dd3fc;
-      }
-      .pill.cart:hover {
-        filter: brightness(1.05);
-      }
-      @media (max-width: 640px) {
-        .cart-item {
-          flex-direction: row;
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="layout">
@@ -204,15 +68,41 @@
                 />
               </svg>
             </a>
-            <div class="submenu">
-              <a href="product-list.html" class="active">Danh sách</a>
 
-              <a href="product-giohang.html">Giỏ Hàng</a>
+            <!-- ĐÃ THÊM id="submenu" -->
+            <div class="submenu" id="submenu">
+              <a href="product-list.html" class="active">Danh sách</a>
+              <a href="product-grid.html">Lưới</a>
+              <a href="product-details.html">Chi tiết</a>
+              <a href="product-edit.html">Sửa đổi</a>
+              <a href="product-create.html">Tạo</a>
             </div>
+          </div>
+          <div class="nav-item" id="navRegister">
+            <a href="#" data-top="register">
+              <div style="display: flex; align-items: center; gap: 10px">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="4"
+                    y="3"
+                    width="16"
+                    height="18"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 8h8M8 12h8M8 16h5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <span>Đăng ký</span>
+              </div>
+            </a>
           </div>
         </nav>
       </aside>
-
       <!-- MAIN -->
       <section class="main">
         <div class="topbar">
@@ -234,18 +124,6 @@
                 />
               </svg>
             </div>
-
-            <!-- Nút giỏ hàng với badge -->
-            <div class="icon-btn badged" title="Giỏ hàng" onclick="openCart()">
-              <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
-                <path
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-2.5 6M17 13l2.5 6M9.5 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
-                  stroke="#b9c7e5"
-                />
-              </svg>
-              <span class="badge" id="cartCount">0</span>
-            </div>
-
             <div class="search">
               <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
                 <circle cx="11" cy="11" r="8" stroke="#7a8fb0" />
@@ -258,7 +136,8 @@
 
         <!-- CONTENT -->
         <div class="content">
-          <div class="card">
+          <!-- ĐÃ GÁN id="listCard" -->
+          <div class="card" id="listCard">
             <div class="card-header">
               <div style="font-weight: 700; font-size: 16px">
                 Tất cả Danh sách sản phẩm
@@ -319,6 +198,117 @@
             </div>
           </div>
 
+          <!-- ĐÃ DI CHUYỂN registerCard VÀO TRONG .content -->
+          <div
+            class="card"
+            id="registerCard"
+            style="display: none; max-width: 820px; margin: 18px auto 0"
+          >
+            <div class="card-header">
+              <b>Đăng ký người bán</b>
+              <div>
+                <button class="btn" id="btnBackToList" type="button">
+                  ↩ Trở về Danh sách
+                </button>
+              </div>
+            </div>
+            <div style="padding: 18px">
+              <form
+                id="sellerForm"
+                onsubmit="event.preventDefault(); submitRegisterForm();"
+              >
+                <div
+                  style="
+                    display: grid;
+                    gap: 12px;
+                    grid-template-columns: 1fr 1fr;
+                  "
+                >
+                  <input
+                    required
+                    placeholder="Tên cửa hàng"
+                    style="
+                      grid-column: 1/-1;
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  />
+                  <input
+                    required
+                    placeholder="Họ và tên"
+                    style="
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  />
+                  <input
+                    required
+                    type="email"
+                    placeholder="Email"
+                    style="
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  />
+                  <input
+                    required
+                    placeholder="Số điện thoại"
+                    style="
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  />
+                  <input
+                    required
+                    placeholder="Ngân hàng & Số tài khoản"
+                    style="
+                      grid-column: 1/-1;
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  />
+                  <textarea
+                    rows="4"
+                    placeholder="Mô tả cửa hàng"
+                    style="
+                      grid-column: 1/-1;
+                      padding: 10px;
+                      border: 1px solid var(--line);
+                      border-radius: 10px;
+                      background: var(--panel-2);
+                      color: var(--text);
+                    "
+                  ></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 14px">
+                  <button class="btn" type="submit">Nộp hồ sơ</button>
+                  <button
+                    class="pill"
+                    type="button"
+                    onclick="showRoute('list')"
+                  >
+                    ✖
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
           <div
             style="
               text-align: center;
@@ -336,458 +326,6 @@
       </section>
     </div>
 
-    <!-- Drawer giỏ hàng -->
-    <div class="cart-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
-    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-      <div class="cart-hd">
-        <span>Giỏ hàng</span>
-        <button
-          class="icon-btn"
-          onclick="closeCart()"
-          title="Đóng"
-          style="
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--line, #23304d);
-            border-radius: 8px;
-            background: transparent;
-            color: inherit;
-            cursor: pointer;
-          "
-        >
-          ✖
-        </button>
-      </div>
-      <div class="cart-list" id="cartList"></div>
-      <div class="cart-ft">
-        <div class="cart-row">
-          <span>Tạm tính</span><strong id="subtotal">$0.00</strong>
-        </div>
-        <div
-          class="cart-row"
-          style="font-size: 12px; color: var(--muted, #94a3b8)"
-        >
-          <span>Phí ship (ước tính)</span><span id="ship">$0.00</span>
-        </div>
-        <div
-          class="cart-row"
-          style="border-top: 1px dashed var(--line, #23304d); padding-top: 8px"
-        >
-          <span>Tổng</span><strong id="grand">$0.00</strong>
-        </div>
-        <button class="btn-primary" onclick="checkout()">Thanh toán</button>
-      </div>
-    </aside>
-
-    <!-- SCRIPT -->
-    <script>
-      // ==== DATA
-      const products = [
-        {
-          id: 1,
-          name: "Áo thun đen",
-          sizes: "S, M, L, Xl",
-          price: 80,
-          stock: 466,
-          category: "Thời trang",
-          rating: 4.5,
-          reviews: 55,
-          image:
-            "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=100",
-        },
-        {
-          id: 2,
-          name: "Túi da màu xanh ổ liu",
-          sizes: "S, M",
-          price: 136,
-          stock: 784,
-          category: "Túi xách tay",
-          rating: 4.1,
-          reviews: 143,
-          image:
-            "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=100",
-        },
-        {
-          id: 3,
-          name: "Phụ nữ vàng Dress",
-          sizes: "S, M",
-          price: 219,
-          stock: 769,
-          category: "Thời trang",
-          rating: 4.4,
-          reviews: 174,
-          image:
-            "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100",
-        },
-        {
-          id: 4,
-          name: "Mũ Xám Cho Nam",
-          sizes: "S, M, L",
-          price: 76,
-          stock: 571,
-          category: "Mũ lưỡi trai",
-          rating: 4.2,
-          reviews: 23,
-          image:
-            "https://images.unsplash.com/photo-1588099768523-f4e6a5679d88?w=100",
-        },
-        {
-          id: 5,
-          name: "Pent chờ hàng màu xanh đậm",
-          sizes: "S, M, L, Xl",
-          price: 110,
-          stock: 241,
-          category: "Thời trang",
-          rating: 4.4,
-          reviews: 109,
-          image:
-            "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=100",
-        },
-        {
-          id: 6,
-          name: "Tai nghe đa màu cam",
-          sizes: "S, M",
-          price: 231,
-          stock: 821,
-          category: "Điện tử",
-          rating: 4.2,
-          reviews: 200,
-          image:
-            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100",
-        },
-        {
-          id: 7,
-          name: "Giày Kid's Yellow",
-          sizes: "18, 19, 20, 21",
-          price: 89,
-          stock: 321,
-          category: "Giày",
-          rating: 4.5,
-          reviews: 321,
-          image:
-            "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=100",
-        },
-        {
-          id: 8,
-          name: "Ví Nam Màu Nâu Đen",
-          sizes: "S, M",
-          price: 132,
-          stock: 190,
-          category: "Ví",
-          rating: 4.1,
-          reviews: 190,
-          image:
-            "https://images.unsplash.com/photo-1627123424574-724758594e93?w=100",
-        },
-        {
-          id: 9,
-          name: "Kính rầm Sky Blue",
-          sizes: "S, M",
-          price: 77,
-          stock: 784,
-          category: "Kính rầm",
-          rating: 3.5,
-          reviews: 298,
-          image:
-            "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=100",
-        },
-        {
-          id: 10,
-          name: "Áo thun màu vàng của trẻ em",
-          sizes: "S",
-          price: 110,
-          stock: 650,
-          category: "Thời trang",
-          rating: 4.1,
-          reviews: 156,
-          image:
-            "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=100",
-        },
-      ];
-
-      // ==== STATE
-      let currentPage = 1,
-        itemsPerPage = 10,
-        filteredProducts = [...products];
-      const CART_KEY = "larkon_cart";
-
-      // ==== RENDER PRODUCT LIST (thêm nút Thêm vào giỏ)
-      function renderProducts() {
-        const tbody = document.getElementById("productTableBody");
-        const start = (currentPage - 1) * itemsPerPage,
-          end = start + itemsPerPage;
-        const pageProducts = filteredProducts.slice(start, end);
-        tbody.innerHTML = pageProducts
-          .map(
-            (p) => `
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>
-              <div class="product">
-                <div class="thumb"><img src="${p.image}" alt="${p.name}"/></div>
-                <div>
-                  <div class="name">${p.name}</div>
-                  <div class="sub">Kích thước: ${p.sizes}</div>
-                </div>
-              </div>
-            </td>
-            <td>$${p.price.toFixed(2)}</td>
-            <td><div>${p.stock} Mục Trái</div><div class="sub">${Math.floor(
-              p.stock / 10
-            )} Đã bán</div></td>
-            <td>${p.category}</td>
-            <td>
-              <div class="rating">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style="color:#fbbf24">
-                  <polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8"/>
-                </svg>${p.rating}
-              </div>
-              <div class="sub">${p.reviews} Đánh giá</div>
-            </td>
-            <td>
-              <div class="act">
-                <div class="pill view" title="Xem" onclick="window.location.href='product-details.html'">👁️</div>
-                <div class="pill edit" title="Sửa" onclick="window.location.href='product-edit.html'">✏️</div>
-                <div class="pill del" title="Xóa" onclick="deleteProduct(${
-                  p.id
-                })">🗑️</div>
-                <div class="pill cart" title="Thêm vào giỏ" onclick="addToCart(${
-                  p.id
-                })">🛒</div>
-              </div>
-            </td>
-          </tr>`
-          )
-          .join("");
-        renderPagination();
-        updatePageInfo();
-      }
-
-      // ==== PAGINATION / SEARCH (giữ nguyên)
-      function renderPagination() {
-        const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-        const pagination = document.getElementById("pagination");
-        let html = `<button style="padding:6px 12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--muted);cursor:pointer" onclick="changePage(${
-          currentPage - 1
-        })" ${currentPage === 1 ? "disabled" : ""}>Trước</button>`;
-        for (let i = 1; i <= totalPages; i++) {
-          if (i === currentPage) {
-            html += `<button style="padding:6px 12px;background:var(--accent);border:1px solid var(--accent);border-radius:6px;color:#2b1606;font-weight:700;cursor:pointer">${i}</button>`;
-          } else {
-            html += `<button style="padding:6px 12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--text);cursor:pointer" onclick="changePage(${i})">${i}</button>`;
-          }
-        }
-        html += `<button style="padding:6px 12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--text);cursor:pointer" onclick="changePage(${
-          currentPage + 1
-        })" ${currentPage === totalPages ? "disabled" : ""}>Tiếp</button>`;
-        pagination.innerHTML = html;
-      }
-      function changePage(p) {
-        const total = Math.ceil(filteredProducts.length / itemsPerPage);
-        if (p < 1 || p > total) return;
-        currentPage = p;
-        renderProducts();
-      }
-      function updatePageInfo() {
-        const s = (currentPage - 1) * itemsPerPage + 1;
-        const e = Math.min(currentPage * itemsPerPage, filteredProducts.length);
-        document.getElementById(
-          "pageInfo"
-        ).textContent = `Hiển thị ${s}-${e} trong ${filteredProducts.length} kết quả`;
-      }
-      document.getElementById("searchInput").addEventListener("input", (e) => {
-        const q = e.target.value.toLowerCase();
-        filteredProducts = products.filter(
-          (p) =>
-            p.name.toLowerCase().includes(q) ||
-            p.category.toLowerCase().includes(q)
-        );
-        currentPage = 1;
-        renderProducts();
-      });
-      document
-        .getElementById("selectAll")
-        .addEventListener("change", function () {
-          document
-            .querySelectorAll('tbody input[type="checkbox"]')
-            .forEach((cb) => (cb.checked = this.checked));
-        });
-
-      function deleteProduct(id) {
-        if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
-          const i = products.findIndex((p) => p.id === id);
-          if (i > -1) {
-            products.splice(i, 1);
-            filteredProducts = [...products];
-            renderProducts();
-          }
-        }
-      }
-      function toggleSidebar() {
-        document.querySelector(".layout").classList.toggle("collapsed");
-        localStorage.setItem(
-          "sidebarCollapsed",
-          document.querySelector(".layout").classList.contains("collapsed")
-        );
-      }
-      if (localStorage.getItem("sidebarCollapsed") === "true") {
-        document.querySelector(".layout").classList.add("collapsed");
-      }
-      function toggleSubmenu(el) {
-        el.parentElement.classList.toggle("open");
-      }
-
-      // ==== CART LOGIC
-      function getCart() {
-        try {
-          return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-        } catch {
-          return [];
-        }
-      }
-      function setCart(items) {
-        localStorage.setItem(CART_KEY, JSON.stringify(items));
-        updateCartCount();
-      }
-
-      function addToCart(productId, qty = 1) {
-        const p = products.find((x) => x.id === productId);
-        if (!p) return;
-        const cart = getCart();
-        const found = cart.find((x) => x.id === productId);
-        if (found) {
-          found.qty += qty;
-        } else {
-          cart.push({
-            id: p.id,
-            name: p.name,
-            price: p.price,
-            image: p.image,
-            qty: qty,
-          });
-        }
-        setCart(cart);
-        // feedback nhỏ
-        openCart(); // mở luôn để thấy
-        flashBadge();
-        renderCart();
-      }
-
-      function updateQty(productId, delta) {
-        const cart = getCart();
-        const item = cart.find((x) => x.id === productId);
-        if (!item) return;
-        item.qty += delta;
-        if (item.qty <= 0) {
-          // xóa nếu 0
-          const idx = cart.findIndex((x) => x.id === productId);
-          cart.splice(idx, 1);
-        }
-        setCart(cart);
-        renderCart();
-      }
-
-      function removeItem(productId) {
-        const cart = getCart().filter((x) => x.id !== productId);
-        setCart(cart);
-        renderCart();
-      }
-
-      function calcTotals() {
-        const cart = getCart();
-        const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
-        const ship = cart.length ? 3.5 : 0; // demo: phí cố định
-        const grand = subtotal + ship;
-        return { subtotal, ship, grand };
-      }
-
-      function renderCart() {
-        const list = document.getElementById("cartList");
-        const cart = getCart();
-        if (cart.length === 0) {
-          list.innerHTML = `<div style="padding:24px;text-align:center;color:var(--muted,#94a3b8)">Giỏ hàng trống.</div>`;
-        } else {
-          list.innerHTML = cart
-            .map(
-              (it) => `
-            <div class="cart-item">
-              <img src="${it.image}" alt="${it.name}"/>
-              <div style="flex:1">
-                <div class="cart-it-name">${it.name}</div>
-                <div class="cart-it-sub">$${it.price.toFixed(2)}</div>
-                <div class="qty">
-                  <button onclick="updateQty(${it.id},-1)">−</button>
-                  <span>${it.qty}</span>
-                  <button onclick="updateQty(${it.id},1)">+</button>
-                </div>
-              </div>
-              <div style="text-align:right">
-                <div><strong>$${(it.price * it.qty).toFixed(2)}</strong></div>
-                <button class="icon-btn" title="Xóa" onclick="removeItem(${
-                  it.id
-                })" style="margin-top:6px;width:28px;height:28px;border:1px solid var(--line,#23304d);border-radius:8px;background:transparent;color:inherit;cursor:pointer">🗑️</button>
-              </div>
-            </div>`
-            )
-            .join("");
-        }
-        const { subtotal, ship, grand } = calcTotals();
-        document.getElementById("subtotal").textContent = `$${subtotal.toFixed(
-          2
-        )}`;
-        document.getElementById("ship").textContent = `$${ship.toFixed(2)}`;
-        document.getElementById("grand").textContent = `$${grand.toFixed(2)}`;
-      }
-
-      function updateCartCount() {
-        const count = getCart().reduce((s, x) => s + x.qty, 0);
-        const el = document.getElementById("cartCount");
-        if (el) {
-          el.textContent = count;
-        }
-      }
-
-      function openCart() {
-        document.getElementById("cartBackdrop").classList.add("show");
-        const d = document.getElementById("cartDrawer");
-        d.classList.add("show");
-        d.setAttribute("aria-hidden", "false");
-        renderCart();
-      }
-      function closeCart() {
-        document.getElementById("cartBackdrop").classList.remove("show");
-        const d = document.getElementById("cartDrawer");
-        d.classList.remove("show");
-        d.setAttribute("aria-hidden", "true");
-      }
-
-      function flashBadge() {
-        const b = document.getElementById("cartCount");
-        if (!b) return;
-        b.style.transform = "scale(1.2)";
-        b.style.transition = "transform .15s";
-        setTimeout(() => {
-          b.style.transform = "";
-        }, 160);
-      }
-
-      function checkout() {
-        const cart = getCart();
-        if (cart.length === 0) {
-          alert("Giỏ hàng trống.");
-          return;
-        }
-        alert(
-          "Giả lập thanh toán: tổng " +
-            document.getElementById("grand").textContent
-        );
-        // Bạn có thể chuyển hướng tới trang checkout thật ở đây
-        // window.location.href = 'checkout.html';
-      }
-
-      // ==== INIT
-      renderProducts();
-      updateCartCount();
-    </script>
+    <script src="js/auth-guard.js"></script>
   </body>
 </html>
