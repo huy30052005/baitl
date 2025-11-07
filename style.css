@@ -978,3 +978,69 @@ body {
     height: 220px;
   }
 }
+:root {
+  --bg: #fff;
+  --text: #0b122a;
+  --muted: #667085;
+  --line: #e7edf5;
+  --primary: #07162a;
+  --accent: #23ff67;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.cart-header {
+  border-bottom: 1px solid var(--line);
+  padding: 50px 6%;
+}
+.cart-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.cart-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 6%;
+}
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  padding: 40px 0 60px;
+}
+.empty img {
+  width: 380px;
+  max-width: 85%;
+  display: block;
+  margin: 18px auto 10px;
+}
+.empty-text {
+  font-size: 20px;
+  margin: 12px 0 18px;
+}
+.empty-actions {
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.empty .link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid transparent;
+}
+.empty .link:hover {
+  border-color: var(--primary);
+}
