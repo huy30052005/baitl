@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SellerHub - Kênh người bán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/nguoiban.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-icon">S</div>
+          <div>
+            <div class="sidebar-logo-title">SellerHub</div>
+            <div class="sidebar-logo-sub">Kênh Người Bán</div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">QUẢN LÝ</div>
+
+          <button class="sidebar-item active" data-page="dashboard">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">🏠</span>
+              <span class="sidebar-label">Tổng quan</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item" data-page="products">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">📦</span>
+              <span class="sidebar-label">Sản phẩm</span>
+            </div>
+            <span class="sidebar-badge">128</span>
+          </button>
+
+          <button class="sidebar-item" data-page="categories">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">📁</span>
+              <span class="sidebar-label">Danh mục</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item" data-page="inventory">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">📒</span>
+              <span class="sidebar-label">Tồn kho</span>
+            </div>
+            <span class="sidebar-badge warning">5</span>
+          </button>
+
+          <button class="sidebar-item" data-page="orders">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">🧾</span>
+              <span class="sidebar-label">Đơn hàng</span>
+            </div>
+            <span class="sidebar-badge danger">12</span>
+          </button>
+
+          <button class="sidebar-item" data-page="customers">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">👥</span>
+              <span class="sidebar-label">Khách hàng</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">VẬN HÀNH</div>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">🚚</span>
+              <span class="sidebar-label">Vận chuyển</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">💸</span>
+              <span class="sidebar-label">Hoàn tiền</span>
+            </div>
+            <span class="sidebar-badge danger">3</span>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">🎁</span>
+              <span class="sidebar-label">Khuyến mãi</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">⚡</span>
+              <span class="sidebar-label">Flash Sale</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">PHÂN TÍCH</div>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">📈</span>
+              <span class="sidebar-label">Báo cáo</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">💳</span>
+              <span class="sidebar-label">Tài chính</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="sidebar-section sidebar-bottom">
+          <div class="sidebar-section-title">THIẾT LẬP</div>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">🏬</span>
+              <span class="sidebar-label">Cửa hàng</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">⚙️</span>
+              <span class="sidebar-label">Cài đặt</span>
+            </div>
+          </button>
+
+          <button class="sidebar-item">
+            <div class="sidebar-left">
+              <span class="sidebar-icon">❓</span>
+              <span class="sidebar-label">Hỗ trợ</span>
+            </div>
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOPBAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="breadcrumb">
+              <span>SellerHub</span>
+              <span>/</span>
+              <span class="breadcrumb-current">Tổng quan</span>
+            </div>
+
+            <div class="page-title">Tổng quan</div>
+
+            <div class="topbar-search">
+              <span class="topbar-search-icon">🔍</span>
+              <input type="text" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <button class="icon-btn">🔔</button>
+            <button class="icon-btn">💬</button>
+            <button class="store-status">
+              <span class="dot dot-online"></span>
+              Cửa hàng đang mở
+            </button>
+          </div>
+        </header>
+
+        <div class="main-content">
+          <!-- ========== PAGE: DASHBOARD ========== -->
+          <section id="page-dashboard" class="page page-active">
+            <!-- Top metrics -->
+            <div class="grid grid-metrics">
+              <div class="card metric-card">
+                <div class="metric-head">
+                  <span class="metric-title">Tổng doanh thu</span>
+                  <span class="metric-icon">₫</span>
+                </div>
+                <div class="metric-value">892.450.000đ</div>
+                <div class="metric-sub">
+                  <span class="text-success">+12,5%</span>
+                  <span>so với tháng trước</span>
+                </div>
+              </div>
+
+              <div class="card metric-card">
+                <div class="metric-head">
+                  <span class="metric-title">Đơn hàng</span>
+                  <span class="metric-icon">📑</span>
+                </div>
+                <div class="metric-value">1.234</div>
+                <div class="metric-sub">
+                  <span class="text-success">+8,2%</span>
+                  <span>so với tháng trước</span>
+                </div>
+              </div>
+
+              <div class="card metric-card">
+                <div class="metric-head">
+                  <span class="metric-title">Sản phẩm</span>
+                  <span class="metric-icon">📦</span>
+                </div>
+                <div class="metric-value">128</div>
+                <div class="metric-sub">
+                  <span class="text-muted">+3 so với tháng trước</span>
+                </div>
+              </div>
+
+              <div class="card metric-card">
+                <div class="metric-head">
+                  <span class="metric-title">Khách hàng</span>
+                  <span class="metric-icon">👥</span>
+                </div>
+                <div class="metric-value">3.456</div>
+                <div class="metric-sub">
+                  <span class="text-success">+15,3%</span>
+                  <span>so với tháng trước</span>
+                </div>
+              </div>
+
+              <div class="card metric-card">
+                <div class="metric-head">
+                  <span class="metric-title">Đơn hoàn trả</span>
+                  <span class="metric-icon danger">↩</span>
+                </div>
+                <div class="metric-value">12</div>
+                <div class="metric-sub">
+                  <span class="text-danger">-2,3%</span>
+                  <span>so với tháng trước</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Revenue & quick actions -->
+            <div class="grid grid-two">
+              <div class="card">
+                <div class="card-header-between">
+                  <div>
+                    <div class="card-title">Biểu đồ doanh thu</div>
+                    <div class="card-subtitle">
+                      Thống kê doanh thu theo tháng
+                    </div>
+                  </div>
+                  <div class="card-tabs">
+                    <button class="tab active">Tháng</button>
+                    <button class="tab">Quý</button>
+                    <button class="tab">Năm</button>
+                  </div>
+                </div>
+                <canvas id="revenueChart" height="110"></canvas>
+              </div>
+
+              <div class="card quick-actions">
+                <div class="card-title">Thao tác nhanh</div>
+                <div class="quick-actions-list">
+                  <button class="qa-item qa-primary">
+                    <div>
+                      <div class="qa-title">Thêm sản phẩm</div>
+                      <div class="qa-desc">Thêm sản phẩm mới vào cửa hàng</div>
+                    </div>
+                    <span class="qa-icon">＋</span>
+                  </button>
+
+                  <button class="qa-item">
+                    <div>
+                      <div class="qa-title">Tạo khuyến mãi</div>
+                      <div class="qa-desc">
+                        Tạo mã giảm giá hoặc chương trình sale
+                      </div>
+                    </div>
+                  </button>
+
+                  <button class="qa-item">
+                    <div>
+                      <div class="qa-title">Xuất báo cáo</div>
+                      <div class="qa-desc">
+                        Tải báo cáo doanh thu & đơn hàng
+                      </div>
+                    </div>
+                  </button>
+
+                  <button class="qa-item">
+                    <div>
+                      <div class="qa-title">Quảng cáo</div>
+                      <div class="qa-desc">Quảng bá sản phẩm nổi bật</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Orders & best sellers -->
+            <div class="grid grid-two">
+              <div class="card">
+                <div class="card-header-between">
+                  <div class="card-title">Đơn hàng gần đây</div>
+                  <a href="#" class="link-muted">Xem tất cả</a>
+                </div>
+                <table class="table table-orders">
+                  <thead>
+                    <tr>
+                      <th>Mã đơn</th>
+                      <th>Khách hàng</th>
+                      <th>Sản phẩm</th>
+                      <th>Số tiền</th>
+                      <th>Thanh toán</th>
+                      <th>Trạng thái</th>
+                      <th>Ngày đặt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#DH-12345</td>
+                      <td>Trần Văn A</td>
+                      <td>iPhone 15 Pro Max 256GB</td>
+                      <td>34.990.000đ</td>
+                      <td><span class="badge badge-outline">COD</span></td>
+                      <td>
+                        <span class="badge badge-warning">Chờ xác nhận</span>
+                      </td>
+                      <td>Hôm nay, 14:30</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-12344</td>
+                      <td>Nguyễn Thị B</td>
+                      <td>MacBook Air M3</td>
+                      <td>27.990.000đ</td>
+                      <td>
+                        <span class="badge badge-outline">Banking</span>
+                      </td>
+                      <td>
+                        <span class="badge badge-info">Đang xử lý</span>
+                      </td>
+                      <td>Hôm nay, 12:15</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-12343</td>
+                      <td>Lê Hoàng C</td>
+                      <td>AirPods Pro 2</td>
+                      <td>6.490.000đ</td>
+                      <td>
+                        <span class="badge badge-outline">Momo</span>
+                      </td>
+                      <td>
+                        <span class="badge badge-success">Đang giao</span>
+                      </td>
+                      <td>Hôm qua, 18:45</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-12342</td>
+                      <td>Phạm Minh D</td>
+                      <td>iPad Pro 12.9 inch</td>
+                      <td>31.990.000đ</td>
+                      <td>
+                        <span class="badge badge-outline">Credit Card</span>
+                      </td>
+                      <td>
+                        <span class="badge badge-success">Đã giao</span>
+                      </td>
+                      <td>Hôm qua, 10:20</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card">
+                <div class="card-header-between">
+                  <div class="card-title">Sản phẩm bán chạy</div>
+                  <a href="#" class="link-muted">Xem tất cả</a>
+                </div>
+
+                <ul class="bestseller-list">
+                  <li>
+                    <div class="bestseller-main">
+                      <div class="bestseller-rank">#1</div>
+                      <div class="bestseller-info">
+                        <div class="bestseller-name">
+                          iPhone 15 Pro Max 256GB
+                        </div>
+                        <div class="bestseller-sub">
+                          Doanh thu: 5.486.440.000đ
+                        </div>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 90%"></div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="bestseller-main">
+                      <div class="bestseller-rank">#2</div>
+                      <div class="bestseller-info">
+                        <div class="bestseller-name">MacBook Air M3 2024</div>
+                        <div class="bestseller-sub">
+                          Doanh thu: 2.491.100.000đ
+                        </div>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="bestseller-main">
+                      <div class="bestseller-rank">#3</div>
+                      <div class="bestseller-info">
+                        <div class="bestseller-name">AirPods Pro 2nd Gen</div>
+                        <div class="bestseller-sub">
+                          Doanh thu: 1.518.660.000đ
+                        </div>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 60%"></div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="bestseller-main">
+                      <div class="bestseller-rank">#4</div>
+                      <div class="bestseller-info">
+                        <div class="bestseller-name">iPad Pro 12.9 inch M4</div>
+                        <div class="bestseller-sub">
+                          Doanh thu: 2.143.330.000đ
+                        </div>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 55%"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== PAGE: PRODUCTS ========== -->
+          <section id="page-products" class="page">
+            <div class="card card-header-between mb-16">
+              <div>
+                <div class="card-title">Quản lý sản phẩm</div>
+                <div class="card-subtitle">
+                  Theo dõi danh sách sản phẩm đang bán trong cửa hàng
+                </div>
+                <button class="primary-btn" data-open-add-product>
+                  + Thêm sản phẩm
+                </button>
+              </div>
+            </div>
+
+            <div class="card mb-16">
+              <div class="toolbar">
+                <div class="toolbar-search">
+                  <span class="topbar-search-icon">🔍</span>
+                  <input type="text" placeholder="Tìm kiếm theo tên, SKU..." />
+                </div>
+                <div class="toolbar-filters">
+                  <select>
+                    <option>Tất cả danh mục</option>
+                    <option>Điện thoại</option>
+                    <option>Laptop</option>
+                    <option>Máy tính bảng</option>
+                  </select>
+                  <select>
+                    <option>Tất cả trạng thái</option>
+                    <option>Đang bán</option>
+                    <option>Sắp hết</option>
+                    <option>Hết hàng</option>
+                  </select>
+                </div>
+              </div>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>SKU</th>
+                    <th>Danh mục</th>
+                    <th>Giá bán</th>
+                    <th>Kho</th>
+                    <th>Đã bán</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>iPhone 15 Pro Max 256GB</td>
+                    <td>IP15PM-256-BK</td>
+                    <td>Điện thoại</td>
+                    <td>34.990.000đ</td>
+                    <td>23</td>
+                    <td>156</td>
+                    <td><span class="badge badge-success">Đang bán</span></td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                  <tr>
+                    <td>MacBook Air M3 2024</td>
+                    <td>MBA-M3-256-SG</td>
+                    <td>Laptop</td>
+                    <td>27.990.000đ</td>
+                    <td>15</td>
+                    <td>89</td>
+                    <td><span class="badge badge-success">Đang bán</span></td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                  <tr>
+                    <td>Apple Watch Ultra 2</td>
+                    <td>AWU2-49-TI</td>
+                    <td>Đồng hồ</td>
+                    <td>21.990.000đ</td>
+                    <td>0</td>
+                    <td>45</td>
+                    <td><span class="badge badge-danger">Hết hàng</span></td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ========== PAGE: CATEGORIES ========== -->
+          <section id="page-categories" class="page">
+            <div class="card card-header-between mb-16">
+              <div>
+                <div class="card-title">Quản lý danh mục</div>
+                <div class="card-subtitle">
+                  Tổ chức sản phẩm theo nhóm để quản lý dễ hơn
+                </div>
+              </div>
+              <button class="primary-btn">+ Thêm danh mục</button>
+            </div>
+
+            <div class="card">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Danh mục</th>
+                    <th>Slug</th>
+                    <th>Thuộc tính</th>
+                    <th>Sản phẩm</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Điện thoại</td>
+                    <td>dien-thoai</td>
+                    <td>Màu sắc, Dung lượng</td>
+                    <td>45</td>
+                    <td><span class="badge badge-success">Hoạt động</span></td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                  <tr>
+                    <td>Laptop</td>
+                    <td>laptop</td>
+                    <td>RAM, CPU, Dung lượng</td>
+                    <td>32</td>
+                    <td><span class="badge badge-success">Hoạt động</span></td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ========== PAGE: INVENTORY ========== -->
+          <section id="page-inventory" class="page">
+            <div class="card card-header-between mb-16">
+              <div>
+                <div class="card-title">Quản lý tồn kho</div>
+                <div class="card-subtitle">
+                  Theo dõi số lượng tồn kho theo từng biến thể sản phẩm
+                </div>
+              </div>
+              <button class="primary-btn">Điều chỉnh tồn kho</button>
+            </div>
+
+            <div class="card">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm / Biến thể</th>
+                    <th>SKU</th>
+                    <th>Tồn kho</th>
+                    <th>Đang giữ</th>
+                    <th>Có thể bán</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>iPhone 15 Pro Max 256GB - Đen</td>
+                    <td>IP15PM-256-BK</td>
+                    <td>31</td>
+                    <td>4</td>
+                    <td>27</td>
+                    <td><span class="badge badge-success">Còn hàng</span></td>
+                    <td><a href="#" class="link-muted">Điều chỉnh</a></td>
+                  </tr>
+                  <tr>
+                    <td>iPad Pro 12.9 M4 - 256GB</td>
+                    <td>IPADP-129-M4</td>
+                    <td>8</td>
+                    <td>1</td>
+                    <td>7</td>
+                    <td><span class="badge badge-warning">Sắp hết</span></td>
+                    <td><a href="#" class="link-muted">Điều chỉnh</a></td>
+                  </tr>
+                  <tr>
+                    <td>Apple Watch Ultra 2 - 49mm</td>
+                    <td>AWU2-49-TI</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><span class="badge badge-danger">Hết hàng</span></td>
+                    <td><a href="#" class="link-muted">Điều chỉnh</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ========== PAGE: ORDERS ========== -->
+          <section id="page-orders" class="page">
+            <div class="card card-header-between mb-16">
+              <div>
+                <div class="card-title">Quản lý đơn hàng</div>
+                <div class="card-subtitle">
+                  Theo dõi toàn bộ đơn hàng và trạng thái xử lý
+                </div>
+              </div>
+              <button class="primary-btn">Xuất Excel</button>
+            </div>
+
+            <div class="card">
+              <div class="order-tabs">
+                <button class="tab active">Tất cả</button>
+                <button class="tab">Chờ xác nhận</button>
+                <button class="tab">Đang xử lý</button>
+                <button class="tab">Đang giao</button>
+                <button class="tab">Đã giao</button>
+              </div>
+
+              <table class="table table-orders">
+                <thead>
+                  <tr>
+                    <th>Mã đơn</th>
+                    <th>Khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th>Tổng tiền</th>
+                    <th>Thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Thời gian</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#DH-12345</td>
+                    <td>Trần Văn A</td>
+                    <td>1 sản phẩm</td>
+                    <td>34.990.000đ</td>
+                    <td><span class="badge badge-outline">COD</span></td>
+                    <td>
+                      <span class="badge badge-warning">Chờ xác nhận</span>
+                    </td>
+                    <td>14:30 15/01/2024</td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                  <tr>
+                    <td>#DH-12341</td>
+                    <td>Võ Thị E</td>
+                    <td>1 sản phẩm</td>
+                    <td>21.990.000đ</td>
+                    <td><span class="badge badge-outline">Banking</span></td>
+                    <td><span class="badge badge-danger">Đã hủy</span></td>
+                    <td>09:00 13/01/2024</td>
+                    <td><a href="#" class="link-muted">...</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ========== PAGE: CUSTOMERS ========== -->
+          <section id="page-customers" class="page">
+            <div class="card card-header-between mb-16">
+              <div>
+                <div class="card-title">Quản lý khách hàng</div>
+                <div class="card-subtitle">
+                  Xem thông tin, lịch sử mua và phân loại khách hàng
+                </div>
+              </div>
+              <button class="primary-btn">+ Thêm khách hàng</button>
+            </div>
+
+            <div class="card">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Khách hàng</th>
+                    <th>Liên hệ</th>
+                    <th>Đơn hàng</th>
+                    <th>Tổng chi tiêu</th>
+                    <th>Đơn gần nhất</th>
+                    <th>Loại</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Trần Văn A</td>
+                    <td>
+                      travana@example.com<br />
+                      0912 345 678
+                    </td>
+                    <td>15</td>
+                    <td>125.450.000đ</td>
+                    <td>15/01/2024</td>
+                    <td><span class="badge badge-success">VIP</span></td>
+                    <td><a href="#" class="link-muted">Xem chi tiết</a></td>
+                  </tr>
+                  <tr>
+                    <td>Phạm Minh D</td>
+                    <td>
+                      phamminh@example.com<br />
+                      0978 111 222
+                    </td>
+                    <td>22</td>
+                    <td>234.560.000đ</td>
+                    <td>13/01/2024</td>
+                    <td><span class="badge badge-success">VIP</span></td>
+                    <td><a href="#" class="link-muted">Xem chi tiết</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <!-- MODAL THÊM SẢN PHẨM -->
+    <div id="modal-add-product" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div class="modal-title">Thêm sản phẩm mới</div>
+          <button type="button" class="modal-close-btn" data-close-modal>
+            ×
+          </button>
+        </div>
+        <p class="modal-desc">
+          Điền thông tin sản phẩm bên dưới để thêm vào cửa hàng
+        </p>
+
+        <form class="modal-body">
+          <div class="modal-field-group">
+            <label class="modal-label">Hình ảnh sản phẩm</label>
+            <div class="upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-text">Nhấn để tải ảnh lên hoặc kéo thả</div>
+            </div>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-label">
+              Tên sản phẩm <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              class="modal-input"
+              placeholder="Nhập tên sản phẩm"
+              required
+            />
+          </div>
+
+          <div class="modal-row">
+            <div class="modal-col">
+              <label class="modal-label">Mã SKU</label>
+              <input
+                type="text"
+                class="modal-input"
+                placeholder="VD: IP15PM-256-BK"
+              />
+            </div>
+            <div class="modal-col">
+              <label class="modal-label">
+                Danh mục <span class="required">*</span>
+              </label>
+              <select class="modal-input" required>
+                <option value="">Chọn danh mục</option>
+                <option>Điện thoại</option>
+                <option>Laptop</option>
+                <option>Máy tính bảng</option>
+                <option>Phụ kiện</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-row">
+            <div class="modal-col">
+              <label class="modal-label">
+                Giá bán <span class="required">*</span>
+              </label>
+              <input
+                type="number"
+                class="modal-input"
+                placeholder="0"
+                min="0"
+                required
+              />
+            </div>
+            <div class="modal-col">
+              <label class="modal-label">Giá gốc</label>
+              <input
+                type="number"
+                class="modal-input"
+                placeholder="0"
+                min="0"
+              />
+            </div>
+            <div class="modal-col">
+              <label class="modal-label">
+                Số lượng <span class="required">*</span>
+              </label>
+              <input
+                type="number"
+                class="modal-input"
+                placeholder="0"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-label">Mô tả sản phẩm</label>
+            <textarea
+              class="modal-textarea"
+              rows="3"
+              placeholder="Nhập mô tả chi tiết về sản phẩm..."
+            ></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="secondary-btn" data-close-modal>
+              Hủy
+            </button>
+            <button type="submit" class="primary-btn">Thêm sản phẩm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Chart.js -->
+
+    <script src="js/nguoiban.js"></script>
+  </body>
+</html>

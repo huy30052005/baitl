@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập - Kênh Người Bán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="logo-group">
+            <div class="logo-icon">S</div>
+            <div>
+              <span class="logo-text-main">Shopee</span>
+              <span class="logo-text-sub">Đăng ký</span>
+            </div>
+          </div>
+
+          <a href="#" class="help-link">Bạn cần giúp đỡ?</a>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- LEFT TEXT -->
+        <section class="left">
+          <h2>Shopee Việt Nam</h2>
+          <h1>Trở thành Người bán<br />ngay hôm nay</h1>
+
+          <div class="benefit">
+            <div class="benefit-icon">🏬</div>
+            <div class="benefit-text">
+              Nền tảng thương mại điện tử hàng đầu Đông Nam Á và Đài Loan
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">📦</div>
+            <div class="benefit-text">
+              Phát triển trở thành thương hiệu toàn cầu
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">🤝</div>
+            <div class="benefit-text">
+              Dẫn đầu lượng người dùng trên ứng dụng mua sắm tại Việt Nam
+            </div>
+          </div>
+
+          <div class="city-shadow"></div>
+        </section>
+
+        <!-- RIGHT FORM -->
+        <section class="right">
+          <div class="card">
+            <div class="card-title">Đăng ký</div>
+
+            <!-- THÊM id + name Ở ĐÂY -->
+            <form id="registerForm">
+              <div class="form-group">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Số điện thoại"
+                  maxlength="10"
+                />
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Email" />
+              </div>
+              <div class="form-group password-group">
+                <input
+                  type="password"
+                  name="password"
+                  id="registerPassword"
+                  placeholder="Mật Khẩu"
+                />
+                <span class="toggle-password" data-input="registerPassword"
+                  >👁</span
+                >
+              </div>
+
+              <button type="submit" class="btn-next">Đăng ký</button>
+              <div class="divider">HOẶC</div>
+
+              <div class="social-row">
+                <button type="button" class="social-btn fb">
+                  <span class="social-circle">f</span>
+                  <span>Facebook</span>
+                </button>
+                <button type="button" class="social-btn gg">
+                  <span class="social-circle">G</span>
+                  <span>Google</span>
+                </button>
+              </div>
+
+              <p class="note">
+                Bằng việc đăng kí, bạn đã đồng ý với Shopee về<br />
+                <a href="#">Điều khoản dịch vụ</a> &amp;
+                <a href="#">Chính sách bảo mật</a>
+              </p>
+
+              <p class="login-back">
+                Bạn đã có tài khoản?
+                <!-- đổi lại đúng tên file login của bạn -->
+                <a href="login.html">Đăng nhập</a>
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- LIÊN KẾT JS Ở CUỐI BODY -->
+    <script src="js/login.js"></script>
+  </body>
+</html>

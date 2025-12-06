@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập - Kênh Người Bán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="seller-page">
+      <!-- THANH TRÊN CÙNG -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="logo-block">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">
+              <span class="brand-name">MESSI BUCU RONALDO</span>
+              <span class="brand-sub">Kênh Người Bán</span>
+            </div>
+          </div>
+
+          <a href="#" class="help-link">Bạn cần giúp đỡ?</a>
+        </div>
+      </header>
+
+      <!-- NỘI DUNG CHÍNH -->
+      <main class="main">
+        <!-- BÊN TRÁI -->
+        <section class="left">
+          <h1 class="headline">Bán hàng chuyên nghiệp</h1>
+          <p class="subtitle">
+            Quản lý shop của bạn một cách hiệu quả hơn<br />
+            trên Shopee với Shopee - Kênh Người bán
+          </p>
+
+          <div class="store-illustration">
+            <div class="store">
+              <div class="store-awning">
+                <span></span><span></span><span></span><span></span
+                ><span></span>
+              </div>
+              <div class="store-body">
+                <div class="store-window dress"></div>
+                <div class="store-door">
+                  <span>OPEN</span>
+                </div>
+                <div class="store-window shirt"></div>
+              </div>
+            </div>
+            <div class="truck"></div>
+          </div>
+        </section>
+
+        <!-- BÊN PHẢI: FORM ĐĂNG NHẬP -->
+        <section class="right">
+          <div class="login-card">
+            <div class="login-header">
+              <h2>Đăng nhập</h2>
+              <button class="qr-login">Đăng nhập với mã<br />QR</button>
+            </div>
+
+            <!-- QUAN TRỌNG: id="loginForm" + name="account", name="password" -->
+            <form id="loginForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="account"
+                  placeholder="Email/Số điện thoại/Tên đăng nhập"
+                />
+              </div>
+
+              <div class="form-group password-group">
+                <input
+                  type="password"
+                  name="password"
+                  id="loginPassword"
+                  placeholder="Mật khẩu"
+                />
+                <span class="toggle-password" data-input="loginPassword"
+                  >👁</span
+                >
+              </div>
+
+              <button type="submit" class="btn-primary">ĐĂNG NHẬP</button>
+
+              <div class="form-extra">
+                <a href="forgot.html" class="forgot-link">Quên mật khẩu</a>
+              </div>
+
+              <div class="divider">
+                <span>HOẶC</span>
+              </div>
+
+              <div class="social-row">
+                <button type="button" class="social-btn fb">
+                  <span class="circle-icon">f</span>
+                  <span>Facebook</span>
+                </button>
+                <button type="button" class="social-btn gg">
+                  <span class="circle-icon">G</span>
+                  <span>Google</span>
+                </button>
+              </div>
+            </form>
+
+            <div class="signup-hint">
+              Bạn mới biết đến Shopee?
+              <!-- nhớ đặt đúng tên file trang đăng ký của bạn -->
+              <a href="sinup.html">Đăng ký</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- GỌI JS Ở CUỐI BODY -->
+    <script src="js/login.js"></script>
+  </body>
+</html>

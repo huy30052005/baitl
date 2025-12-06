@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quên mật khẩu - Kênh Người Bán</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Dùng chung CSS với các trang khác -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="logo-group">
+            <div class="logo-icon">S</div>
+            <div>
+              <span class="logo-text-main">Shopee</span>
+              <span class="logo-text-sub">Đặt lại mật khẩu</span>
+            </div>
+          </div>
+
+          <a href="#" class="help-link">Bạn cần giúp đỡ?</a>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- BÊN TRÁI (giới thiệu) -->
+        <section class="left">
+          <h2>Shopee Việt Nam</h2>
+          <h1>Đặt lại mật khẩu<br />tài khoản Người bán</h1>
+
+          <div class="benefit">
+            <div class="benefit-icon">🔐</div>
+            <div class="benefit-text">
+              Thiết lập mật khẩu mới một cách nhanh chóng và an toàn.
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">✅</div>
+            <div class="benefit-text">
+              Không cần email / SMS, đặt lại trực tiếp ngay trên hệ thống demo.
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">⚠️</div>
+            <div class="benefit-text">
+              Đây chỉ là giao diện mô phỏng, chưa kết nối dữ liệu thật.
+            </div>
+          </div>
+
+          <div class="city-shadow"></div>
+        </section>
+
+        <!-- BÊN PHẢI: FORM ĐẶT LẠI MẬT KHẨU -->
+        <section class="right">
+          <div class="card">
+            <div class="card-title">Đặt lại mật khẩu</div>
+
+            <!-- FORM QUÊN MẬT KHẨU / ĐẶT LẠI -->
+            <form id="forgotForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="account"
+                  placeholder="Email / Số điện thoại / Tên đăng nhập"
+                />
+              </div>
+
+              <div class="form-group password-group">
+                <input
+                  type="password"
+                  name="newPassword"
+                  id="newPassword"
+                  placeholder="Mật khẩu mới"
+                />
+                <span class="toggle-password" data-input="newPassword">👁</span>
+              </div>
+
+              <div class="form-group password-group">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Nhập lại mật khẩu mới"
+                />
+                <span class="toggle-password" data-input="confirmPassword"
+                  >👁</span
+                >
+              </div>
+
+              <button type="submit" class="btn-next">Đặt lại mật khẩu</button>
+
+              <p class="note">
+                Mật khẩu mới nên có ít nhất 6 ký tự, khó đoán, không trùng mật
+                khẩu cũ.
+              </p>
+
+              <p class="login-back">
+                Nhớ lại mật khẩu cũ rồi?
+                <a href="login.html">Quay lại đăng nhập</a>
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Dùng chung file JS -->
+    <script src="js/login.js"></script>
+  </body>
+</html>
