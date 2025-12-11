@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Đăng nhập thành công!");
 
       // Chuyển sang TRANG QUẢN TRỊ NGƯỜI BÁN
-      window.location.href = "seller-dashboard.html";
+      window.location.href = "index.html";
     });
   }
 

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý sản phẩm - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+
+            <a href="sanpham-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+              <span class="nav-badge gray">128</span>
+            </a>
+
+            <a href="danhmuc-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🗂</span>
+                <span class="nav-text">Danh mục</span>
+              </div>
+            </a>
+
+            <a href="tonkho-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏬</span>
+                <span class="nav-text">Tồn kho</span>
+              </div>
+              <span class="nav-badge red">5</span>
+            </a>
+
+            <a href="donhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🧾</span>
+                <span class="nav-text">Đơn hàng</span>
+              </div>
+              <span class="nav-badge red">12</span>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⭐</span>
+                <span class="nav-text">Đánh giá</span>
+              </div>
+              <span class="nav-badge gray">8</span>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🚚</span>
+                <span class="nav-text">Vận chuyển</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+              <span class="nav-badge red">3</span>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- PHÂN TÍCH -->
+          <div class="sidebar-section-label">PHÂN TÍCH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Báo cáo</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">💳</span>
+                <span class="nav-text">Tài chính</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- THIẾT LẬP -->
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Hỗ trợ</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+
+        <!-- FOOTER USER -->
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar">
+              <img src="" alt="" onerror="this.style.display='none'" />
+              <span>NH</span>
+            </div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOP BAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Quản lý sản phẩm</h1>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">🔔</button>
+            <button class="top-btn">❓</button>
+            <button class="top-btn user-circle">A</button>
+          </div>
+        </header>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <a href="index.html" class="breadcrumb-item">Trang chủ</a>
+          <span class="breadcrumb-separator">›</span>
+          <a href="#" class="breadcrumb-item">Quản lý</a>
+          <span class="breadcrumb-separator">›</span>
+          <span class="breadcrumb-item active">Sản phẩm</span>
+        </nav>
+
+        <!-- PRODUCT CONTENT -->
+        <section class="product-section">
+          <div class="product-header">
+            <div class="filter-group">
+              <div class="search-box">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <input
+                  type="text"
+                  id="productSearch"
+                  class="search-input"
+                  placeholder="Tìm kiếm sản phẩm..."
+                  aria-label="Tìm kiếm sản phẩm"
+                />
+                <button
+                  type="button"
+                  id="clearSearch"
+                  class="search-clear"
+                  aria-label="Xóa tìm kiếm"
+                >
+                  ✕
+                </button>
+              </div>
+              <select class="filter-select">
+                <option value="">Tất cả danh mục</option>
+                <option value="Điện thoại">Điện thoại</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Máy tính bảng">Máy tính bảng</option>
+                <option value="Phụ kiện">Phụ kiện</option>
+              </select>
+              <select class="filter-select">
+                <option value="">Tất cả</option>
+                <option value="dangban">Đang bán</option>
+                <option value="saphet">Sắp hết</option>
+                <option value="tamngung">Tạm ngừng</option>
+              </select>
+            </div>
+            <div class="product-header-right">
+              <div class="view-toggle" role="group" aria-label="Chế độ xem">
+                <button
+                  class="view-btn active"
+                  data-view="list"
+                  aria-label="Xem dạng danh sách"
+                >
+                  <span aria-hidden="true">≡</span>
+                </button>
+                <button
+                  class="view-btn"
+                  data-view="grid"
+                  aria-label="Xem dạng lưới"
+                >
+                  <span aria-hidden="true">▦</span>
+                </button>
+              </div>
+              <div style="display: flex; gap: 10px">
+                <button class="btn-add">+ Thêm sản phẩm mới</button>
+                <button class="btn-cancel" onclick="resetAllData()">
+                  🗑️ Reset Data
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 36px; text-align: center">
+                      <input type="checkbox" id="checkAll" />
+                    </th>
+                    <th>STT</th>
+                    <th>Sản phẩm</th>
+                    <th>SKU</th>
+                    <th>Danh mục</th>
+                    <th>Giá bán</th>
+                    <th>Kho</th>
+                    <th>Đã bán</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+              </table>
+            </div>
+            <div
+              id="productGrid"
+              class="product-grid"
+              style="display: none"
+            ></div>
+            <div
+              class="pagination-container"
+              style="
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 10px;
+                padding: 20px;
+              "
+            ></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- MODAL THÊM SẢN PHẨM -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h2>Thêm sản phẩm mới</h2>
+            <p class="modal-subtitle">
+              Điền thông tin sản phẩm bên dưới để thêm vào cửa hàng
+            </p>
+          </div>
+          <button class="modal-close">✕</button>
+        </div>
+
+        <form id="productForm">
+          <div class="modal-body">
+            <!-- Image Upload -->
+            <div class="form-group">
+              <label>Hình ảnh sản phẩm</label>
+              <div
+                class="image-upload-box"
+                onclick="document.getElementById('imageUpload').click()"
+              >
+                <input
+                  type="file"
+                  id="imageUpload"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <div class="image-upload-icon">📷+</div>
+                <div id="imagePreview" style="display: none">
+                  <img id="imagePreviewImg" alt="Preview" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Name -->
+            <div class="form-group">
+              <label>Tên sản phẩm <span class="required">*</span></label>
+              <input
+                type="text"
+                name="productName"
+                placeholder="Nhập tên sản phẩm"
+                required
+              />
+            </div>
+
+            <!-- SKU and Category -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Mã SKU</label>
+                <input type="text" name="sku" placeholder="VD: IP15PM-256-BK" />
+              </div>
+              <div class="form-group">
+                <label>Danh mục <span class="required">*</span></label>
+                <select name="category" required>
+                  <option value="">Chọn danh mục</option>
+                  <option value="Quần áo">Quần áo</option>
+                  <option value="Điện thoại">Điện thoại</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="Máy tính bảng">Máy tính bảng</option>
+                  <option value="Linh kiện">Linh kiện</option>
+                  <option value="Phụ kiện">Phụ kiện</option>
+                  <option value="Khác">Khác</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Category specific fields -->
+            <div class="form-group">
+              <label>Thông tin theo danh mục</label>
+              <div
+                id="categoryFields"
+                class="category-fields"
+                style="display: grid; gap: 12px"
+              ></div>
+              <small style="color: var(--text-muted, #9ca3af)">
+                Chọn danh mục để hiển thị các trường phù hợp (ví dụ: quần áo sẽ
+                có size, màu sắc).
+              </small>
+            </div>
+
+            <!-- Price, Original Price, Quantity -->
+            <div class="form-row-3">
+              <div class="form-group">
+                <label>Giá bán <span class="required">*</span></label>
+                <input type="number" name="price" placeholder="0" required />
+              </div>
+              <div class="form-group">
+                <label>Giá gốc</label>
+                <input type="number" name="originalPrice" placeholder="0" />
+              </div>
+              <div class="form-group">
+                <label>Số lượng <span class="required">*</span></label>
+                <input type="number" name="quantity" placeholder="0" required />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label>Mô tả sản phẩm</label>
+              <textarea
+                name="description"
+                placeholder="Nhập mô tả chi tiết về sản phẩm..."
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel">Hủy</button>
+            <button type="submit" class="btn-submit">Thêm sản phẩm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL XEM CHI TIẾT SẢN PHẨM -->
+    <div id="productDetailModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h2>Chi tiết sản phẩm</h2>
+            <p class="modal-subtitle">
+              Thông tin sản phẩm và thuộc tính theo danh mục
+            </p>
+          </div>
+          <button class="modal-close detail-close">✕</button>
+        </div>
+
+        <div class="modal-body detail-body">
+          <div class="detail-hero">
+            <div class="detail-image-wrap">
+              <img id="detailImage" alt="Hình sản phẩm" />
+            </div>
+            <div class="detail-hero-text">
+              <div class="detail-label">Tên sản phẩm</div>
+              <div
+                id="detailName"
+                class="detail-value"
+                style="font-size: 18px; font-weight: 600"
+              ></div>
+              <div class="detail-label" style="margin-top: 6px">Danh mục</div>
+              <div id="detailCategory" class="detail-value"></div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div>
+              <div class="detail-label">Danh mục</div>
+              <div id="detailCategory2" class="detail-value"></div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div>
+              <div class="detail-label">SKU</div>
+              <div id="detailSku" class="detail-value"></div>
+            </div>
+            <div>
+              <div class="detail-label">Giá bán</div>
+              <div id="detailPrice" class="detail-value"></div>
+            </div>
+            <div>
+              <div class="detail-label">Tồn kho</div>
+              <div id="detailQuantity" class="detail-value"></div>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-label">Mô tả</div>
+            <div id="detailDescription" class="detail-value"></div>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-label">Thuộc tính theo danh mục</div>
+            <div id="detailAttributes" class="detail-attributes"></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel detail-close">Đóng</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/product-clean.js"></script>
+  </body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý danh mục - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+
+            <a href="sanpham-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+              <span class="nav-badge gray">128</span>
+            </a>
+
+            <a href="danhmuc-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">🗂</span>
+                <span class="nav-text">Danh mục</span>
+              </div>
+            </a>
+
+            <a href="tonkho-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏬</span>
+                <span class="nav-text">Tồn kho</span>
+              </div>
+              <span class="nav-badge red">5</span>
+            </a>
+
+            <a href="donhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🧾</span>
+                <span class="nav-text">Đơn hàng</span>
+              </div>
+              <span class="nav-badge red">12</span>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⭐</span>
+                <span class="nav-text">Đánh giá</span>
+              </div>
+              <span class="nav-badge gray">8</span>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🚚</span>
+                <span class="nav-text">Vận chuyển</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+              <span class="nav-badge red">3</span>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- PHÂN TÍCH -->
+          <div class="sidebar-section-label">PHÂN TÍCH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Báo cáo</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">💳</span>
+                <span class="nav-text">Tài chính</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- THIẾT LẬP -->
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Hỗ trợ</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+
+        <!-- FOOTER USER -->
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar">
+              <img src="" alt="" onerror="this.style.display='none'" />
+              <span>NH</span>
+            </div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOP BAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Quản lý danh mục</h1>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">🔔</button>
+            <button class="top-btn">❓</button>
+            <button class="top-btn user-circle">A</button>
+          </div>
+        </header>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <a href="index.html" class="breadcrumb-item">Trang chủ</a>
+          <span class="breadcrumb-separator">›</span>
+          <a href="#" class="breadcrumb-item">Quản lý</a>
+          <span class="breadcrumb-separator">›</span>
+          <span class="breadcrumb-item active">Danh mục</span>
+        </nav>
+
+        <!-- CATEGORY STATS -->
+        <section class="kpi-row" style="margin-bottom: 20px">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Tổng danh mục</span>
+            </div>
+            <div class="kpi-value" id="kpiTotalCategories">0</div>
+            <div class="kpi-footer">Đang hoạt động</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Sản phẩm</span>
+            </div>
+            <div class="kpi-value" id="kpiTotalProducts">0</div>
+            <div class="kpi-footer">Tổng sản phẩm</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Danh mục lớn nhất</span>
+            </div>
+            <div class="kpi-value" id="kpiLargestCount">0</div>
+            <div class="kpi-footer" id="kpiLargestName">—</div>
+          </div>
+        </section>
+
+        <!-- CATEGORY CONTENT -->
+        <section class="product-section">
+          <div class="product-header">
+            <div class="filter-group">
+              <div class="search-box">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <input
+                  type="text"
+                  id="categorySearch"
+                  class="search-input"
+                  placeholder="Tìm kiếm danh mục..."
+                  aria-label="Tìm kiếm danh mục"
+                />
+                <button
+                  type="button"
+                  id="clearCategorySearch"
+                  class="search-clear"
+                  aria-label="Xóa tìm kiếm"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            <button class="btn-add" id="btnAddCategory">
+              + Thêm danh mục mới
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="card-body table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Tên danh mục</th>
+                    <th>Mã danh mục</th>
+                    <th>Sản phẩm</th>
+                    <th>Danh mục cha</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="categoryTable">
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <span style="font-size: 20px">📱</span>
+                        <span style="font-weight: 500">Điện thoại</span>
+                      </div>
+                    </td>
+                    <td>DM01</td>
+                    <td>177</td>
+                    <td>—</td>
+                    <td><span class="status success">Đang bán</span></td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <span style="font-size: 20px">💻</span>
+                        <span style="font-weight: 500">Laptop</span>
+                      </div>
+                    </td>
+                    <td>DM02</td>
+                    <td>48</td>
+                    <td>—</td>
+                    <td><span class="status success">Đang bán</span></td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <span style="font-size: 20px">⌚</span>
+                        <span style="font-weight: 500">Máy tính bảng</span>
+                      </div>
+                    </td>
+                    <td>DM03</td>
+                    <td>32</td>
+                    <td>—</td>
+                    <td><span class="status success">Đang bán</span></td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <span style="font-size: 20px">🎧</span>
+                        <span style="font-weight: 500">Phụ kiện</span>
+                      </div>
+                    </td>
+                    <td>DM04</td>
+                    <td>18</td>
+                    <td>—</td>
+                    <td><span class="status success">Đang bán</span></td>
+                    <td>...</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>
+                      <div
+                        style="display: flex; align-items: center; gap: 10px"
+                      >
+                        <span style="font-size: 20px">🖥️</span>
+                        <span style="font-weight: 500">Màng hình Đồng màn</span>
+                      </div>
+                    </td>
+                    <td>DM05</td>
+                    <td>15</td>
+                    <td>Đồng hồ, Smartwatch</td>
+                    <td><span class="status success">Đang bán</span></td>
+                    <td>...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 10px;
+                padding: 20px;
+              "
+            >
+              <span>Results</span>
+              <button class="btn-sm">1</button>
+              <button class="btn-sm">Sau</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- MODAL THÊM DANH MỤC -->
+    <div id="categoryModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h2>Thêm danh mục mới</h2>
+            <p class="modal-subtitle">
+              Điền thông tin danh mục bên dưới để thêm vào cửa hàng
+            </p>
+          </div>
+          <button class="modal-close">✕</button>
+        </div>
+
+        <form id="categoryForm">
+          <div class="modal-body">
+            <!-- Category Name -->
+            <div class="form-group">
+              <label>Tên danh mục <span class="required">*</span></label>
+              <input
+                type="text"
+                name="categoryName"
+                placeholder="Nhập tên danh mục"
+                required
+              />
+            </div>
+
+            <!-- Code and Icon -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Mã danh mục</label>
+                <input type="text" name="categoryCode" placeholder="VD: DM01" />
+              </div>
+              <div class="form-group">
+                <label>Icon (Emoji)</label>
+                <input type="text" name="icon" placeholder="📱" />
+              </div>
+            </div>
+
+            <!-- Parent Category -->
+            <div class="form-group">
+              <label>Danh mục cha</label>
+              <select name="parentCategory">
+                <option value="">Không có</option>
+                <option value="dienthoai">Điện thoại</option>
+                <option value="laptop">Laptop</option>
+                <option value="tablet">Máy tính bảng</option>
+                <option value="phukien">Phụ kiện</option>
+              </select>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label>Mô tả danh mục</label>
+              <textarea
+                name="description"
+                placeholder="Nhập mô tả chi tiết về danh mục..."
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel">Hủy</button>
+            <button type="submit" class="btn-submit">Thêm danh mục</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/category.js"></script>
+  </body>
+</html>

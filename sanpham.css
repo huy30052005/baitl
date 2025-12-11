@@ -1,0 +1,153 @@
+/* Sanpham page styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0a0e1a;
+  color: #fff;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.btn-add {
+  background-color: #00d084;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-back {
+  background-color: #2a3142;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.search-bar {
+  background-color: #1a1f2e;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  background-color: #0a0e1a;
+  border: 1px solid #2a3142;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.table-container {
+  background-color: #1a1f2e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #0a0e1a;
+}
+
+th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 500;
+  color: #8b92a7;
+  font-size: 14px;
+}
+
+td {
+  padding: 15px;
+  border-top: 1px solid #2a3142;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.status.active {
+  background-color: rgba(0, 208, 132, 0.2);
+  color: #00d084;
+}
+
+.status.warning {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.status.danger {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+}
+
+.actions {
+  color: #8b92a7;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #1a1f2e;
+}
+
+.pagination button {
+  background-color: #2a3142;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}

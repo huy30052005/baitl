@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Dark</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="tongquan">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+
+            <a href="sanpham-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+              <span class="nav-badge gray">128</span>
+            </a>
+
+            <a href="danhmuc-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🗂</span>
+                <span class="nav-text">Danh mục</span>
+              </div>
+            </a>
+
+            <a href="tonkho-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏬</span>
+                <span class="nav-text">Tồn kho</span>
+              </div>
+              <span class="nav-badge red">5</span>
+            </a>
+
+            <a href="donhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🧾</span>
+                <span class="nav-text">Đơn hàng</span>
+              </div>
+              <span class="nav-badge red">12</span>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⭐</span>
+                <span class="nav-text">Đánh giá</span>
+              </div>
+              <span class="nav-badge gray">8</span>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🚚</span>
+                <span class="nav-text">Vận chuyển</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+              <span class="nav-badge red">3</span>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- PHÂN TÍCH -->
+          <div class="sidebar-section-label">PHÂN TÍCH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Báo cáo</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">💳</span>
+                <span class="nav-text">Tài chính</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- THIẾT LẬP -->
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Hỗ trợ</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+
+        <!-- FOOTER USER -->
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar">
+              <img src="" alt="" onerror="this.style.display='none'" />
+              <span>NH</span>
+            </div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOP BAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title" id="pageTitle">Tổng quan</h1>
+            <input
+              type="text"
+              class="search-input"
+              id="searchInput"
+              placeholder="Tìm kiếm đơn hàng, khách hàng..."
+            />
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">🔔</button>
+            <button class="top-btn">❓</button>
+            <button class="top-btn user-circle">A</button>
+          </div>
+        </header>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <a href="index.html" class="breadcrumb-item">Trang chủ</a>
+          <span class="breadcrumb-separator">›</span>
+          <span class="breadcrumb-item active">Tổng quan</span>
+        </nav>
+
+        <!-- TỔNG QUAN CONTENT -->
+        <div id="tongquanContent">
+          <!-- KPI CARDS -->
+          <section class="kpi-row">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span>Doanh thu</span>
+                <span class="kpi-tag">Hôm nay</span>
+              </div>
+              <div class="kpi-value">892.450.000₫</div>
+              <div class="kpi-footer up">+8.4% so với tuần trước</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span>Đơn hàng</span>
+                <span class="kpi-tag">7 ngày</span>
+              </div>
+              <div class="kpi-value">1.234</div>
+              <div class="kpi-footer up">+4.6% so với tuần trước</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span>Khách hàng mới</span>
+                <span class="kpi-tag">Hôm nay</span>
+              </div>
+              <div class="kpi-value">128</div>
+              <div class="kpi-footer down">-2.1% so với tuần trước</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span>Lượt truy cập</span>
+                <span class="kpi-tag">7 ngày</span>
+              </div>
+              <div class="kpi-value">3.456</div>
+              <div class="kpi-footer up">+9.3% so với tuần trước</div>
+            </div>
+          </section>
+
+          <!-- CHART + RIGHT PANEL -->
+          <section class="middle-row">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div>
+                  <h3>Chỉ số doanh thu</h3>
+                  <span class="card-subtitle">Hiệu suất 30 ngày gần nhất</span>
+                </div>
+                <div class="card-actions">
+                  <button class="btn-sm active">30 ngày</button>
+                  <button class="btn-sm">7 ngày</button>
+                  <button class="btn-sm">Hôm nay</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card right-panel">
+              <div class="card-header">
+                <h3>Tệp khách hàng</h3>
+                <span class="card-subtitle">Hoạt động gần đây</span>
+              </div>
+              <div class="card-body">
+                <div class="segment-card success">
+                  <div class="segment-title">Tệp khách hàng VIP</div>
+                  <div class="segment-desc">
+                    Khách hàng có giá trị cao, tần suất mua hàng lớn.
+                  </div>
+                </div>
+
+                <div class="segment-list">
+                  <div class="segment-item">
+                    <div>
+                      <div class="segment-name">Khách quay lại</div>
+                      <div class="segment-note">Mua hàng ≥ 2 lần/tháng</div>
+                    </div>
+                    <div class="segment-value">4.560</div>
+                  </div>
+
+                  <div class="segment-item">
+                    <div>
+                      <div class="segment-name">Khách mới</div>
+                      <div class="segment-note">30 ngày gần nhất</div>
+                    </div>
+                    <div class="segment-value">1.230</div>
+                  </div>
+
+                  <div class="segment-item">
+                    <div>
+                      <div class="segment-name">Rời bỏ</div>
+                      <div class="segment-note">Không mua > 90 ngày</div>
+                    </div>
+                    <div class="segment-value">320</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- TABLE + TOP PRODUCTS -->
+          <section class="bottom-row">
+            <div class="card table-card">
+              <div class="card-header">
+                <h3>Đơn hàng gần đây</h3>
+                <button class="btn-sm ghost">Xem tất cả</button>
+              </div>
+              <div class="card-body table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Mã đơn</th>
+                      <th>Khách hàng</th>
+                      <th>Sản phẩm</th>
+                      <th>Giá trị</th>
+                      <th>Trạng thái</th>
+                      <th>Ngày</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#DH-0215</td>
+                      <td>Trần Văn A</td>
+                      <td>iPhone 15 Pro Max 256GB</td>
+                      <td>34.990.000₫</td>
+                      <td><span class="status success">Hoàn thành</span></td>
+                      <td>09/12/2025</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-0214</td>
+                      <td>Nguyễn Thị B</td>
+                      <td>MacBook Air M2</td>
+                      <td>27.990.000₫</td>
+                      <td><span class="status pending">Đang xử lý</span></td>
+                      <td>09/12/2025</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-0213</td>
+                      <td>Phạm Văn C</td>
+                      <td>iPad Pro 11" 2024</td>
+                      <td>19.990.000₫</td>
+                      <td><span class="status cancelled">Hủy</span></td>
+                      <td>08/12/2025</td>
+                    </tr>
+                    <tr>
+                      <td>#DH-0212</td>
+                      <td>Lê Thị D</td>
+                      <td>Apple Watch S10</td>
+                      <td>9.990.000₫</td>
+                      <td><span class="status success">Hoàn thành</span></td>
+                      <td>08/12/2025</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card top-products-card">
+              <div class="card-header">
+                <h3>Sản phẩm bán chạy</h3>
+              </div>
+              <div class="card-body">
+                <div class="product-item">
+                  <div>
+                    <div class="product-name">iPhone 15 Pro Max 256GB</div>
+                    <div class="product-sub">Doanh thu: 6.420.000.000₫</div>
+                  </div>
+                  <div class="product-progress">
+                    <div class="bar">
+                      <div class="fill" style="width: 90%"></div>
+                    </div>
+                    <span>90%</span>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <div>
+                    <div class="product-name">MacBook Air M2 16GB</div>
+                    <div class="product-sub">Doanh thu: 3.210.000.000₫</div>
+                  </div>
+                  <div class="product-progress">
+                    <div class="bar">
+                      <div class="fill" style="width: 70%"></div>
+                    </div>
+                    <span>70%</span>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <div>
+                    <div class="product-name">iPad Pro 11" 2024</div>
+                    <div class="product-sub">Doanh thu: 2.130.000.000₫</div>
+                  </div>
+                  <div class="product-progress">
+                    <div class="bar">
+                      <div class="fill" style="width: 55%"></div>
+                    </div>
+                    <span>55%</span>
+                  </div>
+                </div>
+
+                <div class="product-item">
+                  <div>
+                    <div class="product-name">Apple Watch S10</div>
+                    <div class="product-sub">Doanh thu: 1.540.000.000₫</div>
+                  </div>
+                  <div class="product-progress">
+                    <div class="bar">
+                      <div class="fill" style="width: 40%"></div>
+                    </div>
+                    <span>40%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- SẢN PHẨM CONTENT -->
+        <div id="sanphamContent" style="display: none">
+          <div class="sanpham-wrapper">
+            <div class="header">
+              <button class="btn-add">+ Thêm sản phẩm mới</button>
+            </div>
+
+            <div class="card">
+              <div class="card-body table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Sản phẩm</th>
+                      <th>Mã sản phẩm</th>
+                      <th>Danh mục</th>
+                      <th>Giá bán</th>
+                      <th>Số lượng</th>
+                      <th>Đã bán</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productTable">
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>iPhone 14 Pro 256GB</span>
+                        </div>
+                      </td>
+                      <td>5-612-835-10</td>
+                      <td>Điện thoại</td>
+                      <td>34,990,000₫</td>
+                      <td>23</td>
+                      <td>156</td>
+                      <td><span class="status success">Đang bán</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>MacBook Air M2 15inch</span>
+                        </div>
+                      </td>
+                      <td>888-881-788</td>
+                      <td>Laptop</td>
+                      <td>31,990,000₫</td>
+                      <td>15</td>
+                      <td>89</td>
+                      <td><span class="status success">Đang bán</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>AirPods Pro 2nd Gen</span>
+                        </div>
+                      </td>
+                      <td>APPS-881</td>
+                      <td>Phụ kiện</td>
+                      <td>6,490,000₫</td>
+                      <td>45</td>
+                      <td>234</td>
+                      <td><span class="status success">Đang bán</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>iPad Pro 12.9 M2</span>
+                        </div>
+                      </td>
+                      <td>17849-229-88</td>
+                      <td>Máy tính bảng</td>
+                      <td>31,990,000₫</td>
+                      <td>4</td>
+                      <td>67</td>
+                      <td><span class="status pending">Sắp hết</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>Apple Pencil 2 Gen</span>
+                        </div>
+                      </td>
+                      <td>APCE-40-77</td>
+                      <td>Phụ kiện</td>
+                      <td>3,290,000₫</td>
+                      <td>7</td>
+                      <td>45</td>
+                      <td><span class="status pending">Sắp hết</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>
+                        <div class="product-info">
+                          <img
+                            src="https://via.placeholder.com/40"
+                            alt="Product"
+                            class="product-img"
+                          />
+                          <span>Samsung Galaxy S24 Ultra</span>
+                        </div>
+                      </td>
+                      <td>SGS24U-256-40</td>
+                      <td>Điện thoại</td>
+                      <td>33,990,000₫</td>
+                      <td>10</td>
+                      <td>95</td>
+                      <td><span class="status cancelled">Tạm ngừng</span></td>
+                      <td class="actions">...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <span>Results</span>
+                <button class="btn-sm">1</button>
+                <button class="btn-sm">2</button>
+                <button class="btn-sm">3</button>
+                <button class="btn-sm">Sau</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+  </body>
+</html>
