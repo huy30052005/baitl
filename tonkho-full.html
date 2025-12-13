@@ -63,7 +63,7 @@
               <span class="nav-badge red">12</span>
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="khachhang-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">👥</span>
                 <span class="nav-text">Khách hàng</span>
@@ -88,20 +88,20 @@
                 <span class="nav-text">Vận chuyển</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="hoantien-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">↩️</span>
                 <span class="nav-text">Hoàn tiền</span>
               </div>
               <span class="nav-badge red">3</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="khuyenmai-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🏷</span>
                 <span class="nav-text">Khuyến mãi</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="flashsale-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">⚡</span>
                 <span class="nav-text">Flash Sale</span>
@@ -112,7 +112,7 @@
           <!-- PHÂN TÍCH -->
           <div class="sidebar-section-label">PHÂN TÍCH</div>
           <nav class="sidebar-nav">
-            <a href="#" class="nav-item">
+            <a href="baocao-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">📈</span>
                 <span class="nav-text">Báo cáo</span>
@@ -129,13 +129,13 @@
           <!-- THIẾT LẬP -->
           <div class="sidebar-section-label">THIẾT LẬP</div>
           <nav class="sidebar-nav">
-            <a href="#" class="nav-item">
+            <a href="cuahang-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🏪</span>
                 <span class="nav-text">Cửa hàng</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="caidat-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Cài đặt</span>
@@ -254,10 +254,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <div>
-            <h2>Cập nhật tồn kho</h2>
-            <p class="modal-subtitle">
-              Điều chỉnh số lượng tồn kho cho sản phẩm / biến thể đã chọn
-            </p>
+            <h2>Điều chỉnh tồn kho</h2>
           </div>
           <button type="button" class="modal-close stock-close">✕</button>
         </div>
@@ -265,34 +262,53 @@
         <div class="modal-body">
           <div class="form-group">
             <label>Sản phẩm</label>
-            <div id="stockProductName" class="detail-value"></div>
+            <div id="stockProductName" class="detail-value" style="font-size: 14px; color: var(--text, #fff);"></div>
           </div>
 
           <div class="form-group">
-            <label>SKU</label>
-            <div id="stockSku" class="detail-value"></div>
+            <label>Tồn kho hiện tại</label>
+            <div id="stockCurrentDisplay" style="font-size: 32px; font-weight: bold; color: var(--text, #fff); padding: 12px 0;"></div>
+            <div id="stockNewDisplay" style="font-size: 24px; font-weight: 600; color: #22c55e; padding: 8px 0; display: none;">
+              <span style="font-size: 16px; color: var(--text-muted, #9ca3af);">Tồn kho mới: </span>
+              <span id="stockNewValue"></span>
+            </div>
           </div>
 
-          <div class="form-row-3">
-            <div class="form-group">
-              <label>Tồn kho hiện tại</label>
-              <input type="number" id="stockCurrent" disabled />
-            </div>
-            <div class="form-group">
-              <label>Điều chỉnh</label>
-              <input type="number" id="stockChange" placeholder="+5 hoặc -3" />
-            </div>
-            <div class="form-group">
-              <label>Tồn kho mới</label>
-              <input type="number" id="stockNew" disabled />
-            </div>
+          <div class="form-group">
+            <label>Loại điều chỉnh</label>
+            <select id="stockAdjustType" style="width: 100%; padding: 10px; background: var(--bg-secondary, #1f2937); border: 1px solid var(--border-color, #374151); border-radius: 6px; color: var(--text, #fff);">
+              <option value="add">➕ Thêm vào kho</option>
+              <option value="subtract">➖ Trừ khỏi kho</option>
+              <option value="set">🔧 Đặt lại số lượng</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Số lượng</label>
+            <input 
+              type="number" 
+              id="stockChange" 
+              placeholder="0" 
+              min="0"
+              style="width: 100%; padding: 10px; background: var(--bg-secondary, #1f2937); border: 1px solid var(--border-color, #374151); border-radius: 6px; color: var(--text, #fff);"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Ghi chú</label>
+            <input 
+              type="text" 
+              id="stockNote" 
+              placeholder="Lý do điều chỉnh..." 
+              style="width: 100%; padding: 10px; background: var(--bg-secondary, #1f2937); border: 1px solid var(--border-color, #374151); border-radius: 6px; color: var(--text, #fff);"
+            />
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn-cancel stock-close">Hủy</button>
-          <button type="button" id="btnSaveStock" class="btn-submit">
-            Lưu tồn kho
+          <button type="button" id="btnSaveStock" class="btn-submit" style="background: #22c55e;">
+            Xác nhận
           </button>
         </div>
       </div>

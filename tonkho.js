@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateInventoryKpis();
   setupRowToggle();
   setupStockModalLogic();
+  setupActionMenuHandler();
 });
 
 // ===== Render bảng tồn kho =====
@@ -136,7 +137,15 @@ function renderInventoryTable() {
         totals.lowStockCount,
         totals.outStockCount
       )}</td>
-      <td><button class="action-btn" type="button">⋮</button></td>
+      <td class="cell-right">
+        <div class="action-menu">
+          <button type="button" class="action-toggle" aria-label="Thao tác">⋯</button>
+          <div class="action-dropdown">
+            <button class="action-item" data-action="import" data-product-id="${product.id}">➕ Nhập kho</button>
+            <button class="action-item" data-action="adjust" data-product-id="${product.id}">✏️ Điều chỉnh</button>
+          </div>
+        </div>
+      </td>
     `;
     tbody.appendChild(parentTr);
 
@@ -167,7 +176,17 @@ function renderInventoryTable() {
         <td>${v.reserved}</td>
         <td>${sellable}</td>
         <td>${statusBadge}</td>
-        <td><button class="action-btn" type="button">✎</button></td>
+        <td class="cell-right">
+          <button 
+            type="button" 
+            class="action-btn-edit" 
+            onclick="handleAdjustStock('${product.id}', '${v.id}')"
+            title="Điều chỉnh tồn kho"
+            style="padding: 6px 10px; background: transparent; border: 1px solid var(--border-color, #374151); border-radius: 4px; cursor: pointer; color: var(--text, #fff); font-size: 16px;"
+          >
+            ✎
+          </button>
+        </td>
       `;
       tbody.appendChild(tr);
     });
@@ -238,15 +257,26 @@ function updateInventoryKpis() {
 }
 
 // ===== Toggle mở/đóng biến thể khi click sản phẩm cha =====
+let rowToggleHandler = null;
+
 function setupRowToggle() {
-  document.addEventListener("click", (e) => {
+  // Xóa event listener cũ nếu có
+  if (rowToggleHandler) {
+    document.removeEventListener("click", rowToggleHandler);
+  }
+  
+  // Tạo handler mới
+  rowToggleHandler = (e) => {
     const parentRow = e.target.closest(".product-parent");
     if (!parentRow) return;
 
-    // Đừng toggle nếu click vào checkbox hoặc action-btn
+    // Đừng toggle nếu click vào checkbox, action-menu, action-toggle, hoặc action-btn-edit
     if (
       e.target.tagName === "INPUT" ||
-      e.target.classList.contains("action-btn")
+      e.target.closest(".action-menu") ||
+      e.target.closest(".action-toggle") ||
+      e.target.classList.contains("action-btn") ||
+      e.target.classList.contains("action-btn-edit")
     ) {
       return;
     }
@@ -262,7 +292,10 @@ function setupRowToggle() {
       }
       nextRow = nextRow.nextElementSibling;
     }
-  });
+  };
+  
+  // Thêm event listener mới
+  document.addEventListener("click", rowToggleHandler);
 
   // Mặc định ẩn tất cả biến thể
   const variantRows = document.querySelectorAll(".variant-row");
@@ -277,12 +310,51 @@ function setupStockModalLogic() {
   if (!stockModal) return;
 
   const stockProductNameEl = document.getElementById("stockProductName");
-  const stockSkuEl = document.getElementById("stockSku");
-  const stockCurrentInput = document.getElementById("stockCurrent");
+  const stockCurrentDisplay = document.getElementById("stockCurrentDisplay");
+  const stockNewDisplay = document.getElementById("stockNewDisplay");
+  const stockNewValue = document.getElementById("stockNewValue");
+  const stockAdjustType = document.getElementById("stockAdjustType");
   const stockChangeInput = document.getElementById("stockChange");
-  const stockNewInput = document.getElementById("stockNew");
+  const stockNoteInput = document.getElementById("stockNote");
   const saveBtn = document.getElementById("btnSaveStock");
   const closeBtns = document.querySelectorAll(".stock-close");
+  
+  // Hàm tính toán và hiển thị tồn kho mới
+  const updateStockPreview = () => {
+    if (!currentStockContext) return;
+    const { productId, variantId } = currentStockContext;
+    const { product, variant } = findVariant(productId, variantId);
+    if (!product || !variant) return;
+    
+    const currentStock = variant.stock;
+    const adjustType = stockAdjustType ? stockAdjustType.value : "add";
+    const changeAmount = parseInt(stockChangeInput.value || "0", 10);
+    
+    if (isNaN(changeAmount) || changeAmount <= 0) {
+      if (stockNewDisplay) stockNewDisplay.style.display = "none";
+      return;
+    }
+    
+    let newStock = currentStock;
+    if (adjustType === "add") {
+      newStock = currentStock + changeAmount;
+    } else if (adjustType === "subtract") {
+      newStock = Math.max(0, currentStock - changeAmount);
+    } else if (adjustType === "set") {
+      newStock = changeAmount;
+    }
+    
+    if (stockNewValue) stockNewValue.textContent = newStock;
+    if (stockNewDisplay) stockNewDisplay.style.display = "block";
+  };
+  
+  // Cập nhật preview khi thay đổi loại điều chỉnh hoặc số lượng
+  if (stockAdjustType) {
+    stockAdjustType.addEventListener("change", updateStockPreview);
+  }
+  if (stockChangeInput) {
+    stockChangeInput.addEventListener("input", updateStockPreview);
+  }
 
   // Click vào ô Tồn kho
   document.addEventListener("click", (e) => {
@@ -299,36 +371,44 @@ function setupStockModalLogic() {
     currentStockContext = { productId, variantId };
 
     const productName = `${product.name} – ${variant.name}`;
-    stockProductNameEl.textContent = productName;
-    stockSkuEl.textContent = variant.sku;
-    stockCurrentInput.value = variant.stock;
-    stockChangeInput.value = "";
-    stockNewInput.value = variant.stock;
+    if (stockProductNameEl) stockProductNameEl.textContent = productName;
+    if (stockCurrentDisplay) stockCurrentDisplay.textContent = variant.stock;
+    if (stockChangeInput) stockChangeInput.value = "";
+    if (stockAdjustType) stockAdjustType.value = "add";
+    if (stockNoteInput) stockNoteInput.value = "";
 
     stockModal.style.display = "flex";
   });
-
-  // Tự tính tồn kho mới khi nhập điều chỉnh
-  if (stockChangeInput) {
-    stockChangeInput.addEventListener("input", () => {
-      const current = parseInt(stockCurrentInput.value || "0", 10);
-      const delta = parseInt(stockChangeInput.value || "0", 10);
-      const newVal = current + (isNaN(delta) ? 0 : delta);
-      stockNewInput.value = newVal;
-    });
-  }
 
   // Lưu tồn kho
   if (saveBtn) {
     saveBtn.addEventListener("click", () => {
       if (!currentStockContext) return;
       const { productId, variantId } = currentStockContext;
-      const newStock = parseInt(stockNewInput.value || "0", 10);
+      
+      const adjustType = stockAdjustType ? stockAdjustType.value : "add";
+      const changeAmount = parseInt(stockChangeInput.value || "0", 10);
+      const note = stockNoteInput ? stockNoteInput.value.trim() : "";
+
+      if (isNaN(changeAmount) || changeAmount <= 0) {
+        alert("Vui lòng nhập số lượng hợp lệ!");
+        return;
+      }
 
       const { product, variant } = findVariant(productId, variantId);
       if (!product || !variant) return;
 
-      variant.stock = isNaN(newStock) ? variant.stock : newStock;
+      // Tính tồn kho mới dựa trên loại điều chỉnh
+      let newStock = variant.stock;
+      if (adjustType === "add") {
+        newStock = variant.stock + changeAmount;
+      } else if (adjustType === "subtract") {
+        newStock = Math.max(0, variant.stock - changeAmount);
+      } else if (adjustType === "set") {
+        newStock = changeAmount;
+      }
+
+      variant.stock = newStock;
 
       // Lưu lại localStorage
       localStorage.setItem(
@@ -340,9 +420,12 @@ function setupStockModalLogic() {
       renderInventoryTable();
       updateInventoryKpis();
       setupRowToggle(); // ẩn lại biến thể sau khi render
+      setupActionMenuHandler(); // Setup lại menu handler
 
       stockModal.style.display = "none";
       currentStockContext = null;
+      
+      alert(`Đã cập nhật tồn kho thành công!${note ? '\nGhi chú: ' + note : ''}`);
     });
   }
 
@@ -369,4 +452,149 @@ function findVariant(productId, variantId) {
   if (!product) return { product: null, variant: null };
   const variant = product.variants.find((v) => v.id === variantId);
   return { product, variant };
+}
+
+// ===== Xử lý menu action (nút 3 chấm) =====
+let actionMenuHandler = null;
+
+function setupActionMenuHandler() {
+  // Xóa event listener cũ nếu có để tránh duplicate
+  if (actionMenuHandler) {
+    document.removeEventListener("click", actionMenuHandler);
+  }
+  
+  // Tạo handler mới
+  actionMenuHandler = (e) => {
+    const toggle = e.target.closest(".action-toggle");
+    const menu = e.target.closest(".action-menu");
+    const item = e.target.closest(".action-item");
+
+    // Click on toggle button
+    if (toggle && menu) {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains("open");
+      document
+        .querySelectorAll(".action-menu.open")
+        .forEach((m) => m.classList.remove("open"));
+      if (!isOpen) {
+        menu.classList.add("open");
+      }
+      return;
+    }
+
+    // Click on action item
+    if (item) {
+      e.stopPropagation();
+      e.preventDefault();
+      
+      const menu = item.closest(".action-menu");
+      if (menu) {
+        menu.classList.remove("open");
+      }
+      
+      const action = item.getAttribute("data-action");
+      const productId = item.getAttribute("data-product-id");
+      const variantId = item.getAttribute("data-variant-id");
+      
+      console.log("Action clicked:", action, "Product ID:", productId, "Variant ID:", variantId);
+      
+      if (action === "import") {
+        handleImportStock(productId, variantId);
+      } else if (action === "adjust") {
+        handleAdjustStock(productId, variantId);
+      }
+      return;
+    }
+
+    // Click outside -> close all menus
+    if (!e.target.closest(".action-menu")) {
+      document
+        .querySelectorAll(".action-menu.open")
+        .forEach((m) => m.classList.remove("open"));
+    }
+  };
+  
+  // Thêm event listener mới
+  document.addEventListener("click", actionMenuHandler);
+}
+
+// Xử lý nhập kho
+function handleImportStock(productId, variantId) {
+  if (variantId) {
+    // Nhập kho cho biến thể cụ thể
+    const { product, variant } = findVariant(productId, variantId);
+    if (!product || !variant) return;
+    
+    const amount = prompt(`Nhập số lượng muốn thêm vào kho cho "${variant.name}":`, "0");
+    if (amount === null) return; // User cancelled
+    
+    const addAmount = parseInt(amount, 10);
+    if (isNaN(addAmount) || addAmount <= 0) {
+      alert("Vui lòng nhập số lượng hợp lệ!");
+      return;
+    }
+    
+    variant.stock += addAmount;
+    localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(inventoryData));
+    renderInventoryTable();
+    updateInventoryKpis();
+    setupRowToggle();
+    alert(`Đã nhập ${addAmount} sản phẩm vào kho!`);
+  } else {
+    // Nhập kho cho toàn bộ sản phẩm
+    const product = inventoryData.find((p) => p.id === productId);
+    if (!product) return;
+    
+    const amount = prompt(`Nhập số lượng muốn thêm vào kho cho tất cả biến thể của "${product.name}":`, "0");
+    if (amount === null) return;
+    
+    const addAmount = parseInt(amount, 10);
+    if (isNaN(addAmount) || addAmount <= 0) {
+      alert("Vui lòng nhập số lượng hợp lệ!");
+      return;
+    }
+    
+    product.variants.forEach((v) => {
+      v.stock += addAmount;
+    });
+    
+    localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(inventoryData));
+    renderInventoryTable();
+    updateInventoryKpis();
+    setupRowToggle();
+    setupActionMenuHandler(); // Setup lại menu handler
+    alert(`Đã nhập ${addAmount} sản phẩm vào kho cho tất cả biến thể!`);
+  }
+}
+
+// Xử lý điều chỉnh tồn kho
+function handleAdjustStock(productId, variantId) {
+  if (variantId) {
+    // Điều chỉnh cho biến thể cụ thể
+    const { product, variant } = findVariant(productId, variantId);
+    if (!product || !variant) return;
+    
+    currentStockContext = { productId, variantId };
+    
+    const stockModal = document.getElementById("stockModal");
+    const stockProductNameEl = document.getElementById("stockProductName");
+    const stockCurrentDisplay = document.getElementById("stockCurrentDisplay");
+    const stockAdjustType = document.getElementById("stockAdjustType");
+    const stockChangeInput = document.getElementById("stockChange");
+    const stockNoteInput = document.getElementById("stockNote");
+    
+    if (stockModal && stockProductNameEl && stockCurrentDisplay) {
+      const productName = `${product.name} – ${variant.name}`;
+      stockProductNameEl.textContent = productName;
+      stockCurrentDisplay.textContent = variant.stock;
+      if (stockChangeInput) stockChangeInput.value = "";
+      if (stockAdjustType) stockAdjustType.value = "add";
+      if (stockNoteInput) stockNoteInput.value = "";
+      if (stockNewDisplay) stockNewDisplay.style.display = "none";
+      stockModal.style.display = "flex";
+    }
+  } else {
+    // Điều chỉnh cho toàn bộ sản phẩm - hiển thị thông báo
+    alert("Vui lòng chọn biến thể cụ thể để điều chỉnh tồn kho.");
+  }
 }

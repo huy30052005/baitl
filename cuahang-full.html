@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin cửa hàng - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-scroll">
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="cuahang-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Thông tin cửa hàng</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">💬</button>
+            <button class="top-btn">🔔</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- STORE PROFILE CARD -->
+        <div class="card" style="padding: 24px; margin-bottom: 20px;">
+          <div style="display: flex; gap: 20px; align-items: start;">
+            <div class="avatar" style="width: 80px; height: 80px; font-size: 32px;">
+              <span>📷</span>
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <h2 style="margin: 0;">TechStore Official</h2>
+                <span class="status success">Đã xác minh</span>
+                <span class="status success">Premium Seller</span>
+              </div>
+              <div style="color: var(--text-muted); margin-bottom: 12px;">@techstore.official</div>
+              <div style="margin-bottom: 16px;">
+                Chuyên cung cấp các sản phẩm công nghệ chính hãng với giá tốt nhất
+              </div>
+              <div style="display: flex; gap: 24px; color: var(--text-muted); font-size: 14px;">
+                <span>⭐ 4.9 đánh giá</span>
+                <span>👥 12.5k người theo dõi</span>
+                <span>💬 98% phản hồi</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: end; gap: 8px;">
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="slider"></span>
+              </label>
+              <span style="font-size: 13px; color: var(--text-muted);">Cửa hàng đang mở</span>
+              <span style="font-size: 12px; color: var(--text-muted);">Khách hàng có thể đặt hàng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs" style="margin-bottom: 20px;">
+          <button class="tab-btn active">Thông tin chung</button>
+          <button class="tab-btn">Liên hệ & Địa chỉ</button>
+          <button class="tab-btn">Giờ hoạt động</button>
+          <button class="tab-btn">Mạng xã hội</button>
+        </div>
+
+        <!-- FORM -->
+        <div class="card" style="padding: 24px;">
+          <div class="form-group">
+            <label>Tên cửa hàng <span class="required">*</span></label>
+            <input type="text" value="TechStore Official" />
+          </div>
+
+          <div class="form-group">
+            <label>Đường dẫn cửa hàng</label>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--text-muted);">shop.example.com/</span>
+              <input type="text" value="techstore-official" style="flex: 1;" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mô tả cửa hàng</label>
+            <textarea rows="4">Chuyên cung cấp các sản phẩm công nghệ chính hãng Apple, Samsung, Sony với giá tốt nhất thị trường. Cam kết 100% hàng chính hãng, bảo hành đầy đủ.</textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ngành hàng chính</label>
+              <select>
+                <option>Điện tử & Công nghệ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mã số thuế</label>
+              <input type="text" value="0123456789" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ảnh bìa cửa hàng</label>
+            <div style="width: 100%; height: 200px; background: var(--bg); border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <div style="text-align: center; color: var(--text-muted);">
+                <div style="font-size: 32px; margin-bottom: 8px;">📷</div>
+                <div>Kích thước đề xuất: 1200 x 400 pixels</div>
+                <div style="font-size: 12px;">Dung lượng tối đa: 5MB</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn-cancel">Hủy thay đổi</button>
+            <button class="btn-submit">Lưu thay đổi</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+  </body>
+</html>
+

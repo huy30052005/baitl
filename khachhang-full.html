@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý khách hàng - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+
+            <a href="sanpham-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+              <span class="nav-badge gray">128</span>
+            </a>
+
+            <a href="danhmuc-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🗂</span>
+                <span class="nav-text">Danh mục</span>
+              </div>
+            </a>
+
+            <a href="tonkho-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏬</span>
+                <span class="nav-text">Tồn kho</span>
+              </div>
+              <span class="nav-badge red">5</span>
+            </a>
+
+            <a href="donhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🧾</span>
+                <span class="nav-text">Đơn hàng</span>
+              </div>
+              <span class="nav-badge red">12</span>
+            </a>
+
+            <a href="khachhang-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⭐</span>
+                <span class="nav-text">Đánh giá</span>
+              </div>
+              <span class="nav-badge gray">8</span>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🚚</span>
+                <span class="nav-text">Vận chuyển</span>
+              </div>
+            </a>
+            <a href="hoantien-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+              <span class="nav-badge red">3</span>
+            </a>
+            <a href="khuyenmai-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+            <a href="flashsale-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- PHÂN TÍCH -->
+          <div class="sidebar-section-label">PHÂN TÍCH</div>
+          <nav class="sidebar-nav">
+            <a href="baocao-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Báo cáo</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">💳</span>
+                <span class="nav-text">Tài chính</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- THIẾT LẬP -->
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="cuahang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+            <a href="caidat-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+            <a href="#" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">❓</span>
+                <span class="nav-text">Hỗ trợ</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+
+        <!-- FOOTER USER -->
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar">
+              <img src="" alt="" onerror="this.style.display='none'" />
+              <span>NH</span>
+            </div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOP BAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Quản lý khách hàng</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Tìm kiếm sản phẩm, đơn hàng..."
+              />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn" style="position: relative;">
+              💬
+              <span class="notification-badge" style="position: absolute; top: -2px; right: -2px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <button class="top-btn" style="position: relative;">
+              🔔
+              <span class="notification-badge" style="position: absolute; top: -2px; right: -2px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center;">2</span>
+            </button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <a href="index.html" class="breadcrumb-item">Trang chủ</a>
+          <span class="breadcrumb-separator">›</span>
+          <span class="breadcrumb-item active">Quản lý khách hàng</span>
+        </nav>
+
+        <!-- KPI CARDS -->
+        <section class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Tổng khách hàng</span>
+            </div>
+            <div class="kpi-value">3,456</div>
+            <div class="kpi-footer up">+156 tháng này</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Khách VIP</span>
+            </div>
+            <div class="kpi-value">234</div>
+            <div class="kpi-footer">6.8% tổng số</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Khách mới (30 ngày)</span>
+            </div>
+            <div class="kpi-value">89</div>
+            <div class="kpi-footer up">+12% so với tháng trước</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>Tỷ lệ quay lại</span>
+            </div>
+            <div class="kpi-value">67%</div>
+            <div class="kpi-footer up">+5% so với tháng trước</div>
+          </div>
+        </section>
+
+        <!-- CUSTOMER SECTION -->
+        <section class="product-section">
+          <div class="product-header">
+            <div class="filter-group">
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="Tìm tên, email, số điện thoại..."
+                />
+              </div>
+              <select class="filter-select">
+                <option value="">Tất cả</option>
+                <option value="vip">VIP</option>
+                <option value="thuong">Thường</option>
+                <option value="moi">Mới</option>
+              </select>
+              <select class="filter-select">
+                <option value="">Chi tiêu cao nhất</option>
+                <option value="asc">Chi tiêu thấp nhất</option>
+                <option value="newest">Mới nhất</option>
+              </select>
+            </div>
+            <div class="product-header-right">
+              <button class="btn-export">📥 Xuất danh sách</button>
+              <button class="btn-add">+ Thêm khách hàng</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>KHÁCH HÀNG</th>
+                    <th>LIÊN HỆ</th>
+                    <th>ĐƠN HÀNG</th>
+                    <th>TỔNG CHI TIÊU</th>
+                    <th>ĐƠN GẦN NHẤT</th>
+                    <th>LOẠI</th>
+                    <th>THAO TÁC</th>
+                  </tr>
+                </thead>
+                <tbody id="customerTable">
+                  <tr>
+                    <td>
+                      <div class="product-cell">
+                        <div class="avatar" style="width: 40px; height: 40px;">
+                          <span>TA</span>
+                        </div>
+                        <div class="product-info">
+                          <div class="product-name">Trần Văn A</div>
+                          <div class="product-meta">⭐ 4.9</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="font-size: 13px;">tranvana@email.com</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">0912 345 678</span>
+                      </div>
+                    </td>
+                    <td class="cell-center">15 đơn hàng</td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="color: var(--accent); font-weight: 600;">125.450.000₫</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">TB: 8.363.333₫</span>
+                      </div>
+                    </td>
+                    <td>15/1/2024</td>
+                    <td><span class="status success">VIP</span></td>
+                    <td class="cell-right">
+                      <div class="action-menu">
+                        <button type="button" class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item" data-action="view">👁 Xem chi tiết</button>
+                          <button class="action-item" data-action="message">💬 Gửi tin nhắn</button>
+                          <button class="action-item" data-action="email">✉️ Gửi email</button>
+                          <button class="action-item danger" data-action="block">🚫 Chặn khách hàng</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="product-cell">
+                        <div class="avatar" style="width: 40px; height: 40px;">
+                          <span>NB</span>
+                        </div>
+                        <div class="product-info">
+                          <div class="product-name">Nguyễn Thị B</div>
+                          <div class="product-meta">⭐ 4.7</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="font-size: 13px;">nguyenthib@email.com</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">0987 654 321</span>
+                      </div>
+                    </td>
+                    <td class="cell-center">8 đơn hàng</td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="color: var(--accent); font-weight: 600;">67.890.000₫</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">TB: 8.486.250₫</span>
+                      </div>
+                    </td>
+                    <td>14/1/2024</td>
+                    <td><span class="status pending">Thường</span></td>
+                    <td class="cell-right">
+                      <div class="action-menu">
+                        <button type="button" class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item" data-action="view">👁 Xem chi tiết</button>
+                          <button class="action-item" data-action="message">💬 Gửi tin nhắn</button>
+                          <button class="action-item" data-action="email">✉️ Gửi email</button>
+                          <button class="action-item danger" data-action="block">🚫 Chặn khách hàng</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="product-cell">
+                        <div class="avatar" style="width: 40px; height: 40px;">
+                          <span>LC</span>
+                        </div>
+                        <div class="product-info">
+                          <div class="product-name">Lê Hoàng C</div>
+                          <div class="product-meta">⭐ 5.0</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="font-size: 13px;">lehoangc@email.com</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">0909 123 456</span>
+                      </div>
+                    </td>
+                    <td class="cell-center">3 đơn hàng</td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="color: var(--accent); font-weight: 600;">25.670.000₫</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">TB: 8.556.667₫</span>
+                      </div>
+                    </td>
+                    <td>10/1/2024</td>
+                    <td><span class="status" style="background: rgba(59, 130, 246, 0.16); color: #3b82f6;">Mới</span></td>
+                    <td class="cell-right">
+                      <div class="action-menu">
+                        <button type="button" class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item" data-action="view">👁 Xem chi tiết</button>
+                          <button class="action-item" data-action="message">💬 Gửi tin nhắn</button>
+                          <button class="action-item" data-action="email">✉️ Gửi email</button>
+                          <button class="action-item danger" data-action="block">🚫 Chặn khách hàng</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="product-cell">
+                        <div class="avatar" style="width: 40px; height: 40px;">
+                          <span>PD</span>
+                        </div>
+                        <div class="product-info">
+                          <div class="product-name">Phạm Minh D</div>
+                          <div class="product-meta">⭐ 4.8</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="font-size: 13px;">phamminhd@email.com</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">0978 111 222</span>
+                      </div>
+                    </td>
+                    <td class="cell-center">22 đơn hàng</td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="color: var(--accent); font-weight: 600;">234.560.000₫</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">TB: 10.661.818₫</span>
+                      </div>
+                    </td>
+                    <td>13/1/2024</td>
+                    <td><span class="status success">VIP</span></td>
+                    <td class="cell-right">
+                      <div class="action-menu">
+                        <button type="button" class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item" data-action="view">👁 Xem chi tiết</button>
+                          <button class="action-item" data-action="message">💬 Gửi tin nhắn</button>
+                          <button class="action-item" data-action="email">✉️ Gửi email</button>
+                          <button class="action-item danger" data-action="block">🚫 Chặn khách hàng</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="product-cell">
+                        <div class="avatar" style="width: 40px; height: 40px;">
+                          <span>VE</span>
+                        </div>
+                        <div class="product-info">
+                          <div class="product-name">Võ Thị E</div>
+                          <div class="product-meta">⭐ 4.5</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <span style="font-size: 13px;">vothie@email.com</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">0935 999 888</span>
+                      </div>
+                    </td>
+                    <td class="cell-center">5 đơn hàng</td>
+                    <td>
+                      <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span style="color: var(--accent); font-weight: 600;">45.230.000₫</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">TB: 9.046.000₫</span>
+                      </div>
+                    </td>
+                    <td>8/1/2024</td>
+                    <td><span class="status pending">Thường</span></td>
+                    <td class="cell-right">
+                      <div class="action-menu">
+                        <button type="button" class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item" data-action="view">👁 Xem chi tiết</button>
+                          <button class="action-item" data-action="message">💬 Gửi tin nhắn</button>
+                          <button class="action-item" data-action="email">✉️ Gửi email</button>
+                          <button class="action-item danger" data-action="block">🚫 Chặn khách hàng</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pagination-container">
+              <span>Hiển thị 1-5 trong tổng số 3,456 khách hàng</span>
+              <button class="btn-sm">Trước</button>
+              <button class="btn-sm active">1</button>
+              <button class="btn-sm">2</button>
+              <button class="btn-sm">3</button>
+              <button class="btn-sm">Sau</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+    <script src="js/action-menu.js"></script>
+  </body>
+</html>
+

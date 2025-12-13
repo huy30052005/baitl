@@ -46,7 +46,7 @@
               </div>
             </a>
 
-            <a href="tonkho-full.html" class="nav-item">
+            <a href="#" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🏬</span>
                 <span class="nav-text">Tồn kho</span>
@@ -54,7 +54,7 @@
               <span class="nav-badge red">5</span>
             </a>
 
-            <a href="donhang-full.html" class="nav-item">
+            <a href="#" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🧾</span>
                 <span class="nav-text">Đơn hàng</span>
@@ -62,7 +62,7 @@
               <span class="nav-badge red">12</span>
             </a>
 
-            <a href="#" class="nav-item">
+            <a href="khachhang-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">👥</span>
                 <span class="nav-text">Khách hàng</span>
@@ -87,20 +87,20 @@
                 <span class="nav-text">Vận chuyển</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="hoantien-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">↩️</span>
                 <span class="nav-text">Hoàn tiền</span>
               </div>
               <span class="nav-badge red">3</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="khuyenmai-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🏷</span>
                 <span class="nav-text">Khuyến mãi</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="flashsale-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">⚡</span>
                 <span class="nav-text">Flash Sale</span>
@@ -111,7 +111,7 @@
           <!-- PHÂN TÍCH -->
           <div class="sidebar-section-label">PHÂN TÍCH</div>
           <nav class="sidebar-nav">
-            <a href="#" class="nav-item">
+            <a href="baocao-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">📈</span>
                 <span class="nav-text">Báo cáo</span>
@@ -128,13 +128,13 @@
           <!-- THIẾT LẬP -->
           <div class="sidebar-section-label">THIẾT LẬP</div>
           <nav class="sidebar-nav">
-            <a href="#" class="nav-item">
+            <a href="cuahang-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🏪</span>
                 <span class="nav-text">Cửa hàng</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
+            <a href="caidat-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Cài đặt</span>
@@ -192,22 +192,14 @@
           <div class="product-header">
             <div class="filter-group">
               <div class="search-box">
-                <span class="search-icon" aria-hidden="true">🔍</span>
+                <span class="search-icon">Q</span>
                 <input
                   type="text"
-                  id="productSearch"
                   class="search-input"
+                  id="productSearch"
                   placeholder="Tìm kiếm sản phẩm..."
-                  aria-label="Tìm kiếm sản phẩm"
                 />
-                <button
-                  type="button"
-                  id="clearSearch"
-                  class="search-clear"
-                  aria-label="Xóa tìm kiếm"
-                >
-                  ✕
-                </button>
+                <button type="button" class="search-clear" id="clearSearch" style="display: none;">✕</button>
               </div>
               <select class="filter-select">
                 <option value="">Tất cả danh mục</option>
@@ -224,28 +216,11 @@
               </select>
             </div>
             <div class="product-header-right">
-              <div class="view-toggle" role="group" aria-label="Chế độ xem">
-                <button
-                  class="view-btn active"
-                  data-view="list"
-                  aria-label="Xem dạng danh sách"
-                >
-                  <span aria-hidden="true">≡</span>
-                </button>
-                <button
-                  class="view-btn"
-                  data-view="grid"
-                  aria-label="Xem dạng lưới"
-                >
-                  <span aria-hidden="true">▦</span>
-                </button>
+              <div class="view-toggle">
+                <button class="view-btn active" data-view="list" title="Danh sách">☰</button>
+                <button class="view-btn" data-view="grid" title="Lưới">⊞</button>
               </div>
-              <div style="display: flex; gap: 10px">
-                <button class="btn-add">+ Thêm sản phẩm mới</button>
-                <button class="btn-cancel" onclick="resetAllData()">
-                  🗑️ Reset Data
-                </button>
-              </div>
+              <button class="btn-add">+ Thêm sản phẩm</button>
             </div>
           </div>
 
@@ -254,39 +229,27 @@
               <table>
                 <thead>
                   <tr>
-                    <th style="width: 36px; text-align: center">
+                    <th class="cell-checkbox">
                       <input type="checkbox" id="checkAll" />
                     </th>
-                    <th>STT</th>
-                    <th>Sản phẩm</th>
+                    <th>SẢN PHẨM</th>
                     <th>SKU</th>
-                    <th>Danh mục</th>
-                    <th>Giá bán</th>
-                    <th>Kho</th>
-                    <th>Đã bán</th>
-                    <th>Trạng thái</th>
-                    <th>Thao tác</th>
+                    <th>DANH MỤC</th>
+                    <th>GIÁ BÁN</th>
+                    <th>KHO</th>
+                    <th>ĐÃ BÁN</th>
+                    <th>TRẠNG THÁI</th>
+                    <th>THAO TÁC</th>
                   </tr>
                 </thead>
                 <tbody id="productTable"></tbody>
               </table>
             </div>
-            <div
-              id="productGrid"
-              class="product-grid"
-              style="display: none"
-            ></div>
-            <div
-              class="pagination-container"
-              style="
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                gap: 10px;
-                padding: 20px;
-              "
-            ></div>
+            <div class="pagination-container"></div>
           </div>
+          
+          <!-- Grid View Container -->
+          <div id="productGrid" class="product-grid" style="display: none;"></div>
         </section>
       </main>
     </div>
@@ -347,29 +310,12 @@
                 <label>Danh mục <span class="required">*</span></label>
                 <select name="category" required>
                   <option value="">Chọn danh mục</option>
-                  <option value="Quần áo">Quần áo</option>
                   <option value="Điện thoại">Điện thoại</option>
                   <option value="Laptop">Laptop</option>
                   <option value="Máy tính bảng">Máy tính bảng</option>
-                  <option value="Linh kiện">Linh kiện</option>
                   <option value="Phụ kiện">Phụ kiện</option>
-                  <option value="Khác">Khác</option>
                 </select>
               </div>
-            </div>
-
-            <!-- Category specific fields -->
-            <div class="form-group">
-              <label>Thông tin theo danh mục</label>
-              <div
-                id="categoryFields"
-                class="category-fields"
-                style="display: grid; gap: 12px"
-              ></div>
-              <small style="color: var(--text-muted, #9ca3af)">
-                Chọn danh mục để hiển thị các trường phù hợp (ví dụ: quần áo sẽ
-                có size, màu sắc).
-              </small>
             </div>
 
             <!-- Price, Original Price, Quantity -->
@@ -409,64 +355,58 @@
 
     <!-- MODAL XEM CHI TIẾT SẢN PHẨM -->
     <div id="productDetailModal" class="modal">
-      <div class="modal-content">
+      <div class="modal-content" style="max-width: 600px;">
         <div class="modal-header">
           <div>
             <h2>Chi tiết sản phẩm</h2>
-            <p class="modal-subtitle">
-              Thông tin sản phẩm và thuộc tính theo danh mục
-            </p>
           </div>
           <button class="modal-close detail-close">✕</button>
         </div>
 
-        <div class="modal-body detail-body">
-          <div class="detail-hero">
-            <div class="detail-image-wrap">
-              <img id="detailImage" alt="Hình sản phẩm" />
+        <div class="modal-body">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <!-- Product Image -->
+            <div style="text-align: center;">
+              <img id="detailImage" src="" alt="Product" style="max-width: 300px; max-height: 300px; border-radius: 12px; object-fit: cover;" />
             </div>
-            <div class="detail-hero-text">
-              <div class="detail-label">Tên sản phẩm</div>
-              <div
-                id="detailName"
-                class="detail-value"
-                style="font-size: 18px; font-weight: 600"
-              ></div>
-              <div class="detail-label" style="margin-top: 6px">Danh mục</div>
-              <div id="detailCategory" class="detail-value"></div>
-            </div>
-          </div>
 
-          <div class="detail-row">
+            <!-- Product Info -->
             <div>
-              <div class="detail-label">Danh mục</div>
-              <div id="detailCategory2" class="detail-value"></div>
-            </div>
-          </div>
+              <div style="margin-bottom: 16px;">
+                <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Tên sản phẩm</div>
+                <div id="detailName" style="font-size: 18px; font-weight: 600;"></div>
+              </div>
 
-          <div class="detail-row">
-            <div>
-              <div class="detail-label">SKU</div>
-              <div id="detailSku" class="detail-value"></div>
-            </div>
-            <div>
-              <div class="detail-label">Giá bán</div>
-              <div id="detailPrice" class="detail-value"></div>
-            </div>
-            <div>
-              <div class="detail-label">Tồn kho</div>
-              <div id="detailQuantity" class="detail-value"></div>
-            </div>
-          </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Danh mục</div>
+                  <div id="detailCategory" style="font-size: 14px;"></div>
+                </div>
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Mã SKU</div>
+                  <div id="detailSku" style="font-size: 14px;"></div>
+                </div>
+              </div>
 
-          <div class="detail-block">
-            <div class="detail-label">Mô tả</div>
-            <div id="detailDescription" class="detail-value"></div>
-          </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Giá bán</div>
+                  <div id="detailPrice" style="font-size: 16px; font-weight: 600; color: var(--accent);"></div>
+                </div>
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Số lượng</div>
+                  <div id="detailQuantity" style="font-size: 14px;"></div>
+                </div>
+              </div>
 
-          <div class="detail-block">
-            <div class="detail-label">Thuộc tính theo danh mục</div>
-            <div id="detailAttributes" class="detail-attributes"></div>
+              <div style="margin-bottom: 16px;">
+                <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Mô tả</div>
+                <div id="detailDescription" style="font-size: 14px; line-height: 1.6;"></div>
+              </div>
+
+              <!-- Attributes -->
+              <div id="detailAttributes" style="margin-top: 16px;"></div>
+            </div>
           </div>
         </div>
 

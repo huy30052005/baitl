@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Sale - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-scroll">
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="flashsale-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Flash Sale</h1>
+            <div class="search-box">
+              <span class="search-icon">Q</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">🔔</button>
+            <button class="top-btn">💬</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+            <button class="btn-add">+ Tạo Flash Sale</button>
+          </div>
+        </header>
+
+        <!-- SUMMARY CARDS -->
+        <section class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>⚡ Tổng Flash Sale</span>
+            </div>
+            <div class="kpi-value">3</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>⏰ Đang diễn ra</span>
+            </div>
+            <div class="kpi-value">1</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>📦 Sản phẩm tham gia</span>
+            </div>
+            <div class="kpi-value">6</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>💰 Doanh thu</span>
+            </div>
+            <div class="kpi-value">634M</div>
+          </div>
+        </section>
+
+        <!-- FLASH SALE LIST -->
+        <section class="product-section">
+          <div class="card flashsale-card" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button class="flashsale-toggle" style="background: none; border: none; color: var(--text); cursor: pointer; font-size: 16px; padding: 4px;">▼</button>
+                <span>⚡</span>
+                <h3 style="margin: 0;">Flash Sale Cuối Tuần</h3>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="status success">Đang diễn ra</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+              2024-01-20 18:00 - 2024-01-20 21:00
+            </div>
+            
+            <!-- Products in Flash Sale -->
+            <div class="flashsale-content" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px;">
+              <div style="display: flex; gap: 16px; padding: 12px; background: var(--bg); border-radius: 8px;">
+                <img src="https://via.placeholder.com/60" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;" />
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                    <div>
+                      <div style="font-weight: 600; margin-bottom: 4px;">iPhone 15 Pro Max</div>
+                      <div style="display: flex; gap: 8px; align-items: center;">
+                        <span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">-14%</span>
+                        <span style="color: var(--accent); font-weight: 600;">29.990.000₫</span>
+                        <span style="text-decoration: line-through; color: var(--text-muted); font-size: 13px;">34.990.000₫</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="flex: 1; height: 8px; background: var(--bg-elevated); border-radius: 4px; overflow: hidden;">
+                      <div style="width: 70%; height: 100%; background: var(--accent);"></div>
+                    </div>
+                    <span style="font-size: 12px; color: var(--text-muted);">7/10</span>
+                    <span style="font-size: 12px;">Còn 3 sản phẩm</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="display: flex; gap: 16px; padding: 12px; background: var(--bg); border-radius: 8px;">
+                <img src="https://via.placeholder.com/60" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;" />
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                    <div>
+                      <div style="font-weight: 600; margin-bottom: 4px;">AirPods Pro 2</div>
+                      <div style="display: flex; gap: 8px; align-items: center;">
+                        <span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">-23%</span>
+                        <span style="color: var(--accent); font-weight: 600;">4.990.000₫</span>
+                        <span style="text-decoration: line-through; color: var(--text-muted); font-size: 13px;">6.490.000₫</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="flex: 1; height: 8px; background: var(--bg-elevated); border-radius: 4px; overflow: hidden;">
+                      <div style="width: 90%; height: 100%; background: var(--accent);"></div>
+                    </div>
+                    <span style="font-size: 12px; color: var(--text-muted);">18/20</span>
+                    <span style="font-size: 12px;">Còn 2 sản phẩm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="padding-top: 16px; border-top: 1px solid var(--border);">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Doanh thu Flash Sale</span>
+                <span style="font-weight: 600; color: var(--accent);">285.920.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flash Sale 12.12 -->
+          <div class="card flashsale-card" style="padding: 20px; margin-top: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button class="flashsale-toggle" style="background: none; border: none; color: var(--text); cursor: pointer; font-size: 16px; padding: 4px;">▼</button>
+                <span>⏰</span>
+                <h3 style="margin: 0;">Flash Sale 12.12</h3>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="status" style="background: rgba(59, 130, 246, 0.16); color: #3b82f6;">Sắp diễn ra</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div style="color: var(--text-muted); margin-bottom: 16px; font-size: 13px;">
+              2024-01-21 12:00 - 2024-01-21 14:00
+            </div>
+            
+            <div class="flashsale-content" style="display: none; flex-direction: column; gap: 16px;">
+              <div style="display: flex; gap: 16px; padding: 12px; background: var(--bg); border-radius: 8px;">
+                <img src="https://via.placeholder.com/60" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;" />
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 4px;">iPad Pro 12.9</div>
+                  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+                    <span style="background: #ef4444; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">-13%</span>
+                    <span style="color: var(--accent); font-weight: 600;">27.990.000₫</span>
+                    <span style="text-decoration: line-through; color: var(--text-muted); font-size: 13px;">31.990.000₫</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="flex: 1; height: 8px; background: var(--bg-elevated); border-radius: 4px;">
+                      <div style="width: 0%; height: 100%; background: var(--text-muted);"></div>
+                    </div>
+                    <span style="font-size: 12px; color: var(--text-muted);">0/8</span>
+                    <span style="font-size: 12px;">Còn 8 sản phẩm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+    <script>
+      // Flash Sale Toggle
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".flashsale-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", function() {
+            const card = this.closest(".flashsale-card");
+            const content = card.querySelector(".flashsale-content");
+            const isExpanded = content.style.display !== "none";
+            
+            if (isExpanded) {
+              content.style.display = "none";
+              this.textContent = "▶";
+            } else {
+              content.style.display = "flex";
+              this.textContent = "▼";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+

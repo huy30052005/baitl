@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cài đặt - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-scroll">
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="caidat-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Cài đặt</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">💬</button>
+            <button class="top-btn">🔔</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- TABS -->
+        <div class="tabs" style="margin-bottom: 20px;">
+          <button class="tab-btn active">Tài khoản</button>
+          <button class="tab-btn">Bảo mật</button>
+          <button class="tab-btn">Thông báo</button>
+          <button class="tab-btn">Thanh toán</button>
+        </div>
+
+        <!-- PERSONAL INFORMATION -->
+        <div class="card" style="padding: 24px; margin-bottom: 20px;">
+          <h3 style="margin-bottom: 20px;">Thông tin cá nhân</h3>
+          <div style="display: flex; gap: 20px;">
+            <div class="avatar" style="width: 100px; height: 100px; font-size: 40px;">
+              <span>👤</span>
+            </div>
+            <div style="flex: 1;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Họ</label>
+                  <input type="text" value="Nguyễn" />
+                </div>
+                <div class="form-group">
+                  <label>Tên</label>
+                  <input type="text" value="Hoàng" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" value="nguyenhoang@email.com" />
+              </div>
+              <div class="form-group">
+                <label>Số điện thoại</label>
+                <div style="display: flex; gap: 8px;">
+                  <input type="tel" value="0912 345 678" style="flex: 1;" />
+                  <button class="top-btn">📷</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OPTIONS -->
+        <div class="card" style="padding: 24px;">
+          <h3 style="margin-bottom: 20px;">Tùy chọn</h3>
+          <div class="form-group">
+            <label>Ngôn ngữ</label>
+            <select>
+              <option>Tiếng Việt</option>
+              <option>English</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Múi giờ</label>
+            <select>
+              <option>GMT+7 (Việt Nam)</option>
+            </select>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
+            <div>
+              <div style="font-weight: 500; margin-bottom: 4px;">Chế độ tối</div>
+              <div style="font-size: 13px; color: var(--text-muted);">Sử dụng giao diện tối cho ứng dụng</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn-cancel">Hủy thay đổi</button>
+            <button class="btn-submit">Lưu thay đổi</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+  </body>
+</html>
+

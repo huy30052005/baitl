@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý hoàn tiền - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+            <a href="sanpham-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+            </a>
+            <a href="khachhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="hoantien-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+              <span class="nav-badge red">3</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Quản lý hoàn tiền</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn" style="position: relative;">
+              💬<span class="notification-badge" style="position: absolute; top: -2px; right: -2px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <button class="top-btn" style="position: relative;">
+              🔔<span class="notification-badge" style="position: absolute; top: -2px; right: -2px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center;">2</span>
+            </button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- SUMMARY CARDS -->
+        <section class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>⏰ Chờ xử lý</span>
+            </div>
+            <div class="kpi-value">1</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>🔄 Đang xử lý</span>
+            </div>
+            <div class="kpi-value">2</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>✅ Đã hoàn tiền</span>
+            </div>
+            <div class="kpi-value">32M</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>❌ Từ chối</span>
+            </div>
+            <div class="kpi-value">1</div>
+          </div>
+        </section>
+
+        <!-- TABS AND FILTERS -->
+        <div class="product-header" style="margin-top: 20px;">
+          <div class="filter-group">
+            <div class="tabs">
+              <button class="tab-btn active">Tất cả</button>
+              <button class="tab-btn">Chờ xử lý</button>
+              <button class="tab-btn">Đang xử lý</button>
+              <button class="tab-btn">Đã hoàn</button>
+            </div>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm mã yêu cầu, đơn hàng..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- REFUND TABLE -->
+        <div class="card">
+          <div class="card-body table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>MÃ YÊU CẦU</th>
+                  <th>KHÁCH HÀNG</th>
+                  <th>SẢN PHẨM</th>
+                  <th>LÝ DO</th>
+                  <th>SỐ TIỀN</th>
+                  <th>TRẠNG THÁI</th>
+                  <th>THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#HT-001</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="avatar" style="width: 32px; height: 32px;"><span>TA</span></div>
+                      <div class="product-info">
+                        <div class="product-name">Trần Văn A</div>
+                        <div class="product-meta">0912 345 678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-cell">
+                      <img src="https://via.placeholder.com/40" class="product-thumb" />
+                      <div class="product-info">
+                        <div class="product-name">iPhone 15 Pro Max 25...</div>
+                        <div class="product-meta">Số lượng: 1</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="max-width: 300px;">
+                    <div>Sản phẩm bị lỗi màn hình, 1 hình ảnh đính kèm</div>
+                  </td>
+                  <td><span style="font-weight: 600;">34.990.000₫</span></td>
+                  <td><span class="status pending">Chờ xử lý</span></td>
+                  <td class="cell-right">
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">👁 Xem chi tiết</button>
+                        <button class="action-item">✅ Duyệt hoàn tiền</button>
+                        <button class="action-item danger">❌ Từ chối</button>
+                        <button class="action-item">💬 Nhắn tin</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#HT-002</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="avatar" style="width: 32px; height: 32px;"><span>NB</span></div>
+                      <div class="product-info">
+                        <div class="product-name">Nguyễn Thị B</div>
+                        <div class="product-meta">0987 654 321</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-cell">
+                      <img src="https://via.placeholder.com/40" class="product-thumb" />
+                      <div class="product-info">
+                        <div class="product-name">AirPods Pro 2</div>
+                        <div class="product-meta">Số lượng: 1</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Sản phẩm không đúng mô...</td>
+                  <td><span style="font-weight: 600;">6.490.000₫</span></td>
+                  <td><span class="status success">Đã duyệt</span></td>
+                  <td class="cell-right">
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">👁 Xem chi tiết</button>
+                        <button class="action-item">💬 Nhắn tin</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#HT-003</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="avatar" style="width: 32px; height: 32px;"><span>LC</span></div>
+                      <div class="product-info">
+                        <div class="product-name">Lê Hoàng C</div>
+                        <div class="product-meta">0909 123 456</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-cell">
+                      <img src="https://via.placeholder.com/40" class="product-thumb" />
+                      <div class="product-info">
+                        <div class="product-name">MacBook Air M3</div>
+                        <div class="product-meta">Số lượng: 1</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Đổi ý, không muốn mua nữa</td>
+                  <td><span style="font-weight: 600;">27.990.000₫</span></td>
+                  <td><span class="status cancelled">Từ chối</span></td>
+                  <td class="cell-right">
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">👁 Xem chi tiết</button>
+                        <button class="action-item">💬 Nhắn tin</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#HT-004</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="avatar" style="width: 32px; height: 32px;"><span>PD</span></div>
+                      <div class="product-info">
+                        <div class="product-name">Phạm Minh D</div>
+                        <div class="product-meta">0978 111 222</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-cell">
+                      <img src="https://via.placeholder.com/40" class="product-thumb" />
+                      <div class="product-info">
+                        <div class="product-name">Apple Watch Ultra 2</div>
+                        <div class="product-meta">Số lượng: 1</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Giao nhầm sản phẩm, 1 hình ảnh đính kèm</td>
+                  <td><span style="font-weight: 600;">21.990.000₫</span></td>
+                  <td><span class="status" style="background: rgba(59, 130, 246, 0.16); color: #3b82f6;">Đang xử lý</span></td>
+                  <td class="cell-right">
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">👁 Xem chi tiết</button>
+                        <button class="action-item">✅ Duyệt hoàn tiền</button>
+                        <button class="action-item danger">❌ Từ chối</button>
+                        <button class="action-item">💬 Nhắn tin</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#HT-005</td>
+                  <td>
+                    <div class="product-cell">
+                      <div class="avatar" style="width: 32px; height: 32px;"><span>VE</span></div>
+                      <div class="product-info">
+                        <div class="product-name">Võ Thị E</div>
+                        <div class="product-meta">0935 999 888</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="product-cell">
+                      <img src="https://via.placeholder.com/40" class="product-thumb" />
+                      <div class="product-info">
+                        <div class="product-name">iPad Pro 12.9</div>
+                        <div class="product-meta">Số lượng: 1</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Sản phẩm bị trầy xước khL</td>
+                  <td><span style="font-weight: 600;">31.990.000₫</span></td>
+                  <td><span class="status success">Đã hoàn tiền</span></td>
+                  <td class="cell-right">
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">👁 Xem chi tiết</button>
+                        <button class="action-item">💬 Nhắn tin</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+    <script src="js/action-menu.js"></script>
+  </body>
+</html>
+

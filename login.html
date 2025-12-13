@@ -2,186 +2,118 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <title>Đăng nhập - Kênh Người Bán</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Đăng nhập</title>
-    <!-- Quan trọng: style.css nằm cùng thư mục -->
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/login.css" />
   </head>
   <body>
-    <main class="page">
-      <section class="left">
-        <div class="panel">
-          <div class="logo">
-            <!-- SVG nội bộ để khỏi phụ thuộc ảnh ngoài -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M3 7h18l-2 11a2 2 0 0 1-2 1H7a2 2 0 0 1-2-1L3 7Z"
-                stroke="#111"
-                stroke-width="1.5"
-                fill="none"
-              />
-              <path
-                d="M8 7V5a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v2"
-                stroke="#111"
-                stroke-width="1.5"
-                fill="none"
-              />
-            </svg>
-            <span class="brand">Larkon</span>
+    <div class="seller-page">
+      <!-- THANH TRÊN CÙNG -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="logo-block">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">
+              <span class="brand-name">MESSI BUCU RONALDO</span>
+              <span class="brand-sub">Kênh Người Bán</span>
+            </div>
           </div>
 
-          <h1>Đăng nhập</h1>
-          <p class="sub">Nhập email và mật khẩu để truy cập trang quản trị.</p>
-
-          <form>
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Nhập email của bạn" />
-
-            <label for="password">Mật khẩu</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Nhập mật khẩu của bạn"
-            />
-
-            <div class="row-between">
-              <label class="remember">
-                <input type="checkbox" /> Ghi nhớ đăng nhập
-              </label>
-              <a class="link" href="#"></a>
-              <a class="brand-link" href="reset-password.html "
-                >Quên Mật Khẩu
-              </a>
-            </div>
-
-            <button class="btn" type="submit">Đăng nhập</button>
-
-            <div class="divider">Hoặc đăng nhập với</div>
-
-            <div class="sso">
-              <a class="sso-btn" href="#">Đăng nhập bằng Google</a>
-              <a class="sso-btn sso-fb" href="#">Đăng nhập bằng Facebook</a>
-            </div>
-          </form>
-
-          <p class="signup">
-            Chưa có tài khoản?
-            <a class="brand-link" href="signup.html ">Đăng ký</a>
-          </p>
+          <a href="#" class="help-link">Bạn cần giúp đỡ?</a>
         </div>
-      </section>
+      </header>
 
-      <aside class="right" aria-hidden="true">
-        <div class="hero"></div>
-      </aside>
-    </main>
+      <!-- NỘI DUNG CHÍNH -->
+      <main class="main">
+        <!-- BÊN TRÁI -->
+        <section class="left">
+          <h1 class="headline">Bán hàng chuyên nghiệp</h1>
+          <p class="subtitle">
+            Quản lý shop của bạn một cách hiệu quả hơn<br />
+            trên Shopee với Shopee - Kênh Người bán
+          </p>
 
-    <script>
-      // JavaScript cho trang đăng nhập
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
-        const rememberCheckbox = document.querySelector(
-          'input[type="checkbox"]'
-        );
+          <div class="store-illustration">
+            <div class="store">
+              <div class="store-awning">
+                <span></span><span></span><span></span><span></span
+                ><span></span>
+              </div>
+              <div class="store-body">
+                <div class="store-window dress"></div>
+                <div class="store-door">
+                  <span>OPEN</span>
+                </div>
+                <div class="store-window shirt"></div>
+              </div>
+            </div>
+            <div class="truck"></div>
+          </div>
+        </section>
 
-        // Lưu thông tin đăng nhập nếu checkbox được chọn
-        if (localStorage.getItem("rememberedEmail")) {
-          emailInput.value = localStorage.getItem("rememberedEmail");
-          rememberCheckbox.checked = true;
-        }
+        <!-- BÊN PHẢI: FORM ĐĂNG NHẬP -->
+        <section class="right">
+          <div class="login-card">
+            <div class="login-header">
+              <h2>Đăng nhập</h2>
+              <button class="qr-login">Đăng nhập với mã<br />QR</button>
+            </div>
 
-        // Xử lý submit form
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
+            <!-- QUAN TRỌNG: id="loginForm" + name="account", name="password" -->
+            <form id="loginForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="account"
+                  placeholder="Email/Số điện thoại/Tên đăng nhập"
+                />
+              </div>
 
-          const email = emailInput.value.trim();
-          const password = passwordInput.value.trim();
-          // Validation cơ bản
-          if (!email) {
-            alert("Vui lòng nhập email!");
-            emailInput.focus();
-            return;
-          }
+              <div class="form-group password-group">
+                <input
+                  type="password"
+                  name="password"
+                  id="loginPassword"
+                  placeholder="Mật khẩu"
+                />
+                <span class="toggle-password" data-input="loginPassword"
+                  >👁</span
+                >
+              </div>
 
-          if (!password) {
-            alert("Vui lòng nhập mật khẩu!");
-            passwordInput.focus();
-            return;
-          }
+              <button type="submit" class="btn-primary">ĐĂNG NHẬP</button>
 
-          // Kiểm tra email hợp lệ
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            alert("Email không hợp lệ!");
-            emailInput.focus();
-            return;
-          }
+              <div class="form-extra">
+                <a href="forgot.html" class="forgot-link">Quên mật khẩu</a>
+              </div>
 
-          // Lưu thông tin nếu checkbox được chọn
-          if (rememberCheckbox.checked) {
-            localStorage.setItem("rememberedEmail", email);
-          } else {
-            localStorage.removeItem("rememberedEmail");
-          }
+              <div class="divider">
+                <span>HOẶC</span>
+              </div>
 
-          // Lưu session đăng nhập
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userEmail", email);
+              <div class="social-row">
+                <button type="button" class="social-btn fb">
+                  <span class="circle-icon">f</span>
+                  <span>Facebook</span>
+                </button>
+                <button type="button" class="social-btn gg">
+                  <span class="circle-icon">G</span>
+                  <span>Google</span>
+                </button>
+              </div>
+            </form>
 
-          // Hiển thị loading
-          const submitBtn = document.querySelector(".btn");
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = "Đang đăng nhập...";
-          submitBtn.disabled = true;
+            <div class="signup-hint">
+              Bạn mới biết đến Shopee?
+              <!-- nhớ đặt đúng tên file trang đăng ký của bạn -->
+              <a href="sinup.html">Đăng ký</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
-          // Giả lập đăng nhập và chuyển hướng đến Dashboard
-          setTimeout(() => {
-            window.location.href = "product-list (1).html";
-          }, 800);
-        });
-
-        // Hiệu ứng focus cho input
-        const inputs = document.querySelectorAll(
-          'input[type="email"], input[type="password"]'
-        );
-        inputs.forEach((input) => {
-          input.addEventListener("focus", function () {
-            this.style.borderColor = "#4F46E5";
-            this.style.boxShadow = "0 0 0 3px rgba(79, 70, 229, 0.1)";
-          });
-
-          input.addEventListener("blur", function () {
-            this.style.borderColor = "#D1D5DB";
-            this.style.boxShadow = "none";
-          });
-        });
-
-        // Hiệu ứng hover cho button
-        const submitBtn = document.querySelector(".btn");
-        submitBtn.addEventListener("mouseenter", function () {
-          this.style.transform = "translateY(-2px)";
-          this.style.boxShadow = "0 10px 25px rgba(79, 70, 229, 0.3)";
-        });
-
-        submitBtn.addEventListener("mouseleave", function () {
-          this.style.transform = "translateY(0)";
-          this.style.boxShadow = "0 4px 14px rgba(79, 70, 229, 0.2)";
-        });
-
-        // Xử lý SSO buttons
-        const ssoButtons = document.querySelectorAll(".sso-btn");
-        ssoButtons.forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            const provider = this.textContent.includes("Google")
-              ? "Google"
-              : "Facebook";
-            alert(`Đăng nhập bằng ${provider} - Tính năng đang phát triển!`);
-          });
-        });
-      });
-    </script>
+    <!-- GỌI JS Ở CUỐI BODY -->
+    <script src="js/login.js"></script>
   </body>
 </html>

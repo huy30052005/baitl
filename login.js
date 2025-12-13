@@ -66,6 +66,48 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // Trích xuất tên từ email (phần trước dấu @)
+      let displayName = account;
+      let avatarInitials = "U";
+      
+      // Kiểm tra nếu account là email
+      if (account.includes("@")) {
+        const emailParts = account.split("@");
+        const emailName = emailParts[0];
+        
+        // Chuyển đổi tên email thành tên hiển thị (viết hoa chữ cái đầu)
+        // Ví dụ: nguyen.van.a -> Nguyễn Văn A, hoặc nguyenhoang -> Nguyễn Hoàng
+        displayName = emailName
+          .split(/[._-]/) // Tách theo dấu chấm, gạch dưới, gạch ngang
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(" ");
+        
+        // Lấy chữ cái đầu tiên của mỗi từ để làm avatar
+        const words = displayName.split(" ");
+        if (words.length >= 2) {
+          // Nếu có nhiều từ, lấy chữ cái đầu của từ đầu và từ cuối
+          avatarInitials = (words[0][0] + words[words.length - 1][0]).toUpperCase();
+        } else {
+          // Nếu chỉ có một từ, lấy 2 chữ cái đầu
+          avatarInitials = displayName.substring(0, 2).toUpperCase();
+        }
+      } else {
+        // Nếu không phải email, dùng account làm tên và lấy chữ cái đầu
+        displayName = account.charAt(0).toUpperCase() + account.slice(1);
+        avatarInitials = account.substring(0, 2).toUpperCase();
+      }
+
+      // Lưu thông tin người dùng vào localStorage
+      const userInfo = {
+        email: account.includes("@") ? account : null,
+        username: account,
+        displayName: displayName,
+        avatar: avatarInitials
+      };
+      
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      localStorage.setItem("isLoggedIn", "true");
+
       alert("Đăng nhập thành công!");
 
       // Chuyển sang TRANG QUẢN TRỊ NGƯỜI BÁN

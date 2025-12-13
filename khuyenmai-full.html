@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khuyến mãi & Voucher - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-scroll">
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="khuyenmai-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Khuyến mãi & Voucher</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">💬</button>
+            <button class="top-btn">🔔</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- SUMMARY CARDS -->
+        <section class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>🏷 Tổng voucher</span>
+            </div>
+            <div class="kpi-value">5</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>✅ Đang hoạt động</span>
+            </div>
+            <div class="kpi-value">3</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>🛒 Lượt sử dụng</span>
+            </div>
+            <div class="kpi-value">445</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>💰 Đã giảm giá</span>
+            </div>
+            <div class="kpi-value">125.6M</div>
+          </div>
+        </section>
+
+        <!-- TABS AND CONTROLS -->
+        <div class="product-header">
+          <div class="tabs">
+            <button class="tab-btn active">Voucher</button>
+            <button class="tab-btn">Chiến dịch</button>
+          </div>
+          <div class="filter-group">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm mã voucher..." />
+            </div>
+            <select class="filter-select">
+              <option value="">Tất cả</option>
+            </select>
+            <button class="btn-add">+ Tạo voucher</button>
+          </div>
+        </div>
+
+        <!-- VOUCHER TABLE -->
+        <div class="card">
+          <div class="card-body table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>VOUCHER</th>
+                  <th>GIÁ TRỊ</th>
+                  <th>ĐIỀU KIỆN</th>
+                  <th>SỬ DỤNG</th>
+                  <th>THỜI HẠN</th>
+                  <th>TRẠNG THÁI</th>
+                  <th>THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div>
+                      <div class="product-name">SALE50</div>
+                      <div class="product-meta">Giảm 50% tất cả sản phẩm</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div style="font-weight: 600;">50%</div>
+                      <div class="product-meta">Tối đa: 500.000₫</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div>Đơn từ 1.000.000₫</div>
+                      <div class="product-meta">Tất Cả</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                      <div style="width: 100px; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden;">
+                        <div style="width: 45%; height: 100%; background: var(--accent);"></div>
+                      </div>
+                      <span style="font-size: 12px;">45/100</span>
+                    </div>
+                  </td>
+                  <td>2024-01-01 - 2024-01-31</td>
+                  <td><span class="status success">Đang hoạt động</span></td>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <label class="toggle-switch">
+                        <input type="checkbox" checked />
+                        <span class="slider"></span>
+                      </label>
+                      <div class="action-menu">
+                        <button class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item">✏️ Chỉnh sửa</button>
+                          <button class="action-item">📑 Nhân bản</button>
+                          <button class="action-item danger">🗑 Xóa</button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>
+                      <div class="product-name">FREESHIP</div>
+                      <div class="product-meta">Miễn phí vận chuyển</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div style="font-weight: 600;">Free Ship</div>
+                      <div class="product-meta">Tối đa: 50.000₫</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div>Đơn từ 500.000₫</div>
+                      <div class="product-meta">Tất Cả</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                      <div style="width: 100px; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden;">
+                        <div style="width: 60%; height: 100%; background: var(--accent);"></div>
+                      </div>
+                      <span style="font-size: 12px;">120/200</span>
+                    </div>
+                  </td>
+                  <td>2024-01-01 - 2024-02-28</td>
+                  <td><span class="status success">Đang hoạt động</span></td>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <label class="toggle-switch">
+                        <input type="checkbox" checked />
+                        <span class="slider"></span>
+                      </label>
+                      <div class="action-menu">
+                        <button class="action-toggle">⋯</button>
+                        <div class="action-dropdown">
+                          <button class="action-item">✏️ Chỉnh sửa</button>
+                          <button class="action-item">📑 Nhân bản</button>
+                          <button class="action-item danger">🗑 Xóa</button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>
+                      <div class="product-name">IPHONE200K</div>
+                      <div class="product-meta">Giảm 200K cho iPhone</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div style="font-weight: 600;">200.000₫</div>
+                      <div class="product-meta">Tối đa: 200.000₫</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <div>Đơn từ 20.000.000₫</div>
+                      <div class="product-meta">Theo Danh Mục</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                      <div style="width: 100px; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden;">
+                        <div style="width: 100%; height: 100%; background: var(--accent);"></div>
+                      </div>
+                      <span style="font-size: 12px;">50/50</span>
+                    </div>
+                  </td>
+                  <td>2024-01-01 - 2024-01-15</td>
+                  <td><span class="status cancelled">Đã hết hạn</span></td>
+                  <td>
+                    <div class="action-menu">
+                      <button class="action-toggle">⋯</button>
+                      <div class="action-dropdown">
+                        <button class="action-item">✏️ Chỉnh sửa</button>
+                        <button class="action-item">📑 Nhân bản</button>
+                        <button class="action-item danger">🗑 Xóa</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+    <script src="js/action-menu.js"></script>
+  </body>
+</html>
+
