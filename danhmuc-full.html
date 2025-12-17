@@ -36,7 +36,6 @@
                 <span class="nav-icon">📦</span>
                 <span class="nav-text">Sản phẩm</span>
               </div>
-              <span class="nav-badge gray">128</span>
             </a>
 
             <a href="danhmuc-full.html" class="nav-item active">
@@ -51,7 +50,6 @@
                 <span class="nav-icon">🏬</span>
                 <span class="nav-text">Tồn kho</span>
               </div>
-              <span class="nav-badge red">5</span>
             </a>
 
             <a href="donhang-full.html" class="nav-item">
@@ -59,7 +57,6 @@
                 <span class="nav-icon">🧾</span>
                 <span class="nav-text">Đơn hàng</span>
               </div>
-              <span class="nav-badge red">12</span>
             </a>
 
             <a href="khachhang-full.html" class="nav-item">
@@ -69,19 +66,12 @@
               </div>
             </a>
 
-            <a href="#" class="nav-item">
-              <div class="nav-left">
-                <span class="nav-icon">⭐</span>
-                <span class="nav-text">Đánh giá</span>
-              </div>
-              <span class="nav-badge gray">8</span>
-            </a>
           </nav>
 
           <!-- VẬN HÀNH -->
           <div class="sidebar-section-label">VẬN HÀNH</div>
           <nav class="sidebar-nav">
-            <a href="#" class="nav-item">
+            <a href="vanchuyen-full.html" class="nav-item">
               <div class="nav-left">
                 <span class="nav-icon">🚚</span>
                 <span class="nav-text">Vận chuyển</span>
@@ -92,7 +82,6 @@
                 <span class="nav-icon">↩️</span>
                 <span class="nav-text">Hoàn tiền</span>
               </div>
-              <span class="nav-badge red">3</span>
             </a>
             <a href="khuyenmai-full.html" class="nav-item">
               <div class="nav-left">
@@ -117,12 +106,6 @@
                 <span class="nav-text">Báo cáo</span>
               </div>
             </a>
-            <a href="#" class="nav-item">
-              <div class="nav-left">
-                <span class="nav-icon">💳</span>
-                <span class="nav-text">Tài chính</span>
-              </div>
-            </a>
           </nav>
 
           <!-- THIẾT LẬP -->
@@ -138,12 +121,6 @@
               <div class="nav-left">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-text">Cài đặt</span>
-              </div>
-            </a>
-            <a href="#" class="nav-item">
-              <div class="nav-left">
-                <span class="nav-icon">❓</span>
-                <span class="nav-text">Hỗ trợ</span>
               </div>
             </a>
           </nav>
@@ -167,11 +144,15 @@
         <header class="topbar">
           <div class="topbar-left">
             <h1 class="page-title">Quản lý danh mục</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="categorySearchTopbar" placeholder="Tìm kiếm danh mục..." />
+            </div>
           </div>
           <div class="topbar-right">
             <button class="top-btn">🔔</button>
             <button class="top-btn">❓</button>
-            <button class="top-btn user-circle">NH</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
           </div>
         </header>
 
@@ -424,8 +405,62 @@
       </div>
     </div>
 
+    <!-- MODAL QUẢN LÝ THUỘC TÍNH -->
+    <div id="attributesModal" class="modal">
+      <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+          <div>
+            <h2 id="attributesModalTitle">Quản lý thuộc tính</h2>
+            <p class="modal-subtitle">
+              Thêm hoặc chỉnh sửa thuộc tính cho danh mục này
+            </p>
+          </div>
+          <button class="modal-close" id="closeAttributesModal">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Add New Attribute Section -->
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+              <input
+                type="text"
+                id="newAttributeInput"
+                placeholder="Tên thuộc tính mới..."
+                style="flex: 1; padding: 10px 14px; background: var(--bg-elevated-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; outline: none; transition: border-color 0.2s;"
+                onfocus="this.style.borderColor='var(--accent)'"
+                onblur="this.style.borderColor='var(--border)'"
+              />
+              <button
+                type="button"
+                id="addAttributeBtn"
+                class="btn-submit"
+                style="padding: 10px 20px; white-space: nowrap;"
+              >
+                + Thêm
+              </button>
+            </div>
+          </div>
+
+          <!-- Attributes List -->
+          <div>
+            <h3 style="font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px;">
+              Thuộc tính hiện có
+            </h3>
+            <div id="attributesList" style="display: flex; flex-direction: column; gap: 8px;">
+              <!-- Attributes will be rendered here -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="closeAttributesModalBtn">Đóng</button>
+        </div>
+      </div>
+    </div>
+
     <script src="js/scrip.js"></script>
     <script src="js/category.js"></script>
     <script src="js/user-info.js"></script>
+    <script src="js/sidebar-preserve.js"></script>
   </body>
 </html>

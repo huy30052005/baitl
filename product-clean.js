@@ -182,7 +182,8 @@ function initializeProductPage() {
   const categorySelect = document.querySelector('select[name="category"]');
   const searchInput =
     document.querySelector("#productSearch") ||
-    document.querySelector(".search-input");
+    document.querySelector(".search-input") ||
+    document.querySelector(".topbar .search-input");
   const clearSearchBtn = document.getElementById("clearSearch");
   const categoryFilter = document.querySelectorAll(".filter-select")[0];
   const statusFilter = document.querySelectorAll(".filter-select")[1];

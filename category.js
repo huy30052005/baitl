@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.querySelector(".modal-close");
   const cancelBtn = document.querySelector(".btn-cancel");
   const categoryForm = document.getElementById("categoryForm");
-  const searchInput = document.getElementById("categorySearch");
+  const searchInput = document.getElementById("categorySearch") || document.getElementById("categorySearchTopbar");
   const clearSearchBtn = document.getElementById("clearCategorySearch");
   const modalTitle = modal ? modal.querySelector("h2") : null;
 
@@ -47,15 +47,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Search
-  if (searchInput) {
-    searchInput.addEventListener("input", () => filterCategories(searchInput.value));
-  }
-  if (clearSearchBtn && searchInput) {
+  // Search - hỗ trợ cả search trong topbar và filter-group
+  const categorySearchTopbar = document.getElementById("categorySearchTopbar");
+  const allSearchInputs = [searchInput, categorySearchTopbar].filter(Boolean);
+  
+  const handleSearch = (value) => {
+    filterCategories(value);
+    // Đồng bộ giá trị giữa các search input
+    allSearchInputs.forEach(input => {
+      if (input) input.value = value;
+    });
+  };
+  
+  allSearchInputs.forEach(input => {
+    if (input) {
+      input.addEventListener("input", (e) => {
+        handleSearch(e.target.value);
+      });
+    }
+  });
+  
+  if (clearSearchBtn) {
     clearSearchBtn.addEventListener("click", () => {
-      searchInput.value = "";
-      filterCategories("");
-      searchInput.focus();
+      handleSearch("");
+      allSearchInputs.forEach(input => {
+        if (input) input.focus();
+      });
     });
   }
 
@@ -134,6 +151,7 @@ function addCategoryToTable(category, index) {
         <div class="action-dropdown">
           <button class="action-item" data-action="edit">✏️ Chỉnh sửa</button>
           <button class="action-item" data-action="add-child">➕ Thêm danh mục con</button>
+          <button class="action-item" data-action="manage-attributes">🏷️ Quản lý thuộc tính</button>
           <button class="action-item danger" data-action="delete">🗑 Xóa danh mục</button>
         </div>
       </div>
@@ -188,6 +206,17 @@ function seedDefaultCategories() {
   if (changed) {
     localStorage.setItem("categories", JSON.stringify(categories));
   }
+  
+  // Seed default attributes for "Điện thoại" category
+  const dienthoaiCategory = categories.find(c => c.id === "dm01" || c.name === "Điện thoại");
+  if (dienthoaiCategory) {
+    const attributesKey = `category_attributes_${dienthoaiCategory.id}`;
+    const existingAttributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+    if (existingAttributes.length === 0) {
+      const defaultAttributes = ["Màu sắc", "Dung lượng", "RAM"];
+      localStorage.setItem(attributesKey, JSON.stringify(defaultAttributes));
+    }
+  }
 }
 
 function filterCategories(term) {
@@ -221,6 +250,8 @@ document.addEventListener("click", (e) => {
       openEditCategory(id);
     } else if (action === "add-child") {
       openAddChildCategory(id);
+    } else if (action === "manage-attributes") {
+      openManageAttributes(id);
     } else if (action === "delete") {
       deleteCategory(id);
     }
@@ -347,3 +378,317 @@ function updateCategoryKpis() {
   if (largestCountEl) largestCountEl.textContent = largestCount;
   if (largestNameEl) largestNameEl.textContent = largestName;
 }
+
+// Attributes Management Functions
+let currentCategoryIdForAttributes = null;
+let editingAttributeIndex = null;
+
+// Helper functions to update products when attributes change
+function addAttributeToCategoryProducts(categoryName, attributeName) {
+  let products = JSON.parse(localStorage.getItem("products") || "[]");
+  let updatedCount = 0;
+  
+  products = products.map(product => {
+    // Check if product belongs to this category
+    if (product.category === categoryName) {
+      // Initialize attributes object if it doesn't exist
+      if (!product.attributes) {
+        product.attributes = {};
+      }
+      // Add new attribute with empty value if it doesn't exist
+      if (!product.attributes.hasOwnProperty(attributeName)) {
+        product.attributes[attributeName] = "";
+        updatedCount++;
+      }
+    }
+    return product;
+  });
+  
+  if (updatedCount > 0) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+  
+  return updatedCount;
+}
+
+function updateProductsAttributeName(categoryName, oldAttributeName, newAttributeName) {
+  let products = JSON.parse(localStorage.getItem("products") || "[]");
+  let updatedCount = 0;
+  
+  products = products.map(product => {
+    // Check if product belongs to this category and has the old attribute
+    if (product.category === categoryName && product.attributes && product.attributes.hasOwnProperty(oldAttributeName)) {
+      // Rename the attribute key
+      const value = product.attributes[oldAttributeName];
+      delete product.attributes[oldAttributeName];
+      product.attributes[newAttributeName] = value;
+      updatedCount++;
+    }
+    return product;
+  });
+  
+  if (updatedCount > 0) {
+    localStorage.setItem("products", JSON.stringify(products));
+    console.log(`Đã đổi tên thuộc tính trong ${updatedCount} sản phẩm: "${oldAttributeName}" → "${newAttributeName}"`);
+  }
+  
+  return updatedCount;
+}
+
+function removeAttributeFromCategoryProducts(categoryName, attributeName) {
+  let products = JSON.parse(localStorage.getItem("products") || "[]");
+  let updatedCount = 0;
+  
+  products = products.map(product => {
+    // Check if product belongs to this category and has this attribute
+    if (product.category === categoryName && product.attributes && product.attributes.hasOwnProperty(attributeName)) {
+      delete product.attributes[attributeName];
+      updatedCount++;
+    }
+    return product;
+  });
+  
+  if (updatedCount > 0) {
+    localStorage.setItem("products", JSON.stringify(products));
+    console.log(`Đã xóa thuộc tính "${attributeName}" khỏi ${updatedCount} sản phẩm`);
+  }
+  
+  return updatedCount;
+}
+
+function openManageAttributes(categoryId) {
+  currentCategoryIdForAttributes = categoryId;
+  editingAttributeIndex = null;
+  
+  const modal = document.getElementById("attributesModal");
+  const modalTitle = document.getElementById("attributesModalTitle");
+  const categories = JSON.parse(localStorage.getItem("categories") || "[]");
+  const category = categories.find((c) => c.id === categoryId);
+  
+  if (!modal || !category) return;
+  
+  // Set modal title
+  if (modalTitle) {
+    modalTitle.textContent = `Quản lý thuộc tính - ${category.name}`;
+  }
+  
+  // Load and render attributes
+  renderAttributesList();
+  
+  // Clear input
+  const newAttributeInput = document.getElementById("newAttributeInput");
+  if (newAttributeInput) {
+    newAttributeInput.value = "";
+    newAttributeInput.placeholder = "Tên thuộc tính mới...";
+  }
+  
+  // Show modal
+  modal.style.display = "flex";
+  
+  // Setup event listeners
+  setupAttributesModalListeners();
+}
+
+function setupAttributesModalListeners() {
+  const modal = document.getElementById("attributesModal");
+  const closeBtn = document.getElementById("closeAttributesModal");
+  const closeBtnFooter = document.getElementById("closeAttributesModalBtn");
+  const addBtn = document.getElementById("addAttributeBtn");
+  const newAttributeInput = document.getElementById("newAttributeInput");
+  
+  // Close modal functions
+  const closeModal = () => {
+    if (modal) modal.style.display = "none";
+    currentCategoryIdForAttributes = null;
+    editingAttributeIndex = null;
+  };
+  
+  if (closeBtn) {
+    closeBtn.onclick = closeModal;
+  }
+  
+  if (closeBtnFooter) {
+    closeBtnFooter.onclick = closeModal;
+  }
+  
+  // Close when clicking outside
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) closeModal();
+    };
+  }
+  
+  // Add/Edit attribute
+  const handleAddAttribute = () => {
+    if (!newAttributeInput || !currentCategoryIdForAttributes) return;
+    
+    const attributeName = newAttributeInput.value.trim();
+    if (!attributeName) {
+      alert("Vui lòng nhập tên thuộc tính!");
+      return;
+    }
+    
+    // Get category info
+    const categories = JSON.parse(localStorage.getItem("categories") || "[]");
+    const category = categories.find((c) => c.id === currentCategoryIdForAttributes);
+    if (!category) return;
+    
+    // Get attributes from localStorage
+    const attributesKey = `category_attributes_${currentCategoryIdForAttributes}`;
+    let attributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+    
+    if (editingAttributeIndex !== null) {
+      // Edit existing attribute - rename attribute in all products
+      const oldAttributeName = attributes[editingAttributeIndex];
+      attributes[editingAttributeIndex] = attributeName;
+      
+      // Update all products in this category
+      const updatedCount = updateProductsAttributeName(category.name, oldAttributeName, attributeName);
+      
+      editingAttributeIndex = null;
+      if (newAttributeInput) {
+        newAttributeInput.value = "";
+        newAttributeInput.placeholder = "Tên thuộc tính mới...";
+      }
+      if (addBtn) addBtn.textContent = "+ Thêm";
+    } else {
+      // Check if attribute already exists
+      if (attributes.includes(attributeName)) {
+        alert("Thuộc tính này đã tồn tại!");
+        return;
+      }
+      // Add new attribute
+      attributes.push(attributeName);
+      
+      // Add this attribute to all products in this category
+      const updatedCount = addAttributeToCategoryProducts(category.name, attributeName);
+      if (updatedCount > 0) {
+        // Show notification (optional, can be removed if too verbose)
+        console.log(`Đã cập nhật ${updatedCount} sản phẩm với thuộc tính mới: ${attributeName}`);
+      }
+    }
+    
+    // Save to localStorage
+    localStorage.setItem(attributesKey, JSON.stringify(attributes));
+    
+    // Clear input and re-render
+    if (newAttributeInput) {
+      newAttributeInput.value = "";
+      newAttributeInput.placeholder = "Tên thuộc tính mới...";
+    }
+    renderAttributesList();
+  };
+  
+  if (addBtn) {
+    addBtn.onclick = handleAddAttribute;
+  }
+  
+  // Allow Enter key to add
+  if (newAttributeInput) {
+    newAttributeInput.onkeypress = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleAddAttribute();
+      }
+    };
+  }
+}
+
+function renderAttributesList() {
+  if (!currentCategoryIdForAttributes) return;
+  
+  const attributesList = document.getElementById("attributesList");
+  if (!attributesList) return;
+  
+  // Get attributes from localStorage
+  const attributesKey = `category_attributes_${currentCategoryIdForAttributes}`;
+  const attributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+  
+  if (attributes.length === 0) {
+    attributesList.innerHTML = '<div style="color: var(--text-muted); padding: 20px; text-align: center;">Chưa có thuộc tính nào</div>';
+    return;
+  }
+  
+  attributesList.innerHTML = attributes.map((attr, index) => `
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--bg-elevated-2); border: 1px solid var(--border); border-radius: 8px; transition: background 0.2s;" 
+         onmouseover="this.style.background='var(--bg-elevated)'" 
+         onmouseout="this.style.background='var(--bg-elevated-2)'">
+      <span style="color: var(--text); font-size: 14px;">${attr}</span>
+      <div style="display: flex; gap: 8px;">
+        <button type="button" 
+                onclick="editAttribute(${index})" 
+                style="background: transparent; border: none; color: var(--text); cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: background 0.2s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                onmouseout="this.style.background='transparent'"
+                title="Chỉnh sửa">
+          ✏️
+        </button>
+        <button type="button" 
+                onclick="deleteAttribute(${index})" 
+                style="background: transparent; border: none; color: var(--danger); cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: background 0.2s;"
+                onmouseover="this.style.background='rgba(249,115,115,0.1)'"
+                onmouseout="this.style.background='transparent'"
+                title="Xóa">
+          🗑️
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Global functions for inline onclick handlers
+window.editAttribute = function(index) {
+  if (!currentCategoryIdForAttributes) return;
+  
+  const attributesKey = `category_attributes_${currentCategoryIdForAttributes}`;
+  const attributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+  
+  if (index >= 0 && index < attributes.length) {
+    editingAttributeIndex = index;
+    const newAttributeInput = document.getElementById("newAttributeInput");
+    const addBtn = document.getElementById("addAttributeBtn");
+    
+    if (newAttributeInput) {
+      newAttributeInput.value = attributes[index];
+      newAttributeInput.focus();
+    }
+    if (addBtn) {
+      addBtn.textContent = "💾 Lưu";
+    }
+  }
+};
+
+window.deleteAttribute = function(index) {
+  if (!currentCategoryIdForAttributes) return;
+  
+  if (!confirm("Bạn có chắc muốn xóa thuộc tính này? Thuộc tính này sẽ bị xóa khỏi tất cả sản phẩm trong danh mục.")) return;
+  
+  // Get category info
+  const categories = JSON.parse(localStorage.getItem("categories") || "[]");
+  const category = categories.find((c) => c.id === currentCategoryIdForAttributes);
+  if (!category) return;
+  
+  const attributesKey = `category_attributes_${currentCategoryIdForAttributes}`;
+  let attributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+  
+  const attributeNameToDelete = attributes[index];
+  attributes.splice(index, 1);
+  localStorage.setItem(attributesKey, JSON.stringify(attributes));
+  
+  // Remove this attribute from all products in this category
+  const updatedCount = removeAttributeFromCategoryProducts(category.name, attributeNameToDelete);
+  
+  // Reset editing state if needed
+  if (editingAttributeIndex === index) {
+    editingAttributeIndex = null;
+    const newAttributeInput = document.getElementById("newAttributeInput");
+    const addBtn = document.getElementById("addAttributeBtn");
+    if (newAttributeInput) {
+      newAttributeInput.value = "";
+      newAttributeInput.placeholder = "Tên thuộc tính mới...";
+    }
+    if (addBtn) addBtn.textContent = "+ Thêm";
+  }
+  
+  renderAttributesList();
+};

@@ -94,16 +94,20 @@ document.addEventListener("DOMContentLoaded", () => {
   updateInventoryKpis();
   setupRowToggle();
   setupStockModalLogic();
+  setupInventorySearch();
   setupActionMenuHandler();
 });
 
 // ===== Render bảng tồn kho =====
+let filteredInventoryData = null;
+
 function renderInventoryTable() {
   const tbody = document.getElementById("inventoryTable");
   if (!tbody) return;
   tbody.innerHTML = "";
 
-  inventoryData.forEach((product) => {
+  const dataToRender = filteredInventoryData || inventoryData;
+  dataToRender.forEach((product) => {
     const totals = calcProductTotals(product);
 
     // Row sản phẩm cha
@@ -597,4 +601,34 @@ function handleAdjustStock(productId, variantId) {
     // Điều chỉnh cho toàn bộ sản phẩm - hiển thị thông báo
     alert("Vui lòng chọn biến thể cụ thể để điều chỉnh tồn kho.");
   }
+}
+
+// ===== SEARCH FUNCTIONALITY =====
+function setupInventorySearch() {
+  const inventorySearch = document.getElementById("inventorySearch");
+  if (!inventorySearch) return;
+  
+  inventorySearch.addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+      filteredInventoryData = null;
+    } else {
+      filteredInventoryData = inventoryData.filter((product) => {
+        // Tìm trong tên sản phẩm, danh mục, hoặc SKU của variants
+        const matchName = product.name.toLowerCase().includes(searchTerm);
+        const matchCategory = product.category.toLowerCase().includes(searchTerm);
+        const matchVariant = product.variants.some((v) => 
+          v.sku.toLowerCase().includes(searchTerm) || 
+          v.name.toLowerCase().includes(searchTerm)
+        );
+        return matchName || matchCategory || matchVariant;
+      });
+    }
+    
+    renderInventoryTable();
+    updateInventoryKpis();
+    setupRowToggle();
+    setupActionMenuHandler();
+  });
 }

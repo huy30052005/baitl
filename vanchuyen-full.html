@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vận chuyển - SellerHub</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header top-brand">
+          <div class="brand-left">
+            <div class="brand-icon">🛒</div>
+            <div class="brand-text">
+              <div class="brand-name">SellerHub</div>
+            </div>
+          </div>
+          <button class="collapse-btn">⮟</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <!-- QUẢN LÝ -->
+          <div class="sidebar-section-label">QUẢN LÝ</div>
+          <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Tổng quan</span>
+              </div>
+            </a>
+            <a href="sanpham-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Sản phẩm</span>
+              </div>
+            </a>
+            <a href="danhmuc-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🗂</span>
+                <span class="nav-text">Danh mục</span>
+              </div>
+            </a>
+            <a href="tonkho-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏬</span>
+                <span class="nav-text">Tồn kho</span>
+              </div>
+            </a>
+            <a href="donhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🧾</span>
+                <span class="nav-text">Đơn hàng</span>
+              </div>
+            </a>
+            <a href="khachhang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Khách hàng</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- VẬN HÀNH -->
+          <div class="sidebar-section-label">VẬN HÀNH</div>
+          <nav class="sidebar-nav">
+            <a href="vanchuyen-full.html" class="nav-item active">
+              <div class="nav-left">
+                <span class="nav-icon">🚚</span>
+                <span class="nav-text">Vận chuyển</span>
+              </div>
+            </a>
+            <a href="hoantien-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">↩️</span>
+                <span class="nav-text">Hoàn tiền</span>
+              </div>
+            </a>
+            <a href="khuyenmai-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏷</span>
+                <span class="nav-text">Khuyến mãi</span>
+              </div>
+            </a>
+            <a href="flashsale-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Flash Sale</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- PHÂN TÍCH -->
+          <div class="sidebar-section-label">PHÂN TÍCH</div>
+          <nav class="sidebar-nav">
+            <a href="baocao-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Báo cáo</span>
+              </div>
+            </a>
+          </nav>
+
+          <!-- THIẾT LẬP -->
+          <div class="sidebar-section-label">THIẾT LẬP</div>
+          <nav class="sidebar-nav">
+            <a href="cuahang-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">🏪</span>
+                <span class="nav-text">Cửa hàng</span>
+              </div>
+            </a>
+            <a href="caidat-full.html" class="nav-item">
+              <div class="nav-left">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Cài đặt</span>
+              </div>
+            </a>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"><span>NH</span></div>
+            <div class="user-info">
+              <div class="user-name">Nguyễn Hoàng</div>
+              <div class="user-role small">Premium Seller ▾</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="page-title">Vận chuyển</h1>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, đơn hàng..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <button class="top-btn">🔔</button>
+            <button class="top-btn">❓</button>
+            <button class="btn-store-open">Cửa hàng đang mở</button>
+          </div>
+        </header>
+
+        <!-- SUMMARY CARDS -->
+        <section class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>🚚 Tổng phương thức</span>
+            </div>
+            <div class="kpi-value" id="totalShippingMethods">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>✅ Đang hoạt động</span>
+            </div>
+            <div class="kpi-value" id="activeShippingMethods">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>📦 Đơn vận chuyển</span>
+            </div>
+            <div class="kpi-value" id="totalOrders">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>💰 Doanh thu vận chuyển</span>
+            </div>
+            <div class="kpi-value" id="totalRevenue">0₫</div>
+          </div>
+        </section>
+
+        <!-- HEADER AND CONTROLS -->
+        <div class="product-header">
+          <div class="filter-group">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="shippingSearchInput" placeholder="Tìm kiếm phương thức vận chuyển..." />
+            </div>
+            <button class="btn-add" id="btnCreateShipping">+ Tạo phương thức vận chuyển</button>
+          </div>
+        </div>
+
+        <!-- SHIPPING TABLE -->
+        <div class="card">
+          <div class="card-body table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>PHƯƠNG THỨC</th>
+                  <th>MÔ TẢ</th>
+                  <th>PHÍ VẬN CHUYỂN</th>
+                  <th>THỜI GIAN</th>
+                  <th>TRẠNG THÁI</th>
+                  <th>THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody id="shippingTableBody">
+                <!-- Shipping methods will be added here -->
+              </tbody>
+            </table>
+          </div>
+          <!-- PAGINATION -->
+          <div class="pagination-container" id="shippingPaginationContainer" style="display: none;">
+            <span id="shippingPaginationInfo" style="color: var(--text-muted); font-size: 13px;">Hiển thị 1-10 trong tổng số 0 phương thức</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn-sm" id="shippingPrevPageBtn" disabled>Trước</button>
+              <div id="shippingPaginationNumbers" style="display: flex; gap: 6px;"></div>
+              <button class="btn-sm" id="shippingNextPageBtn">Sau</button>
+            </div>
+          </div>
+          
+          <!-- EMPTY STATE -->
+          <div id="shippingEmptyState" style="text-align: center; padding: 60px 20px; color: var(--text-muted); display: none;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🚚</div>
+            <h3 style="color: var(--text); margin-bottom: 8px;">Chưa có phương thức vận chuyển nào</h3>
+            <p style="font-size: 14px; margin-bottom: 24px;">Tạo phương thức vận chuyển đầu tiên của bạn</p>
+            <button class="btn-add" id="btnCreateShippingEmpty">+ Tạo phương thức vận chuyển</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- MODAL TẠO PHƯƠNG THỨC VẬN CHUYỂN -->
+    <div id="shippingModal" class="modal">
+      <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-header">
+          <div>
+            <h2>Tạo phương thức vận chuyển mới</h2>
+            <p class="modal-subtitle">Thiết lập phương thức vận chuyển cho đơn hàng</p>
+          </div>
+          <button class="modal-close" id="closeShippingModal">✕</button>
+        </div>
+
+        <form id="shippingForm">
+          <div class="modal-body">
+            <!-- Đơn vị vận chuyển -->
+            <div class="form-group">
+              <label>Đơn vị vận chuyển <span class="required">*</span></label>
+              <select name="shippingProvider" id="shippingProvider" required>
+                <option value="">-- Chọn đơn vị vận chuyển --</option>
+                <option value="ghn">Giao hàng nhanh (GHN)</option>
+                <option value="ghtk">Giao hàng tiết kiệm (GHTK)</option>
+                <option value="viettel">Viettel Post</option>
+                <option value="jt">J&T Express</option>
+                <option value="vnpost">Bưu điện Việt Nam (VNPost)</option>
+                <option value="ninja">Ninja Van</option>
+                <option value="best">Best Express</option>
+                <option value="grab">Grab Express</option>
+                <option value="ahamove">AhaMove</option>
+                <option value="other">Khác</option>
+              </select>
+            </div>
+
+            <!-- Tên phương thức -->
+            <div class="form-group">
+              <label>Tên phương thức <span class="required">*</span></label>
+              <input
+                type="text"
+                name="shippingName"
+                id="shippingName"
+                placeholder="VD: Giao hàng nhanh, Giao hàng tiết kiệm..."
+                required
+              />
+            </div>
+
+            <!-- Mô tả -->
+            <div class="form-group">
+              <label>Mô tả <span class="required">*</span></label>
+              <textarea
+                name="shippingDescription"
+                id="shippingDescription"
+                placeholder="Mô tả chi tiết về phương thức vận chuyển..."
+                rows="4"
+                required
+                style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; resize: vertical;"
+              ></textarea>
+            </div>
+
+            <!-- Phí vận chuyển và Loại phí -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Loại phí</label>
+                <select name="feeType" id="feeType">
+                  <option value="fixed">Phí cố định</option>
+                  <option value="weight">Theo trọng lượng</option>
+                  <option value="distance">Theo khoảng cách</option>
+                  <option value="free">Miễn phí</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Phí vận chuyển <span class="required">*</span></label>
+                <input
+                  type="number"
+                  name="shippingFee"
+                  id="shippingFee"
+                  placeholder="VD: 30000"
+                  min="0"
+                  step="1000"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Thời gian giao hàng -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Thời gian giao hàng (ngày) <span class="required">*</span></label>
+                <input
+                  type="number"
+                  name="deliveryTime"
+                  id="deliveryTime"
+                  placeholder="VD: 3"
+                  min="1"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Khu vực áp dụng</label>
+                <select name="shippingArea" id="shippingArea">
+                  <option value="all">Toàn quốc</option>
+                  <option value="north">Miền Bắc</option>
+                  <option value="central">Miền Trung</option>
+                  <option value="south">Miền Nam</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Trạng thái -->
+            <div class="form-group">
+              <label>Trạng thái</label>
+              <select name="shippingStatus" id="shippingStatus">
+                <option value="active">Đang hoạt động</option>
+                <option value="inactive">Tạm dừng</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" id="cancelShippingBtn">Hủy</button>
+            <button type="submit" class="btn-submit">Tạo phương thức</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/scrip.js"></script>
+    <script src="js/user-info.js"></script>
+    <script src="js/action-menu.js"></script>
+    <script src="js/sidebar-preserve.js"></script>
+    <script src="js/vanchuyen.js"></script>
+  </body>
+</html>

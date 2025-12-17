@@ -154,7 +154,7 @@ body {
 }
 
 .search-input {
-  width: 320px;
+  width: 450px;
   padding: 8px 10px;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -374,8 +374,10 @@ body {
 
 /* TABLE */
 .table-wrapper {
-  max-height: 220px;
-  overflow: auto;
+  max-height: calc(100vh - 400px);
+  min-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .table-wrapper::-webkit-scrollbar {
@@ -474,7 +476,7 @@ th {
   pointer-events: none;
   transform: translateY(-2px);
   transition: all 0.12s ease;
-  z-index: 5;
+  z-index: 1000;
 }
 
 .action-menu.open .action-dropdown {
@@ -840,7 +842,8 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .product-header-right {
@@ -892,7 +895,9 @@ th {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 6px 10px;
-  min-width: 280px;
+  min-width: 400px;
+  max-width: 600px;
+  flex: 1;
 }
 
 .search-icon {
@@ -1162,6 +1167,10 @@ th {
   justify-content: center;
 }
 
+.modal[style*="flex"] {
+  display: flex !important;
+}
+
 .modal-content {
   background-color: var(--bg-elevated);
   border-radius: 12px;
@@ -1181,13 +1190,16 @@ th {
 }
 
 .modal-header h2 {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: 22px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .modal-subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .modal-close {
@@ -1220,6 +1232,12 @@ th {
   gap: 12px;
   padding: 16px 24px;
   border-top: 1px solid var(--border);
+}
+
+.modal-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* FORM STYLES */
@@ -1384,10 +1402,12 @@ th {
 
 /* FILTER GROUP */
 .filter-group {
+  position: relative;
   display: flex;
   gap: 12px;
   align-items: center;
   flex: 1;
+  min-width: 0;
 }
 
 .filter-select {
@@ -1414,6 +1434,88 @@ th {
   border-color: var(--accent);
 }
 
+/* Filter Button Style */
+.filter-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 160px;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  background-color: var(--bg);
+}
+
+.filter-arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.filter-btn.open .filter-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 160px;
+  background: var(--bg-elevated-2, #0f172a);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-2px);
+  transition: all 0.12s ease;
+}
+
+.filter-btn.open + .filter-dropdown,
+.filter-dropdown.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.filter-option {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.filter-option:hover {
+  background: #111827;
+}
+
+.filter-option.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .product-header {
   display: flex;
   justify-content: space-between;
@@ -1423,11 +1525,12 @@ th {
 /* PAGINATION */
 .pagination-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 20px;
+  padding: 16px 20px;
   background-color: var(--bg-elevated);
+  border-top: 1px solid var(--border);
 }
 
 .pagination-container span {
@@ -1511,11 +1614,21 @@ th {
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
 }
 
 .btn-export:hover {
   background-color: var(--bg);
   border-color: var(--accent);
+}
+
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Tabs */
