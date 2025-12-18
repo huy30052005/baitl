@@ -6,14 +6,7 @@ let currentPage = 1;
 const itemsPerPage = 10;
 let viewMode = "list";
 let editingProductId = null;
-const defaultCategories = [
-  "Điện thoại",
-  "Laptop",
-  "Máy tính bảng",
-  "Linh kiện",
-  "Phụ kiện",
-  "Khác",
-];
+// Categories are now loaded from localStorage (from Category Management page)
 
 // Field definitions for each category
 const categoryFieldConfigs = {
@@ -202,9 +195,38 @@ function initializeProductPage() {
   syncCategories(categorySelect, categoryFilter);
 
   // Open modal
+  // Setup price input formatting (VND với dấu chấm phân cách)
+  setupPriceInputFormatting();
+
   if (btnAddProduct) {
     btnAddProduct.addEventListener("click", () => {
-      if (modal) modal.style.display = "flex";
+      if (modal) {
+        // Reset form
+        if (productForm) {
+          productForm.reset();
+          editingProductId = null;
+          resetFormMode(modalTitle, submitBtn);
+          
+          // Reset image preview
+          if (imagePreviewImg) {
+            imagePreviewImg.src = "";
+          }
+          if (imagePreview) {
+            imagePreview.style.display = "none";
+          }
+          const uploadIcon = document.querySelector(".image-upload-icon");
+          if (uploadIcon) uploadIcon.style.display = "flex";
+        }
+        
+        // Sync categories from localStorage before opening modal
+        syncCategories(categorySelect, categoryFilter);
+        
+        // Render dynamic fields based on selected category (or empty if no category selected)
+        const currentCategory = categorySelect ? categorySelect.value : "";
+        renderDynamicFields(currentCategory);
+        
+        modal.style.display = "flex";
+      }
     });
   }
 
@@ -311,8 +333,10 @@ function initializeProductPage() {
         return;
       }
       
-      if (!price || !price.value || parseFloat(price.value) <= 0) {
-        alert("Vui lòng nhập giá bán hợp lệ!");
+      // Loại bỏ dấu chấm trước khi validate
+      const priceValue = price.value ? removeDotsFromNumber(price.value) : "";
+      if (!priceValue || parseFloat(priceValue) <= 0) {
+        alert("Vui lòng nhập giá bán hợp lệ (VND)!");
         price?.focus();
         return;
       }
@@ -332,9 +356,13 @@ function initializeProductPage() {
 
   // Category-specific fields in modal
   if (categorySelect) {
-    renderDynamicFields(categorySelect.value);
+    // Initial render with empty category (will show no fields)
+    renderDynamicFields("");
+    
+    // Render fields when category changes
     categorySelect.addEventListener("change", (e) => {
-      renderDynamicFields(e.target.value);
+      const selectedCategory = e.target.value;
+      renderDynamicFields(selectedCategory);
     });
   }
 
@@ -411,16 +439,43 @@ function renderCurrentView() {
   }
 }
 
-function getFieldsForCategory(category) {
-  return categoryFieldConfigs[category] || categoryFieldConfigs["Khác"];
+function getFieldsForCategory(categoryName) {
+  // Nếu không có category name, trả về mảng rỗng
+  if (!categoryName || categoryName === "") {
+    return [];
+  }
+  
+  // Tìm category từ localStorage dựa trên tên
+  const categories = JSON.parse(localStorage.getItem("categories") || "[]");
+  const category = categories.find((c) => c.name === categoryName);
+  
+  // Nếu không tìm thấy category, trả về mảng rỗng
+  if (!category || !category.id) {
+    return [];
+  }
+  
+  // Lấy danh sách thuộc tính từ localStorage
+  const attributesKey = `category_attributes_${category.id}`;
+  const attributes = JSON.parse(localStorage.getItem(attributesKey) || "[]");
+  
+  // Chuyển đổi từ mảng tên thuộc tính sang định dạng field config
+  // Mỗi thuộc tính sẽ là một text input
+  // Sử dụng tên gốc (attrName) làm name để giữ nguyên tên thuộc tính
+  return attributes.map((attrName) => ({
+    name: attrName, // Giữ nguyên tên thuộc tính
+    label: attrName,
+    type: "text",
+    placeholder: `Nhập ${attrName.toLowerCase()}`,
+    required: false
+  }));
 }
 
 function getCategoryNames() {
+  // Lấy danh sách danh mục từ localStorage (từ phần Quản lý danh mục)
   const stored = JSON.parse(localStorage.getItem("categories") || "[]");
-  const storedNames = stored.map((c) => c.name).filter(Boolean);
-  const all = [...defaultCategories, ...storedNames];
-  // unique while preserving order
-  return [...new Set(all)];
+  const categoryNames = stored.map((c) => c.name).filter(Boolean);
+  // Trả về danh sách unique, chỉ lấy từ localStorage
+  return [...new Set(categoryNames)];
 }
 
 function syncCategories(categorySelect, categoryFilter) {
@@ -493,9 +548,11 @@ function collectAttributes(form, category) {
   const attributes = {};
 
   fields.forEach((field) => {
+    // Tìm input với name là attr_${field.name}
     const input = form.querySelector(`[name="attr_${field.name}"]`);
     if (!input) return;
     const value = input.value || "";
+    // Lưu với tên gốc từ field.name (chính là tên thuộc tính từ category)
     if (value.trim() !== "") {
       attributes[field.name] = value.trim();
     }
@@ -510,7 +567,15 @@ function handleAddProduct(form, imagePreviewImg, closeModalFunc) {
     const quantity = parseInt(formData.get("quantity")) || 0;
     const category = formData.get("category") || "Khác";
     const productName = formData.get("productName")?.trim();
-    const price = formData.get("price");
+    
+    // Lấy giá và loại bỏ dấu chấm phân cách trước khi parse
+    const priceRaw = formData.get("price") || "";
+    const priceClean = removeDotsFromNumber(priceRaw);
+    const price = parseFloat(priceClean) || 0;
+    
+    const originalPriceRaw = formData.get("originalPrice") || "";
+    const originalPriceClean = removeDotsFromNumber(originalPriceRaw);
+    const originalPrice = parseFloat(originalPriceClean) || price;
     
     // Validate required fields
     if (!productName) {
@@ -523,8 +588,8 @@ function handleAddProduct(form, imagePreviewImg, closeModalFunc) {
       return;
     }
     
-    if (!price || parseFloat(price) <= 0) {
-      alert("Vui lòng nhập giá bán hợp lệ!");
+    if (!price || price <= 0) {
+      alert("Vui lòng nhập giá bán hợp lệ (VND)!");
       return;
     }
     
@@ -557,8 +622,8 @@ function handleAddProduct(form, imagePreviewImg, closeModalFunc) {
       name: productName,
       sku: formData.get("sku")?.trim() || `SKU-${nowId}`,
       category: category,
-      price: parseFloat(price) || 0,
-      originalPrice: parseFloat(formData.get("originalPrice")) || parseFloat(price) || 0,
+      price: price, // Đã được parse ở trên
+      originalPrice: originalPrice, // Đã được parse ở trên
       quantity: quantity,
       description: formData.get("description")?.trim() || "",
       image: imageUrl,
@@ -579,6 +644,11 @@ function handleAddProduct(form, imagePreviewImg, closeModalFunc) {
           id: editingProductId,
         };
         localStorage.setItem("products", JSON.stringify(products));
+        
+        // Update category product counts
+        if (typeof updateCategoryProductCounts === 'function') {
+          updateCategoryProductCounts();
+        }
         
         // Reset filters to show all products
         const searchInput = document.querySelector("#productSearch") || document.querySelector(".search-input");
@@ -954,6 +1024,12 @@ function openEditProduct(productId) {
 
   editingProductId = productId;
   setFormMode("edit", modalTitle, submitBtn);
+  
+  // Sync categories from localStorage before filling form
+  const categorySelect = modal.querySelector('select[name="category"]');
+  const categoryFilter = document.querySelectorAll(".filter-select")[0];
+  syncCategories(categorySelect, categoryFilter);
+  
   fillProductForm(product);
   modal.style.display = "flex";
 }
@@ -974,6 +1050,12 @@ function duplicateProduct(productId) {
   const products = JSON.parse(localStorage.getItem("products") || "[]");
   products.push(copy);
   localStorage.setItem("products", JSON.stringify(products));
+  
+  // Update category product counts
+  if (typeof updateCategoryProductCounts === 'function') {
+    updateCategoryProductCounts();
+  }
+  
   loadAllProducts();
   alert("Đã nhân bản sản phẩm.");
 }
@@ -1009,6 +1091,11 @@ function deleteProductDirect(productId) {
     
     // Save back to localStorage
     localStorage.setItem("products", JSON.stringify(products));
+    
+    // Update category product counts
+    if (typeof updateCategoryProductCounts === 'function') {
+      updateCategoryProductCounts();
+    }
     
     // Reset filters
     const searchInput = document.querySelector("#productSearch") || document.querySelector(".search-input");
@@ -1070,8 +1157,9 @@ function fillProductForm(product) {
 
   form.elements["productName"].value = product.name || "";
   form.elements["sku"].value = product.sku || "";
-  form.elements["price"].value = product.price || "";
-  form.elements["originalPrice"].value = product.originalPrice || "";
+  // Format giá với dấu chấm phân cách khi hiển thị trong form edit
+  form.elements["price"].value = product.price ? formatNumberWithDots(product.price.toString()) : "";
+  form.elements["originalPrice"].value = product.originalPrice ? formatNumberWithDots(product.originalPrice.toString()) : "";
   form.elements["quantity"].value = product.quantity || 0;
   form.elements["description"].value = product.description || "";
   if (categorySelect) {
@@ -1178,11 +1266,90 @@ function changePage(page) {
   displayProducts(filteredProducts);
 }
 
+// Format số với dấu chấm phân cách (cho input)
+function formatNumberWithDots(value) {
+  // Loại bỏ tất cả ký tự không phải số
+  const numbers = value.replace(/[^\d]/g, "");
+  // Format với dấu chấm phân cách hàng nghìn
+  return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Loại bỏ dấu chấm để lấy số thuần (cho lưu vào database)
+function removeDotsFromNumber(value) {
+  if (!value) return "";
+  return value.toString().replace(/\./g, "");
+}
+
+// Setup formatting cho input giá
+function setupPriceInputFormatting() {
+  const priceInput = document.getElementById("productPrice");
+  const originalPriceInput = document.getElementById("productOriginalPrice");
+
+  // Format giá bán
+  if (priceInput) {
+    priceInput.addEventListener("input", (e) => {
+      const cursorPosition = e.target.selectionStart;
+      const oldValue = e.target.value;
+      const newValue = formatNumberWithDots(oldValue);
+      
+      if (oldValue !== newValue) {
+        e.target.value = newValue;
+        // Giữ vị trí cursor sau khi format
+        const dotsAdded = (newValue.match(/\./g) || []).length - (oldValue.match(/\./g) || []).length;
+        const newPosition = cursorPosition + dotsAdded;
+        e.target.setSelectionRange(newPosition, newPosition);
+      }
+    });
+
+    // Chỉ cho phép nhập số và dấu chấm
+    priceInput.addEventListener("keypress", (e) => {
+      const char = String.fromCharCode(e.which);
+      if (!/[0-9]/.test(char) && e.which !== 46) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Format giá gốc
+  if (originalPriceInput) {
+    originalPriceInput.addEventListener("input", (e) => {
+      const cursorPosition = e.target.selectionStart;
+      const oldValue = e.target.value;
+      const newValue = formatNumberWithDots(oldValue);
+      
+      if (oldValue !== newValue) {
+        e.target.value = newValue;
+        // Giữ vị trí cursor sau khi format
+        const dotsAdded = (newValue.match(/\./g) || []).length - (oldValue.match(/\./g) || []).length;
+        const newPosition = cursorPosition + dotsAdded;
+        e.target.setSelectionRange(newPosition, newPosition);
+      }
+    });
+
+    // Chỉ cho phép nhập số và dấu chấm
+    originalPriceInput.addEventListener("keypress", (e) => {
+      const char = String.fromCharCode(e.which);
+      if (!/[0-9]/.test(char) && e.which !== 46) {
+        e.preventDefault();
+      }
+    });
+  }
+}
+
 function formatPrice(price) {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(price);
+  // Format giá theo tiền Việt Nam (VND)
+  // Ví dụ: 1000000 -> "1.000.000 ₫"
+  try {
+    const numPrice = parseFloat(price) || 0;
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(numPrice);
+  } catch (error) {
+    // Fallback format nếu Intl.NumberFormat không hỗ trợ
+    const numPrice = parseFloat(price) || 0;
+    return numPrice.toLocaleString("vi-VN").replace(/,/g, ".") + " ₫";
+  }
 }
 
 // Reset products only

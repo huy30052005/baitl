@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Báo cáo & Phân tích - SellerHub</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/forms.css" />
   </head>
   <body>
     <div class="app">
@@ -143,7 +144,7 @@
             <select class="filter-select" style="margin-right: 12px;">
               <option>30 ngày qua</option>
             </select>
-            <button class="btn-export">📥 Xuất báo cáo</button>
+            <button class="btn-export" id="exportReportBtn">📥 Xuất báo cáo</button>
             <button class="top-btn">🔔</button>
             <button class="top-btn">❓</button>
             <button class="btn-store-open">Cửa hàng đang mở</button>
@@ -198,9 +199,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                [Biểu đồ doanh thu - Cần tích hợp Chart.js hoặc thư viện khác]
-              </div>
+              <canvas id="revenueChart" style="height: 300px;"></canvas>
             </div>
           </div>
 
@@ -210,8 +209,8 @@
               <h3>Doanh thu theo danh mục</h3>
             </div>
             <div class="card-body">
-              <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                [Biểu đồ tròn - Cần tích hợp Chart.js]
+              <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="categoryChart"></canvas>
               </div>
               <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
                 <div style="display: flex; justify-content: space-between;">
@@ -250,9 +249,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div style="height: 250px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                [Biểu đồ cột - Cần tích hợp Chart.js]
-              </div>
+              <canvas id="ordersByHourChart" style="height: 250px;"></canvas>
             </div>
           </div>
 
@@ -309,11 +306,16 @@
       </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="js/scrip.js"></script>
     <script src="js/user-info.js"></script>
     <script src="js/sidebar-preserve.js"></script>
+    <script src="js/store-status.js"></script>
+    <script src="js/baocao.js"></script>
   </body>
 </html>
+
+
 
 
 

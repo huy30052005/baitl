@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         icon: formData.get("icon") || "📦",
         parent: formData.get("parentCategory"),
         description: formData.get("description"),
-        productCount: 0,
+        productCount: 0, // Will be updated by updateCategoryProductCounts
         status: "success",
         statusText: "Đang bán",
       };
@@ -104,6 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
         categories.push(payload);
       }
       localStorage.setItem("categories", JSON.stringify(categories));
+
+      // Update product counts for all categories
+      if (typeof updateCategoryProductCounts === 'function') {
+        updateCategoryProductCounts();
+      }
 
       // Refresh table based on current search
       const term = searchInput ? searchInput.value : "";
@@ -122,6 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load categories from localStorage on page load
   seedDefaultCategories();
+  
+  // Update product counts for all categories
+  if (typeof updateCategoryProductCounts === 'function') {
+    updateCategoryProductCounts();
+  }
+  
   renderCategoryTable("");
   updateCategoryKpis();
   updateProductNavBadge();
@@ -163,6 +174,7 @@ function addCategoryToTable(category, index) {
 function renderCategoryTable(term) {
   const tbody = document.querySelector("#categoryTable");
   if (!tbody) return;
+  
   const categories = JSON.parse(localStorage.getItem("categories") || "[]");
   const normalized = term ? term.toLowerCase() : "";
   const filtered = normalized
@@ -305,6 +317,12 @@ function deleteCategory(id) {
   if (!confirm("Bạn có chắc muốn xóa danh mục này?")) return;
   const categories = JSON.parse(localStorage.getItem("categories") || "[]").filter((c) => c.id !== id);
   localStorage.setItem("categories", JSON.stringify(categories));
+  
+  // Update product counts (in case products were reassigned)
+  if (typeof updateCategoryProductCounts === 'function') {
+    updateCategoryProductCounts();
+  }
+  
   const searchInput = document.getElementById("categorySearch");
   renderCategoryTable(searchInput ? searchInput.value : "");
   updateCategoryKpis();

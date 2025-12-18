@@ -87,9 +87,92 @@ document.addEventListener("DOMContentLoaded", () => {
   window.formatDateTime = formatDateTime;
   window.statusMeta = statusMeta;
 
+  // ========= HÀM LƯU/LOAD ĐƠN HÀNG TỪ LOCALSTORAGE =========
+  // Load đơn hàng từ localStorage, nếu chưa có thì trả về null
+  function loadOrdersFromStorage() {
+    const stored = localStorage.getItem("orders");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        return parsed;
+      } catch (e) {
+        console.error("Lỗi khi đọc orders từ localStorage:", e);
+      }
+    }
+    return null;
+  }
+
+  // Lưu đơn hàng vào localStorage
+  function saveOrdersToStorage(orders) {
+    try {
+      localStorage.setItem("orders", JSON.stringify(orders));
+    } catch (e) {
+      console.error("Lỗi khi lưu orders vào localStorage:", e);
+    }
+  }
+
+  // ========= HÀM ĐỒNG BỘ SẢN PHẨM TỪ LOCALSTORAGE =========
+  // Hàm này đồng bộ sản phẩm trong đơn hàng với danh sách sản phẩm từ phần Quản lý sản phẩm
+  // CHỈ sử dụng sản phẩm có trong danh sách sản phẩm (localStorage "products")
+  function syncProductsFromStore(orders) {
+    const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+    
+    if (allProducts.length === 0) {
+      // Nếu không có sản phẩm nào trong store, trả về orders như cũ
+      return orders;
+    }
+    
+    return orders.map(order => {
+      const updatedProducts = order.products
+        .map(orderProduct => {
+          // Tìm sản phẩm trong localStorage
+          let productFromStore = null;
+          
+          // Tìm theo productId nếu có
+          if (orderProduct.productId) {
+            productFromStore = allProducts.find(p => p.id === orderProduct.productId || p.sku === orderProduct.productId);
+          }
+          
+          // Nếu không tìm thấy, tìm theo tên (exact match)
+          if (!productFromStore && orderProduct.name) {
+            productFromStore = allProducts.find(p => p.name.trim() === orderProduct.name.trim());
+          }
+          
+          // CHỈ sử dụng sản phẩm nếu tìm thấy trong store
+          if (productFromStore) {
+            return {
+              ...orderProduct,
+              productId: productFromStore.id || productFromStore.sku,
+              name: productFromStore.name,
+              price: productFromStore.price,
+              image: productFromStore.image || null,
+            };
+          }
+          
+          // Nếu không tìm thấy trong store, trả về null để filter bỏ
+          return null;
+        })
+        .filter(p => p !== null); // Chỉ giữ lại sản phẩm có trong store
+      
+      // Nếu không còn sản phẩm nào hợp lệ, giữ nguyên đơn hàng
+      if (updatedProducts.length === 0) {
+        return order;
+      }
+      
+      // Tính lại tổng tiền dựa trên giá mới từ store
+      const newTotal = updatedProducts.reduce((sum, p) => sum + (p.price * (p.quantity || 1)), 0);
+      
+      return {
+        ...order,
+        products: updatedProducts,
+        total: newTotal,
+      };
+    });
+  }
+
   // ========= DỮ LIỆU MẪU (như hình) =========
   // Lưu ý: createdAt dùng daysAgo để “Hôm nay / Hôm qua” luôn hoạt động
-  const ordersSeed = [
+  const ordersSeedDefault = [
     {
       code: "#DH-12345",
       customer: { 
@@ -207,6 +290,26 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedYear: null, // YYYY cho byYear
   };
   
+  // Load orders từ localStorage hoặc dùng default
+  let ordersSeed = loadOrdersFromStorage();
+  if (!ordersSeed) {
+    // Nếu chưa có trong localStorage, dùng default và lưu vào
+    ordersSeed = ordersSeedDefault;
+    saveOrdersToStorage(ordersSeed);
+  } else {
+    // Merge với default để đảm bảo có đầy đủ đơn hàng (trường hợp thêm đơn hàng mới vào default)
+    // Tạo map từ orders đã lưu để dễ tìm
+    const savedOrdersMap = new Map(ordersSeed.map(o => [o.code, o]));
+    // Thêm các đơn hàng mới từ default nếu chưa có
+    ordersSeedDefault.forEach(defaultOrder => {
+      if (!savedOrdersMap.has(defaultOrder.code)) {
+        ordersSeed.push(defaultOrder);
+      }
+    });
+    // Cập nhật lại localStorage
+    saveOrdersToStorage(ordersSeed);
+  }
+
   // Expose state and ordersSeed globally for export/print functions
   window.orderState = state;
   window.ordersSeed = ordersSeed;
@@ -349,12 +452,50 @@ document.addEventListener("DOMContentLoaded", () => {
         </td>
 
         <td>
-          <div class="prod">
-            <div class="prod-thumb">${productEmoji}</div>
-            <div class="prod-meta">
-              <div class="prod-count">${productCount} sản phẩm</div>
-            </div>
-          </div>
+          ${(() => {
+            // Lấy sản phẩm từ localStorage để hiển thị giống phần quản lý sản phẩm
+            const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+            const firstProduct = o.products?.[0];
+            let productFromStore = null;
+            let productName = firstProduct?.name || "Sản phẩm";
+            let productImage = null;
+            let displayThumb = productEmoji;
+            
+            if (firstProduct) {
+              // Tìm sản phẩm trong localStorage
+              if (firstProduct.productId) {
+                productFromStore = allProducts.find(p => p.id === firstProduct.productId || p.sku === firstProduct.productId);
+              }
+              if (!productFromStore && firstProduct.name) {
+                productFromStore = allProducts.find(p => p.name === firstProduct.name);
+              }
+              
+              if (productFromStore) {
+                productName = productFromStore.name || productName;
+                productImage = productFromStore.image || null;
+                if (productImage) {
+                  displayThumb = `<img src="${productImage}" alt="${productName}" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;" onerror="this.outerHTML='<div class=\\"prod-thumb\\">${productEmoji}</div>';" />`;
+                }
+              }
+            }
+            
+            // Hiển thị tên sản phẩm và số lượng nếu có nhiều sản phẩm
+            const productDisplayName = productCount > 1 
+              ? `${productName} + ${productCount - 1} sản phẩm khác`
+              : productName;
+            
+            return `
+              <div class="prod">
+                ${typeof displayThumb === 'string' && displayThumb.includes('<img') 
+                  ? displayThumb 
+                  : `<div class="prod-thumb">${displayThumb}</div>`}
+                <div class="prod-meta">
+                  <div class="prod-name" style="font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4;">${productDisplayName}</div>
+                  ${productCount > 1 ? `<div class="prod-count" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${productCount} sản phẩm</div>` : ''}
+                </div>
+              </div>
+            `;
+          })()}
         </td>
 
         <td class="order-total">${formatMoney(o.total)}</td>
@@ -437,8 +578,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
+    // Đồng bộ sản phẩm từ localStorage (phần Quản lý sản phẩm)
+    const syncedOrders = syncProductsFromStore(ordersSeed);
+    
     // baseList: chỉ filter theo date + search (để tab count/KPI đúng)
-    const baseList = ordersSeed.filter(
+    const baseList = syncedOrders.filter(
       (o) =>
         inDateRange(o.createdAt, state.dateRange, state.customDateRange, state.selectedDate, state.selectedMonth, state.selectedYear) &&
         applySearch(o, state.search)
@@ -635,6 +779,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const idx = ordersSeed.findIndex((x) => x.code === code);
         if (idx >= 0) {
           ordersSeed[idx].status = newStatus;
+          // Lưu vào localStorage khi thay đổi trạng thái
+          saveOrdersToStorage(ordersSeed);
         }
         state.openMenuCode = null;
         render();
@@ -659,6 +805,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const idx = ordersSeed.findIndex((x) => x.code === code);
         if (idx >= 0) {
           ordersSeed[idx].status = "processing";
+          // Lưu vào localStorage khi thay đổi trạng thái
+          saveOrdersToStorage(ordersSeed);
         }
         state.openMenuCode = null;
         render();
@@ -670,6 +818,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const idx = ordersSeed.findIndex((x) => x.code === code);
           if (idx >= 0) {
             ordersSeed[idx].status = "canceled";
+            // Lưu vào localStorage khi thay đổi trạng thái
+            saveOrdersToStorage(ordersSeed);
           }
           state.openMenuCode = null;
           render();
@@ -1006,7 +1156,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const openOrderDetailModal = (orderCode) => {
     if (!orderDetailModal) return;
     
-    const order = ordersSeed.find(o => o.code === orderCode);
+    // Đồng bộ sản phẩm từ localStorage trước khi hiển thị chi tiết
+    const syncedOrders = syncProductsFromStore(ordersSeed);
+    const order = syncedOrders.find(o => o.code === orderCode) || ordersSeed.find(o => o.code === orderCode);
+    
+    if (!order) {
+      console.error("Order not found:", orderCode);
+      return;
+    }
     if (!order) {
       alert("Không tìm thấy đơn hàng!");
       return;
@@ -1049,18 +1206,44 @@ document.addEventListener("DOMContentLoaded", () => {
       statusBadgeEl.innerHTML = `<span class="status-pill ${statusInfo.cls}">${statusInfo.text}</span>`;
     }
     
-    // Sản phẩm
+    // Sản phẩm - Lấy từ localStorage (phần sản phẩm)
     if (productsEl) {
-      productsEl.innerHTML = order.products.map(p => `
-        <div class="order-detail-product">
-          <div class="order-detail-product-emoji">${p.emoji}</div>
-          <div class="order-detail-product-info">
-            <div class="order-detail-product-name">${p.name || "Sản phẩm"}</div>
-            <div class="order-detail-product-quantity">Số lượng: ${p.quantity || 1}</div>
+      // Lấy danh sách sản phẩm từ localStorage
+      const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+      
+      productsEl.innerHTML = order.products.map(p => {
+        // Tìm sản phẩm trong localStorage dựa trên tên hoặc id
+        let productFromStore = null;
+        if (p.productId) {
+          // Nếu có productId, tìm theo id
+          productFromStore = allProducts.find(prod => prod.id === p.productId || prod.sku === p.productId);
+        }
+        if (!productFromStore && p.name) {
+          // Nếu không tìm thấy theo id, tìm theo tên
+          productFromStore = allProducts.find(prod => prod.name === p.name);
+        }
+        
+        // Sử dụng thông tin từ localStorage nếu có, nếu không thì dùng thông tin trong order
+        const displayName = productFromStore?.name || p.name || "Sản phẩm";
+        const displayPrice = productFromStore?.price || p.price || (order.total / order.products.length);
+        const displayImage = productFromStore?.image || null;
+        const displayEmoji = productFromStore?.image ? null : (p.emoji || "📦");
+        
+        return `
+          <div class="order-detail-product">
+            ${displayImage 
+              ? `<img src="${displayImage}" alt="${displayName}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />`
+              : ''
+            }
+            <div class="order-detail-product-emoji" style="${displayImage ? 'display: none;' : ''}">${displayEmoji}</div>
+            <div class="order-detail-product-info">
+              <div class="order-detail-product-name">${displayName}</div>
+              <div class="order-detail-product-quantity">Số lượng: ${p.quantity || 1}</div>
+            </div>
+            <div class="order-detail-product-price">${formatMoney(displayPrice)}</div>
           </div>
-          <div class="order-detail-product-price">${formatMoney(p.price || order.total / order.products.length)}</div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
     }
     
     // Địa chỉ và ghi chú
@@ -1130,6 +1313,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const idx = ordersSeed.findIndex((x) => x.code === orderCode);
         if (idx >= 0) {
           ordersSeed[idx].status = "canceled";
+          // Lưu vào localStorage khi thay đổi trạng thái
+          saveOrdersToStorage(ordersSeed);
           closeOrderDetailModalFunc();
           render();
         }
@@ -1144,6 +1329,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const idx = ordersSeed.findIndex((x) => x.code === orderCode);
         if (idx >= 0 && ordersSeed[idx].status === "pending") {
           ordersSeed[idx].status = "processing";
+          // Lưu vào localStorage khi thay đổi trạng thái
+          saveOrdersToStorage(ordersSeed);
           closeOrderDetailModalFunc();
           render();
         }
@@ -1199,10 +1386,23 @@ function exportOrdersToExcel() {
   let csvContent = "\uFEFF"; // BOM cho UTF-8
   csvContent += "Mã đơn,Khách hàng,Số điện thoại,Sản phẩm,Tổng tiền,Phương thức thanh toán,Đã thanh toán,Trạng thái,Thời gian\n";
   
+  // Lấy danh sách sản phẩm từ localStorage để map với đơn hàng
+  const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+  
   orders.forEach(order => {
     const customerName = order.customer?.name || "";
     const customerPhone = order.customer?.phone || "";
-    const products = order.products?.map(p => p.emoji || p.name || "").join(", ") || "";
+    const products = order.products?.map(p => {
+      // Tìm sản phẩm trong localStorage
+      let productFromStore = null;
+      if (p.productId) {
+        productFromStore = allProducts.find(prod => prod.id === p.productId || prod.sku === p.productId);
+      }
+      if (!productFromStore && p.name) {
+        productFromStore = allProducts.find(prod => prod.name === p.name);
+      }
+      return productFromStore?.name || p.name || p.emoji || "";
+    }).join(", ") || "";
     const total = formatMoney(order.total || 0);
     const paymentMethod = order.payment?.method || "";
     const paid = order.payment?.paid ? "Có" : "Chưa";
@@ -1297,10 +1497,23 @@ function printOrders() {
         <tbody>
   `;
   
+  // Lấy danh sách sản phẩm từ localStorage để map với đơn hàng
+  const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+  
   orders.forEach(order => {
     const customerName = order.customer?.name || "";
     const customerPhone = order.customer?.phone || "";
-    const products = order.products?.map(p => p.emoji || p.name || "").join(", ") || "";
+    const products = order.products?.map(p => {
+      // Tìm sản phẩm trong localStorage
+      let productFromStore = null;
+      if (p.productId) {
+        productFromStore = allProducts.find(prod => prod.id === p.productId || prod.sku === p.productId);
+      }
+      if (!productFromStore && p.name) {
+        productFromStore = allProducts.find(prod => prod.name === p.name);
+      }
+      return productFromStore?.name || p.name || p.emoji || "";
+    }).join(", ") || "";
     const total = formatMoney(order.total || 0);
     const status = statusMeta[order.status]?.text || order.status;
     const dateTime = formatDateTime(order.createdAt);
@@ -1310,7 +1523,20 @@ function printOrders() {
         <td>${order.code}</td>
         <td>${customerName}</td>
         <td>${customerPhone}</td>
-        <td>${products}</td>
+        <td>${(() => {
+          // Lấy tên sản phẩm từ localStorage
+          const allProducts = JSON.parse(localStorage.getItem("products") || "[]");
+          return order.products?.map(p => {
+            let productFromStore = null;
+            if (p.productId) {
+              productFromStore = allProducts.find(prod => prod.id === p.productId || prod.sku === p.productId);
+            }
+            if (!productFromStore && p.name) {
+              productFromStore = allProducts.find(prod => prod.name === p.name);
+            }
+            return productFromStore?.name || p.name || p.emoji || "";
+          }).join(", ") || "";
+        })()}</td>
         <td>${total}</td>
         <td>${status}</td>
         <td>${dateTime}</td>
@@ -1399,7 +1625,9 @@ function getCurrentFilteredOrders() {
   };
   
   // Filter theo date range và search
-  let filtered = ordersSeed.filter(
+  // Đồng bộ sản phẩm từ localStorage trước khi export
+  const syncedOrdersForExport = syncProductsFromStore(ordersSeed);
+  let filtered = syncedOrdersForExport.filter(
     (o) => inDateRange(o.createdAt, state.dateRange, state.customDateRange) && applySearch(o, state.search)
   );
   

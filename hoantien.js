@@ -865,7 +865,109 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  // ========== XUẤT BÁO CÁO ==========
+  const exportReportBtn = document.getElementById("exportReportBtn");
+  if (exportReportBtn) {
+    exportReportBtn.addEventListener("click", exportRefundReport);
+  }
+
+  function exportRefundReport() {
+    const table = document.querySelector("table");
+    if (!table) {
+      alert("Không tìm thấy bảng dữ liệu!");
+      return;
+    }
+
+    // Lấy tất cả các dòng hiển thị (không phải ẩn bởi filter)
+    const rows = Array.from(table.querySelectorAll("tbody tr"))
+      .filter(row => row.style.display !== "none");
+
+    if (rows.length === 0) {
+      alert("Không có dữ liệu để xuất!");
+      return;
+    }
+
+    // Lấy tiêu đề cột
+    const headers = Array.from(table.querySelectorAll("thead th"))
+      .map(th => th.textContent.trim())
+      .slice(0, -1); // Bỏ cột "THAO TÁC"
+
+    // Tạo mảng dữ liệu CSV
+    const csvData = [headers];
+
+    // Lấy dữ liệu từng dòng
+    rows.forEach(row => {
+      const cells = Array.from(row.querySelectorAll("td")).slice(0, -1); // Bỏ cột "THAO TÁC"
+      const rowData = cells.map((cell, index) => {
+        let text = "";
+
+        // Xử lý từng loại cột
+        if (index === 0) {
+          // Mã yêu cầu
+          text = cell.textContent.trim();
+        } else if (index === 1) {
+          // Khách hàng - lấy tên và số điện thoại
+          const name = cell.querySelector(".product-name")?.textContent.trim() || "";
+          const phone = cell.querySelector(".product-meta")?.textContent.trim() || "";
+          text = `${name} - ${phone}`;
+        } else if (index === 2) {
+          // Sản phẩm - lấy tên và số lượng
+          const name = cell.querySelector(".product-name")?.textContent.trim() || "";
+          const qty = cell.querySelector(".product-meta")?.textContent.trim() || "";
+          text = `${name} (${qty})`;
+        } else if (index === 3) {
+          // Lý do
+          text = cell.textContent.trim();
+        } else if (index === 4) {
+          // Số tiền
+          text = cell.textContent.trim();
+        } else if (index === 5) {
+          // Trạng thái
+          const status = cell.querySelector(".status")?.textContent.trim() || cell.textContent.trim();
+          text = status;
+        }
+
+        // Escape dấu phẩy và dấu ngoặc kép trong CSV
+        text = text.replace(/"/g, '""');
+        if (text.includes(",") || text.includes('"') || text.includes("\n")) {
+          text = `"${text}"`;
+        }
+        return text;
+      });
+      csvData.push(rowData);
+    });
+
+    // Chuyển đổi sang CSV format
+    const csvContent = csvData.map(row => row.join(",")).join("\n");
+
+    // Thêm BOM để Excel hiểu UTF-8
+    const BOM = "\uFEFF";
+    const blob = new Blob([BOM + csvContent], { type: "text/csv;charset=utf-8;" });
+
+    // Tạo link download
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+
+    // Tạo tên file với ngày tháng
+    const now = new Date();
+    const dateStr = now.toISOString().split("T")[0].replace(/-/g, "");
+    const timeStr = now.toTimeString().split(" ")[0].replace(/:/g, "");
+    const fileName = `BaoCaoHoanTien_${dateStr}_${timeStr}.csv`;
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", fileName);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Thông báo thành công
+    alert(`Đã xuất báo cáo thành công!\n\nTệp: ${fileName}\nSố dòng: ${rows.length}`);
+  }
 });
+
+
 
 
 

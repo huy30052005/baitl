@@ -1,0 +1,174 @@
+/* ========================================
+   CSS CHO FORM KHÁCH HÀNG - SELLERHUB
+   ======================================== */
+
+/* ========== NHÓM FORM (FORM GROUP) ========== */
+/* Container chứa label và input/select/textarea */
+.form-group {
+  margin-bottom: 20px; /* Khoảng cách giữa các nhóm form */
+}
+
+/* ========== LABEL (NHÃN) ========== */
+/* Nhãn mô tả cho các trường nhập liệu */
+.form-group label {
+  display: block; /* Hiển thị dạng block, mỗi label trên một dòng */
+  margin-bottom: 8px; /* Khoảng cách giữa label và input */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ (medium) */
+}
+
+/* ========== INPUT, SELECT, TEXTAREA ========== */
+/* Các trường nhập liệu cơ bản */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+  padding: 10px 12px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 12px) */
+  background-color: var(--bg); /* Màu nền sử dụng biến CSS */
+  border: 1px solid var(--border); /* Viền với màu từ biến CSS */
+  border-radius: 8px; /* Bo góc 8px */
+  color: var(--text); /* Màu chữ từ biến CSS */
+  font-size: 14px; /* Kích thước chữ */
+  font-family: inherit; /* Kế thừa font từ phần tử cha */
+}
+
+/* ========== TRẠNG THÁI FOCUS (KHI ĐƯỢC CHỌN) ========== */
+/* Khi người dùng click vào input/select/textarea */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* Bỏ viền mặc định của trình duyệt */
+  border-color: var(--accent); /* Đổi màu viền thành màu accent (tím) */
+}
+
+/* ========== TEXTAREA (Ô NHẬP VĂN BẢN DÀI) ========== */
+/* Cho phép người dùng chỉnh sửa kích thước theo chiều dọc */
+.form-group textarea {
+  resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
+}
+
+/* ========== FORM ROW (HÀNG FORM) ========== */
+/* Sắp xếp các form theo hàng ngang, 2 cột */
+.form-row {
+  display: grid; /* Sử dụng CSS Grid */
+  grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+  gap: 16px; /* Khoảng cách giữa các cột */
+}
+
+/* ========== DẤU BẮT BUỘC (REQUIRED) ========== */
+/* Dấu sao (*) để đánh dấu trường bắt buộc phải nhập */
+.required {
+  color: var(--danger); /* Màu đỏ để thu hút sự chú ý */
+}
+
+/* ========== NÚT LƯU (SUBMIT BUTTON) ========== */
+/* Nút để lưu dữ liệu form */
+.btn-submit {
+  background-color: var(--accent); /* Màu nền tím (accent) */
+  color: white; /* Màu chữ trắng */
+  padding: 10px 24px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 24px) */
+  border: none; /* Không có viền */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
+}
+
+/* ========== HOVER NÚT LƯU ========== */
+/* Khi di chuột vào nút lưu */
+.btn-submit:hover {
+  background-color: #1ea34d; /* Đổi màu nền thành xanh lá đậm hơn */
+}
+
+/* ========== NÚT HỦY (CANCEL BUTTON) ========== */
+/* Nút để hủy thay đổi, không lưu */
+.btn-cancel {
+  background-color: transparent; /* Nền trong suốt */
+  color: var(--text-muted); /* Màu chữ xám nhạt */
+  padding: 10px 24px; /* Khoảng cách bên trong */
+  border: 1px solid var(--border); /* Viền với màu border */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
+}
+
+/* ========== HOVER NÚT HỦY ========== */
+/* Khi di chuột vào nút hủy */
+.btn-cancel:hover {
+  background-color: var(--bg); /* Đổi màu nền thành màu nền chính */
+  color: var(--text); /* Đổi màu chữ thành màu chữ chính (đậm hơn) */
+}
+
+/* ========== MODAL FORM KHÁCH HÀNG ========== */
+/* Modal chứa form thêm/sửa khách hàng */
+#customerModal .modal-content {
+  max-width: 600px; /* Chiều rộng tối đa */
+}
+
+/* ========== INPUT HỌ VÀ TÊN ========== */
+/* Input nhập họ và tên khách hàng */
+input[type="text"][name*="name"] {
+  font-weight: 500; /* Độ đậm medium */
+}
+
+/* ========== INPUT EMAIL ========== */
+/* Input nhập email khách hàng */
+input[type="email"] {
+  font-family: inherit; /* Kế thừa font */
+}
+
+/* ========== INPUT SỐ ĐIỆN THOẠI ========== */
+/* Input nhập số điện thoại */
+input[type="tel"] {
+  font-family: 'Courier New', monospace; /* Font monospace */
+  letter-spacing: 1px; /* Khoảng cách giữa các số */
+}
+
+/* ========== SELECT LOẠI KHÁCH HÀNG ========== */
+/* Dropdown chọn loại khách hàng */
+#customerType {
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  padding: 10px; /* Khoảng cách bên trong */
+  background: var(--bg-secondary, #1f2937); /* Màu nền với fallback */
+  border: 1px solid var(--border-color, #374151); /* Viền với fallback */
+  border-radius: 6px; /* Bo góc */
+  color: var(--text, #fff); /* Màu chữ với fallback */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+}
+
+/* ========== FOCUS SELECT LOẠI KHÁCH HÀNG ========== */
+/* Khi select được chọn */
+#customerType:focus {
+  outline: none; /* Bỏ viền mặc định */
+  border-color: var(--accent); /* Đổi màu viền thành accent */
+}
+
+/* ========== INPUT ĐỊA CHỈ ========== */
+/* Input nhập địa chỉ khách hàng */
+input[type="text"][name*="address"] {
+  font-size: 14px; /* Kích thước chữ */
+  line-height: 1.5; /* Chiều cao dòng */
+}
+
+/* ========== RESPONSIVE (THIẾT BỊ DI ĐỘNG) ========== */
+/* Khi màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+  /* Modal content giảm padding */
+  #customerModal .modal-content {
+    width: 95%; /* Chiều rộng 95% */
+    max-width: none; /* Bỏ giới hạn chiều rộng tối đa */
+  }
+  
+  /* Select loại khách hàng */
+  #customerType {
+    padding: 12px; /* Padding lớn hơn cho dễ bấm */
+  }
+  
+  /* Chuyển form row từ 2 cột thành 1 cột */
+  .form-row {
+    grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+  }
+}
+

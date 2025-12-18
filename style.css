@@ -831,6 +831,58 @@ th {
   color: var(--text-muted);
 }
 
+/* User Dropdown Menu */
+.sidebar-footer {
+  position: relative;
+}
+
+.user {
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.user:hover {
+  opacity: 0.9;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  bottom: 60px;
+  left: 12px;
+  right: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.user-dropdown.show {
+  display: block !important;
+}
+
+.logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
 /* PRODUCT SECTION */
 .product-section {
   display: flex;
@@ -1240,135 +1292,7 @@ th {
   gap: 6px;
 }
 
-/* FORM STYLES */
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 10px 12px;
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 14px;
-  font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.form-row-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-}
-
-.required {
-  color: var(--danger);
-}
-
-/* IMAGE UPLOAD */
-.image-upload-box {
-  width: 140px;
-  height: 140px;
-  border: 2px dashed var(--border);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.image-upload-box:hover {
-  border-color: var(--accent);
-}
-
-.image-upload-icon {
-  font-size: 32px;
-  color: var(--text-muted);
-}
-
-#imagePreview {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#imagePreview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* BUTTONS */
-.btn-submit {
-  background-color: var(--accent);
-  color: white;
-  padding: 10px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.btn-submit:hover {
-  background-color: #1ea34d;
-}
-
-.btn-cancel {
-  background-color: transparent;
-  color: var(--text-muted);
-  padding: 10px 24px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.btn-cancel:hover {
-  background-color: var(--bg);
-  color: var(--text);
-}
-
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  .form-row,
-  .form-row-3 {
-    grid-template-columns: 1fr;
-  }
-}
+/* FORM STYLES - Đã chuyển sang forms.css */
 
 /* BREADCRUMB */
 .breadcrumb {
@@ -1603,6 +1527,21 @@ th {
 
 .btn-store-open:hover {
   background-color: #1ea34d;
+}
+
+.btn-store-closed {
+  background-color: #ef4444;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn-store-closed:hover {
+  background-color: #dc2626;
 }
 
 .btn-export {

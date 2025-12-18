@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cài đặt - SellerHub</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/caidat.css" />
   </head>
   <body>
     <div class="app">
@@ -148,75 +149,335 @@
 
         <!-- TABS -->
         <div class="tabs" style="margin-bottom: 20px;">
-          <button class="tab-btn active">Tài khoản</button>
-          <button class="tab-btn">Bảo mật</button>
-          <button class="tab-btn">Thông báo</button>
-          <button class="tab-btn">Thanh toán</button>
+          <button class="tab-btn active" data-tab="account">👤 Tài khoản</button>
+          <button class="tab-btn" data-tab="security">🔒 Bảo mật</button>
+          <button class="tab-btn" data-tab="notifications">🔔 Thông báo</button>
+          <button class="tab-btn" data-tab="payment">💳 Thanh toán</button>
         </div>
 
-        <!-- PERSONAL INFORMATION -->
-        <div class="card" style="padding: 24px; margin-bottom: 20px;">
-          <h3 style="margin-bottom: 20px;">Thông tin cá nhân</h3>
-          <div style="display: flex; gap: 20px;">
-            <div class="avatar" style="width: 100px; height: 100px; font-size: 40px;">
-              <span>👤</span>
-            </div>
-            <div style="flex: 1;">
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Họ</label>
-                  <input type="text" value="Nguyễn" />
+        <!-- TAB: TÀI KHOẢN -->
+        <div class="card tab-content" id="tab-account" style="padding: 24px;">
+          <!-- Thông tin cá nhân -->
+          <div style="margin-bottom: 32px;">
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Thông tin cá nhân</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div style="display: flex; gap: 20px; align-items: start; margin-bottom: 24px;">
+                <div class="avatar" style="width: 80px; height: 80px; font-size: 32px; flex-shrink: 0;">
+                  <img id="accountAvatarImg" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
+                  <span id="accountAvatarText">NH</span>
                 </div>
-                <div class="form-group">
-                  <label>Tên</label>
-                  <input type="text" value="Hoàng" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" value="nguyenhoang@email.com" />
-              </div>
-              <div class="form-group">
-                <label>Số điện thoại</label>
-                <div style="display: flex; gap: 8px;">
-                  <input type="tel" value="0912 345 678" style="flex: 1;" />
-                  <button class="top-btn">📷</button>
+                <div style="flex: 1;">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Họ</label>
+                      <input type="text" id="accountLastName" value="Nguyễn" />
+                    </div>
+                    <div class="form-group">
+                      <label>Tên</label>
+                      <input type="text" id="accountFirstName" value="Hoàng" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="accountEmail" value="nguyenhoang@email.com" />
+                  </div>
+                  <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <input type="tel" id="accountPhone" value="0912 345 678" style="flex: 1;" />
+                      <button class="btn-cancel" style="padding: 8px 12px; font-size: 13px;" id="changeAvatarBtn">📷</button>
+                    </div>
+                  </div>
+                  <input type="file" id="accountAvatarInput" accept="image/*" style="display: none;" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- OPTIONS -->
-        <div class="card" style="padding: 24px;">
-          <h3 style="margin-bottom: 20px;">Tùy chọn</h3>
-          <div class="form-group">
-            <label>Ngôn ngữ</label>
-            <select>
-              <option>Tiếng Việt</option>
-              <option>English</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Múi giờ</label>
-            <select>
-              <option>GMT+7 (Việt Nam)</option>
-            </select>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
-            <div>
-              <div style="font-weight: 500; margin-bottom: 4px;">Chế độ tối</div>
-              <div style="font-size: 13px; color: var(--text-muted);">Sử dụng giao diện tối cho ứng dụng</div>
+          <!-- Tùy chọn -->
+          <div>
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Tùy chọn</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div class="form-group">
+                <label>Ngôn ngữ</label>
+                <select id="accountLanguage">
+                  <option value="vi">Tiếng Việt</option>
+                  <option value="en">English</option>
+                  <option value="zh">中文</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Múi giờ</label>
+                <select id="accountTimezone">
+                  <option value="GMT+7">GMT+7 (Việt Nam)</option>
+                  <option value="GMT+8">GMT+8 (Singapore, Malaysia)</option>
+                  <option value="GMT+9">GMT+9 (Tokyo)</option>
+                  <option value="UTC">UTC</option>
+                </select>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-top: 1px solid var(--border); margin-top: 16px;">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Chế độ tối</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Sử dụng giao diện tối cho ứng dụng</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="accountDarkMode" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
-            <label class="toggle-switch">
-              <input type="checkbox" checked />
-              <span class="slider"></span>
-            </label>
           </div>
 
           <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-            <button class="btn-cancel">Hủy thay đổi</button>
-            <button class="btn-submit">Lưu thay đổi</button>
+            <button class="btn-cancel" id="cancelAccount">Hủy thay đổi</button>
+            <button class="btn-submit" id="saveAccount">Lưu thay đổi</button>
+          </div>
+        </div>
+
+        <!-- TAB: BẢO MẬT -->
+        <div class="card tab-content" id="tab-security" style="padding: 24px; display: none;">
+          <!-- Đổi mật khẩu -->
+          <div style="margin-bottom: 32px;">
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Đổi mật khẩu</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div class="form-group">
+                <label>Mật khẩu hiện tại</label>
+                <div style="position: relative;">
+                  <input type="password" id="currentPassword" placeholder="Nhập mật khẩu hiện tại" />
+                  <button type="button" class="toggle-password" data-target="currentPassword" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">👁️</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Mật khẩu mới</label>
+                <div style="position: relative;">
+                  <input type="password" id="newPassword" placeholder="Nhập mật khẩu mới" />
+                  <button type="button" class="toggle-password" data-target="newPassword" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">👁️</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Xác nhận mật khẩu</label>
+                <div style="position: relative;">
+                  <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu mới" />
+                  <button type="button" class="toggle-password" data-target="confirmPassword" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">👁️</button>
+                </div>
+              </div>
+              <button class="btn-submit" id="updatePasswordBtn">Cập nhật mật khẩu</button>
+            </div>
+          </div>
+
+          <!-- Xác thực 2 lớp -->
+          <div style="margin-bottom: 32px;">
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px; border-top: 1px solid var(--border);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 24px;">🛡️</span>
+                  <div>
+                    <div style="font-weight: 500; margin-bottom: 4px;">Xác thực 2 lớp</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">Thêm một lớp bảo mật bằng cách yêu cầu mã xác thực khi đăng nhập</div>
+                  </div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="twoFactorAuth" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phiên đăng nhập -->
+          <div>
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Phiên đăng nhập</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div id="loginSessionsList">
+                <!-- Sẽ được tạo bằng JavaScript -->
+              </div>
+              <button class="btn-cancel" style="background: #ef4444; color: white; border-color: #ef4444; margin-top: 16px;" id="logoutAllDevicesBtn">Đăng xuất tất cả thiết bị khác</button>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn-cancel" id="cancelSecurity">Hủy thay đổi</button>
+            <button class="btn-submit" id="saveSecurity">Lưu thay đổi</button>
+          </div>
+        </div>
+
+        <!-- TAB: THÔNG BÁO -->
+        <div class="card tab-content" id="tab-notifications" style="padding: 24px; display: none;">
+          <!-- Thông báo email -->
+          <div style="margin-bottom: 32px;">
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Thông báo email</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div class="notification-item">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Đơn hàng mới</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Nhận email khi có đơn hàng mới</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifEmailOrders" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Đánh giá sản phẩm</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Nhận email khi có đánh giá mới</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifEmailReviews" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Tin nhắn khách hàng</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Nhận email khi có tin nhắn mới</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifEmailMessages" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Báo cáo hàng tuần</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Nhận báo cáo tổng hợp hàng tuần</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifEmailWeeklyReport" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Cập nhật hệ thống</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Thông báo về các thay đổi và tính năng mới</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifEmailSystem" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thông báo đẩy -->
+          <div>
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Thông báo đẩy</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div class="notification-item">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Đơn hàng</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Thông báo về trạng thái đơn hàng</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifPushOrders" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Khuyến mãi</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Thông báo về chương trình khuyến mãi</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifPushPromotions" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="notification-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Tin nhắn</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Thông báo tin nhắn từ khách hàng</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="notifPushMessages" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn-cancel" id="cancelNotifications">Hủy thay đổi</button>
+            <button class="btn-submit" id="saveNotifications">Lưu thay đổi</button>
+          </div>
+        </div>
+
+        <!-- TAB: THANH TOÁN -->
+        <div class="card tab-content" id="tab-payment" style="padding: 24px; display: none;">
+          <!-- Tài khoản ngân hàng -->
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <h3 style="font-size: 18px; font-weight: 600;">Tài khoản ngân hàng</h3>
+              <button class="btn-submit" id="addBankAccountBtn">Thêm tài khoản</button>
+            </div>
+            <div id="bankAccountsList">
+              <!-- Sẽ được tạo bằng JavaScript -->
+            </div>
+          </div>
+
+          <!-- Lịch thanh toán -->
+          <div>
+            <h3 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Lịch thanh toán</h3>
+            <div style="background: var(--bg-elevated-2); border-radius: 8px; padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 500; margin-bottom: 4px;">Thanh toán hàng tuần</div>
+                  <div style="font-size: 13px; color: var(--text-muted);">Mỗi thứ Hai hàng tuần</div>
+                </div>
+                <select id="paymentSchedule" style="padding: 8px 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--text);">
+                  <option value="weekly">Hàng tuần</option>
+                  <option value="monthly">Hàng tháng</option>
+                  <option value="quarterly">Hàng quý</option>
+                  <option value="yearly">Hàng năm</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn-cancel" id="cancelPayment">Hủy thay đổi</button>
+            <button class="btn-submit" id="savePayment">Lưu thay đổi</button>
+          </div>
+        </div>
+
+        <!-- MODAL: Thêm tài khoản ngân hàng -->
+        <div id="addBankAccountModal" class="modal" style="display: none;">
+          <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+              <h2>Thêm tài khoản ngân hàng</h2>
+              <button class="modal-close" id="closeBankModal">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Ngân hàng</label>
+                <select id="modalBankName">
+                  <option value="vietcombank">Vietcombank</option>
+                  <option value="techcombank">Techcombank</option>
+                  <option value="biddv">BIDV</option>
+                  <option value="vietinbank">VietinBank</option>
+                  <option value="acb">ACB</option>
+                  <option value="tpb">TPBank</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Số tài khoản</label>
+                <input type="text" id="modalBankAccount" placeholder="Nhập số tài khoản" />
+              </div>
+              <div class="form-group">
+                <label>Chủ tài khoản</label>
+                <input type="text" id="modalBankOwner" placeholder="Nhập tên chủ tài khoản" />
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="modalBankDefault" /> Đặt làm tài khoản mặc định
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-cancel" id="cancelBankModal">Hủy</button>
+              <button class="btn-submit" id="saveBankModal">Lưu</button>
+            </div>
           </div>
         </div>
       </main>
@@ -225,8 +486,12 @@
     <script src="js/scrip.js"></script>
     <script src="js/user-info.js"></script>
     <script src="js/sidebar-preserve.js"></script>
+    <script src="js/store-status.js"></script>
+    <script src="js/caidat.js"></script>
   </body>
 </html>
+
+
 
 
 

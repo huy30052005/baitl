@@ -1579,3 +1579,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCampaigns();
   updateCampaignPagination();
 });
+
+

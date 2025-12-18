@@ -309,10 +309,19 @@ function changePage(page) {
 }
 
 function formatPrice(price) {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(price);
+  // Format giá theo tiền Việt Nam (VND)
+  // Ví dụ: 1000000 -> "1.000.000 ₫"
+  try {
+    const numPrice = parseFloat(price) || 0;
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(numPrice);
+  } catch (error) {
+    // Fallback format nếu Intl.NumberFormat không hỗ trợ
+    const numPrice = parseFloat(price) || 0;
+    return numPrice.toLocaleString("vi-VN").replace(/,/g, ".") + " ₫";
+  }
 }
 
 // Reset products only

@@ -284,9 +284,15 @@ document.addEventListener("DOMContentLoaded", () => {
             products: selectedProducts.map(productId => {
               const product = allAvailableProducts.find(p => p.id === productId);
               const existingProduct = flashSales[flashSaleIndex].products.find(p => p.id === productId);
+              // Ưu tiên: ảnh hiện có > ảnh từ sản phẩm gốc > placeholder
+              const productImage = existingProduct?.image || 
+                                   product?.image || 
+                                   product?.imageUrl || 
+                                   "https://via.placeholder.com/60";
               return {
                 id: productId,
                 name: product?.name || "Không có tên",
+                image: productImage,
                 price: existingProduct?.price || product?.price || 0,
                 originalPrice: existingProduct?.originalPrice || product?.price || 0,
                 discount: existingProduct?.discount || 0,
@@ -310,9 +316,12 @@ document.addEventListener("DOMContentLoaded", () => {
           endTime: endDateTime,
           products: selectedProducts.map(productId => {
             const product = allAvailableProducts.find(p => p.id === productId);
+            // Đảm bảo lấy ảnh từ sản phẩm gốc
+            const productImage = product?.image || product?.imageUrl || "https://via.placeholder.com/60";
             return {
               id: productId,
               name: product?.name || "Không có tên",
+              image: productImage,
               price: product?.price || 0,
               originalPrice: product?.price || 0,
               discount: 0, // Can be set later
@@ -472,6 +481,45 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Đã xóa Flash Sale thành công!");
   }
 
+  // ========== CẬP NHẬT ẢNH CHO FLASH SALE CŨ ==========
+  function updateFlashSaleImages(flashSales) {
+    // Load products để lấy ảnh
+    const products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY) || "[]");
+    let hasUpdates = false;
+
+    flashSales.forEach(flashSale => {
+      flashSale.products.forEach(product => {
+        // Nếu sản phẩm chưa có ảnh hoặc ảnh là placeholder
+        if (!product.image || product.image === "https://via.placeholder.com/60" || product.image === "") {
+          const originalProduct = products.find(p => p.id === product.id);
+          if (originalProduct) {
+            // Thử lấy ảnh từ image hoặc imageUrl
+            const newImage = originalProduct.image || originalProduct.imageUrl;
+            if (newImage && newImage !== "https://via.placeholder.com/60") {
+              product.image = newImage;
+              hasUpdates = true;
+            } else if (!product.image) {
+              // Nếu vẫn không có, dùng placeholder
+              product.image = "https://via.placeholder.com/60";
+              hasUpdates = true;
+            }
+          } else if (!product.image) {
+            // Nếu không tìm thấy sản phẩm gốc, dùng placeholder
+            product.image = "https://via.placeholder.com/60";
+            hasUpdates = true;
+          }
+        }
+      });
+    });
+
+    // Lưu lại nếu có cập nhật
+    if (hasUpdates) {
+      localStorage.setItem(FLASH_SALE_STORAGE_KEY, JSON.stringify(flashSales));
+    }
+
+    return flashSales;
+  }
+
   // ========== LOAD VÀ HIỂN THỊ FLASH SALE ==========
   function loadFlashSales() {
     try {
@@ -480,8 +528,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const flashSales = JSON.parse(localStorage.getItem(FLASH_SALE_STORAGE_KEY) || "[]");
+      let flashSales = JSON.parse(localStorage.getItem(FLASH_SALE_STORAGE_KEY) || "[]");
       console.log("Loading flash sales:", flashSales.length);
+
+      // Cập nhật ảnh cho các flash sale cũ
+      flashSales = updateFlashSaleImages(flashSales);
 
       if (flashSales.length === 0) {
         flashSaleListContainer.innerHTML = "";
@@ -532,7 +583,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const revenueDisplay = formatCurrency(revenue);
 
     const productsHTML = flashSale.products.map(product => {
-      const productImage = product.image || "https://via.placeholder.com/60";
+      // Lấy ảnh từ product, nếu không có thì tìm từ danh sách sản phẩm
+      let productImage = product.image;
+      if (!productImage || productImage === "" || productImage === "https://via.placeholder.com/60") {
+        const originalProduct = allAvailableProducts.find(p => p.id === product.id);
+        productImage = originalProduct?.image || "https://via.placeholder.com/60";
+      }
+      
       const discountPercent = product.discount || 0;
       const originalPrice = product.originalPrice || product.price || 0;
       const salePrice = product.price || 0;
@@ -543,7 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return `
         <div style="display: flex; gap: 16px; padding: 12px; background: var(--bg); border-radius: 8px;">
-          <img src="${productImage}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/60'" />
+          <img src="${productImage}" alt="${product.name || 'Sản phẩm'}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: var(--bg-elevated);" onerror="this.onerror=null; this.src='https://via.placeholder.com/60?text=No+Image';" />
           <div style="flex: 1;">
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
               <div>
@@ -718,3 +775,5 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFlashSaleKPIs();
   });
 });
+
+

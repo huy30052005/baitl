@@ -1,0 +1,170 @@
+/* ========================================
+   CSS CHO FORM DANH MỤC - SELLERHUB
+   ======================================== */
+
+/* ========== NHÓM FORM (FORM GROUP) ========== */
+/* Container chứa label và input/select/textarea */
+.form-group {
+  margin-bottom: 20px; /* Khoảng cách giữa các nhóm form */
+}
+
+/* ========== LABEL (NHÃN) ========== */
+/* Nhãn mô tả cho các trường nhập liệu */
+.form-group label {
+  display: block; /* Hiển thị dạng block, mỗi label trên một dòng */
+  margin-bottom: 8px; /* Khoảng cách giữa label và input */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ (medium) */
+}
+
+/* ========== INPUT, SELECT, TEXTAREA ========== */
+/* Các trường nhập liệu cơ bản */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+  padding: 10px 12px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 12px) */
+  background-color: var(--bg); /* Màu nền sử dụng biến CSS */
+  border: 1px solid var(--border); /* Viền với màu từ biến CSS */
+  border-radius: 8px; /* Bo góc 8px */
+  color: var(--text); /* Màu chữ từ biến CSS */
+  font-size: 14px; /* Kích thước chữ */
+  font-family: inherit; /* Kế thừa font từ phần tử cha */
+}
+
+/* ========== TRẠNG THÁI FOCUS (KHI ĐƯỢC CHỌN) ========== */
+/* Khi người dùng click vào input/select/textarea */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* Bỏ viền mặc định của trình duyệt */
+  border-color: var(--accent); /* Đổi màu viền thành màu accent (tím) */
+}
+
+/* ========== TEXTAREA (Ô NHẬP VĂN BẢN DÀI) ========== */
+/* Cho phép người dùng chỉnh sửa kích thước theo chiều dọc */
+.form-group textarea {
+  resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
+}
+
+/* ========== FORM ROW (HÀNG FORM) ========== */
+/* Sắp xếp các form theo hàng ngang, 2 cột */
+.form-row {
+  display: grid; /* Sử dụng CSS Grid */
+  grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+  gap: 16px; /* Khoảng cách giữa các cột */
+}
+
+/* ========== DẤU BẮT BUỘC (REQUIRED) ========== */
+/* Dấu sao (*) để đánh dấu trường bắt buộc phải nhập */
+.required {
+  color: var(--danger); /* Màu đỏ để thu hút sự chú ý */
+}
+
+/* ========== NÚT LƯU (SUBMIT BUTTON) ========== */
+/* Nút để lưu dữ liệu form */
+.btn-submit {
+  background-color: var(--accent); /* Màu nền tím (accent) */
+  color: white; /* Màu chữ trắng */
+  padding: 10px 24px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 24px) */
+  border: none; /* Không có viền */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
+}
+
+/* ========== HOVER NÚT LƯU ========== */
+/* Khi di chuột vào nút lưu */
+.btn-submit:hover {
+  background-color: #1ea34d; /* Đổi màu nền thành xanh lá đậm hơn */
+}
+
+/* ========== NÚT HỦY (CANCEL BUTTON) ========== */
+/* Nút để hủy thay đổi, không lưu */
+.btn-cancel {
+  background-color: transparent; /* Nền trong suốt */
+  color: var(--text-muted); /* Màu chữ xám nhạt */
+  padding: 10px 24px; /* Khoảng cách bên trong */
+  border: 1px solid var(--border); /* Viền với màu border */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
+}
+
+/* ========== HOVER NÚT HỦY ========== */
+/* Khi di chuột vào nút hủy */
+.btn-cancel:hover {
+  background-color: var(--bg); /* Đổi màu nền thành màu nền chính */
+  color: var(--text); /* Đổi màu chữ thành màu chữ chính (đậm hơn) */
+}
+
+/* ========== MODAL FORM DANH MỤC ========== */
+/* Modal chứa form thêm/sửa danh mục */
+#categoryModal .modal-content {
+  max-width: 600px; /* Chiều rộng tối đa */
+}
+
+/* ========== INPUT TÊN DANH MỤC ========== */
+/* Input nhập tên danh mục */
+input[name="categoryName"] {
+  font-weight: 500; /* Độ đậm medium */
+  font-size: 15px; /* Kích thước chữ lớn hơn một chút */
+}
+
+/* ========== INPUT MÃ DANH MỤC ========== */
+/* Input nhập mã danh mục */
+input[name="categoryCode"] {
+  text-transform: uppercase; /* Chuyển thành chữ in hoa */
+  font-family: 'Courier New', monospace; /* Font monospace */
+  letter-spacing: 1px; /* Khoảng cách giữa các chữ cái */
+}
+
+/* ========== INPUT ICON (EMOJI) ========== */
+/* Input nhập icon emoji */
+input[name="icon"] {
+  font-size: 24px; /* Kích thước chữ lớn để hiển thị emoji rõ */
+  text-align: center; /* Căn giữa emoji */
+  padding: 12px; /* Padding lớn hơn */
+}
+
+/* ========== SELECT DANH MỤC CHA ========== */
+/* Dropdown chọn danh mục cha */
+select[name="parentCategory"] {
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+}
+
+/* ========== TEXTAREA MÔ TẢ DANH MỤC ========== */
+/* Ô nhập mô tả danh mục */
+textarea[name="description"] {
+  min-height: 80px; /* Chiều cao tối thiểu */
+  resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
+  line-height: 1.5; /* Chiều cao dòng */
+}
+
+/* ========== FORM ROW (MÃ VÀ ICON) ========== */
+/* Hàng form chứa mã danh mục và icon */
+.form-row {
+  gap: 16px; /* Khoảng cách giữa các cột */
+}
+
+/* ========== RESPONSIVE (THIẾT BỊ DI ĐỘNG) ========== */
+/* Khi màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+  /* Form row chuyển thành 1 cột */
+  .form-row {
+    grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+  }
+  
+  /* Input icon giảm kích thước chữ */
+  input[name="icon"] {
+    font-size: 20px; /* Kích thước chữ 20px */
+  }
+  
+  /* Chuyển form row từ 2 cột thành 1 cột */
+  .form-row {
+    grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+  }
+}
+

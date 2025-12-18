@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý hoàn tiền - SellerHub</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/forms.css" />
     <style>
       /* BẢO VỆ TRIỆT ĐỂ - Đảm bảo sidebar và main luôn hiển thị */
       html, body {
@@ -249,9 +250,14 @@
               <button class="tab-btn">Đang xử lý</button>
               <button class="tab-btn">Đã hoàn</button>
             </div>
-            <div class="search-box">
-              <span class="search-icon">🔍</span>
-              <input type="text" class="search-input" id="refundSearchFilter" placeholder="Tìm mã yêu cầu, đơn hàng..." />
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="refundSearchFilter" placeholder="Tìm mã yêu cầu, đơn hàng..." />
+              </div>
+              <button class="btn-submit" id="exportReportBtn" style="white-space: nowrap;">
+                📥 Xuất báo cáo
+              </button>
             </div>
           </div>
         </div>
@@ -742,6 +748,7 @@
     <script src="js/action-menu.js"></script>
     <script src="js/hoantien.js"></script>
     <script src="js/sidebar-preserve.js"></script>
+    <script src="js/store-status.js"></script>
     <script>
       // BẢO VỆ SAU KHI TẤT CẢ SCRIPT ĐÃ CHẠY
       document.addEventListener("DOMContentLoaded", () => {

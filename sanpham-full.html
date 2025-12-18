@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý sản phẩm - SellerHub</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/sanpham.css" />
   </head>
   <body>
     <div class="app">
@@ -184,10 +185,7 @@
               </div>
               <select class="filter-select">
                 <option value="">Tất cả danh mục</option>
-                <option value="Điện thoại">Điện thoại</option>
-                <option value="Laptop">Laptop</option>
-                <option value="Máy tính bảng">Máy tính bảng</option>
-                <option value="Phụ kiện">Phụ kiện</option>
+                <!-- Options will be populated dynamically from localStorage -->
               </select>
               <select class="filter-select">
                 <option value="">Tất cả</option>
@@ -291,10 +289,7 @@
                 <label>Danh mục <span class="required">*</span></label>
                 <select name="category" required>
                   <option value="">Chọn danh mục</option>
-                  <option value="Điện thoại">Điện thoại</option>
-                  <option value="Laptop">Laptop</option>
-                  <option value="Máy tính bảng">Máy tính bảng</option>
-                  <option value="Phụ kiện">Phụ kiện</option>
+                  <!-- Options will be populated dynamically from localStorage -->
                 </select>
               </div>
             </div>
@@ -302,12 +297,12 @@
             <!-- Price, Original Price, Quantity -->
             <div class="form-row-3">
               <div class="form-group">
-                <label>Giá bán <span class="required">*</span></label>
-                <input type="number" name="price" placeholder="0" required />
+                <label>Giá bán (VND) <span class="required">*</span></label>
+                <input type="text" name="price" id="productPrice" placeholder="34.990.000" required />
               </div>
               <div class="form-group">
-                <label>Giá gốc</label>
-                <input type="number" name="originalPrice" placeholder="0" />
+                <label>Giá gốc (VND)</label>
+                <input type="text" name="originalPrice" id="productOriginalPrice" placeholder="39.990.000" />
               </div>
               <div class="form-group">
                 <label>Số lượng <span class="required">*</span></label>
@@ -323,6 +318,11 @@
                 placeholder="Nhập mô tả chi tiết về sản phẩm..."
                 rows="4"
               ></textarea>
+            </div>
+
+            <!-- Category-specific dynamic fields -->
+            <div id="categoryFields">
+              <!-- Các trường thuộc tính sẽ được render động dựa trên danh mục -->
             </div>
           </div>
 
@@ -398,8 +398,10 @@
     </div>
 
     <script src="js/scrip.js"></script>
+    <script src="js/update-category-counts.js"></script>
     <script src="js/product-clean.js"></script>
     <script src="js/user-info.js"></script>
     <script src="js/sidebar-preserve.js"></script>
+    <script src="js/store-status.js"></script>
   </body>
 </html>

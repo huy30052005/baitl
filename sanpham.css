@@ -1,153 +1,234 @@
-/* Sanpham page styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ========================================
+   CSS CHO FORM SẢN PHẨM - SELLERHUB
+   ======================================== */
+
+/* ========== NHÓM FORM (FORM GROUP) ========== */
+/* Container chứa label và input/select/textarea */
+.form-group {
+  margin-bottom: 20px; /* Khoảng cách giữa các nhóm form */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #0a0e1a;
-  color: #fff;
+/* ========== LABEL (NHÃN) ========== */
+/* Nhãn mô tả cho các trường nhập liệu */
+.form-group label {
+  display: block; /* Hiển thị dạng block, mỗi label trên một dòng */
+  margin-bottom: 8px; /* Khoảng cách giữa label và input */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ (medium) */
 }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px;
+/* ========== INPUT, SELECT, TEXTAREA ========== */
+/* Các trường nhập liệu cơ bản */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+  padding: 10px 12px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 12px) */
+  background-color: var(--bg); /* Màu nền sử dụng biến CSS */
+  border: 1px solid var(--border); /* Viền với màu từ biến CSS */
+  border-radius: 8px; /* Bo góc 8px */
+  color: var(--text); /* Màu chữ từ biến CSS */
+  font-size: 14px; /* Kích thước chữ */
+  font-family: inherit; /* Kế thừa font từ phần tử cha */
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+/* ========== TRẠNG THÁI FOCUS (KHI ĐƯỢC CHỌN) ========== */
+/* Khi người dùng click vào input/select/textarea */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* Bỏ viền mặc định của trình duyệt */
+  border-color: var(--accent); /* Đổi màu viền thành màu accent (tím) */
 }
 
-.header h1 {
-  font-size: 24px;
+/* ========== TEXTAREA (Ô NHẬP VĂN BẢN DÀI) ========== */
+/* Cho phép người dùng chỉnh sửa kích thước theo chiều dọc */
+.form-group textarea {
+  resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
 }
 
-.btn-add {
-  background-color: #00d084;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
+/* ========== FORM ROW (HÀNG FORM) ========== */
+/* Sắp xếp các form theo hàng ngang, 2 cột */
+.form-row {
+  display: grid; /* Sử dụng CSS Grid */
+  grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+  gap: 16px; /* Khoảng cách giữa các cột */
 }
 
-.btn-back {
-  background-color: #2a3142;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  text-decoration: none;
-  display: inline-block;
-  margin-right: 20px;
+/* ========== DẤU BẮT BUỘC (REQUIRED) ========== */
+/* Dấu sao (*) để đánh dấu trường bắt buộc phải nhập */
+.required {
+  color: var(--danger); /* Màu đỏ để thu hút sự chú ý */
 }
 
-.search-bar {
-  background-color: #1a1f2e;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+/* ========== NÚT LƯU (SUBMIT BUTTON) ========== */
+/* Nút để lưu dữ liệu form */
+.btn-submit {
+  background-color: var(--accent); /* Màu nền tím (accent) */
+  color: white; /* Màu chữ trắng */
+  padding: 10px 24px; /* Khoảng cách bên trong (trên-dưới: 10px, trái-phải: 24px) */
+  border: none; /* Không có viền */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
 }
 
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  background-color: #0a0e1a;
-  border: 1px solid #2a3142;
-  border-radius: 5px;
-  color: #fff;
+/* ========== HOVER NÚT LƯU ========== */
+/* Khi di chuột vào nút lưu */
+.btn-submit:hover {
+  background-color: #1ea34d; /* Đổi màu nền thành xanh lá đậm hơn */
 }
 
-.table-container {
-  background-color: #1a1f2e;
-  border-radius: 8px;
-  overflow: hidden;
+/* ========== NÚT HỦY (CANCEL BUTTON) ========== */
+/* Nút để hủy thay đổi, không lưu */
+.btn-cancel {
+  background-color: transparent; /* Nền trong suốt */
+  color: var(--text-muted); /* Màu chữ xám nhạt */
+  padding: 10px 24px; /* Khoảng cách bên trong */
+  border: 1px solid var(--border); /* Viền với màu border */
+  border-radius: 8px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm medium */
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* ========== HOVER NÚT HỦY ========== */
+/* Khi di chuột vào nút hủy */
+.btn-cancel:hover {
+  background-color: var(--bg); /* Đổi màu nền thành màu nền chính */
+  color: var(--text); /* Đổi màu chữ thành màu chữ chính (đậm hơn) */
 }
 
-thead {
-  background-color: #0a0e1a;
+/* ========== MODAL FORM SẢN PHẨM ========== */
+/* Modal chứa form thêm/sửa sản phẩm */
+#productModal .modal-content {
+  max-width: 700px; /* Chiều rộng tối đa lớn hơn modal thông thường */
 }
 
-th {
-  padding: 15px;
-  text-align: left;
-  font-weight: 500;
-  color: #8b92a7;
-  font-size: 14px;
+/* ========== VÙNG UPLOAD ẢNH SẢN PHẨM ========== */
+/* Vùng upload ảnh sản phẩm trong modal */
+.image-upload-box {
+  width: 140px; /* Chiều rộng cố định */
+  height: 140px; /* Chiều cao cố định */
+  border: 2px dashed var(--border); /* Viền nét đứt */
+  border-radius: 8px; /* Bo góc */
+  display: flex; /* Sử dụng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  cursor: pointer; /* Con trỏ chuột thành dạng pointer */
+  transition: border-color 0.3s; /* Hiệu ứng chuyển màu viền */
+  position: relative; /* Cho phép định vị các phần tử con */
+  overflow: hidden; /* Ẩn phần nội dung tràn ra ngoài */
+  background: var(--bg); /* Màu nền */
 }
 
-td {
-  padding: 15px;
-  border-top: 1px solid #2a3142;
+/* ========== HOVER VÙNG UPLOAD ẢNH SẢN PHẨM ========== */
+/* Khi di chuột vào vùng upload ảnh sản phẩm */
+.image-upload-box:hover {
+  border-color: var(--accent); /* Đổi màu viền thành màu accent */
 }
 
-.product-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* ========== ICON UPLOAD ẢNH SẢN PHẨM ========== */
+/* Icon camera trong vùng upload */
+.image-upload-icon {
+  font-size: 32px; /* Kích thước icon lớn */
+  color: var(--text-muted); /* Màu xám nhạt */
+  transition: color 0.3s; /* Hiệu ứng chuyển màu */
 }
 
-.product-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  object-fit: cover;
+/* ========== HOVER ICON UPLOAD ========== */
+/* Khi di chuột vào icon upload */
+.image-upload-box:hover .image-upload-icon {
+  color: var(--accent); /* Đổi màu thành accent */
 }
 
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
+/* ========== PREVIEW ẢNH SẢN PHẨM ========== */
+/* Vùng hiển thị ảnh preview */
+#imagePreview {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 0; /* Căn từ trên xuống */
+  left: 0; /* Căn từ trái sang */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  height: 100%; /* Chiếm toàn bộ chiều cao */
+  z-index: 1; /* Hiển thị trên icon */
 }
 
-.status.active {
-  background-color: rgba(0, 208, 132, 0.2);
-  color: #00d084;
+/* ========== ẢNH PREVIEW SẢN PHẨM ========== */
+/* Ảnh hiển thị trong vùng preview */
+#imagePreview img {
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  height: 100%; /* Chiếm toàn bộ chiều cao */
+  object-fit: cover; /* Cắt ảnh để vừa khít, giữ tỷ lệ */
+  border-radius: 8px; /* Bo góc */
 }
 
-.status.warning {
-  background-color: rgba(255, 193, 7, 0.2);
-  color: #ffc107;
+/* ========== FORM ROW 3 CỘT ========== */
+/* Sắp xếp giá bán, giá gốc, số lượng theo 3 cột */
+.form-row-3 {
+  display: grid; /* Sử dụng CSS Grid */
+  grid-template-columns: 1fr 1fr 1fr; /* 3 cột bằng nhau */
+  gap: 16px; /* Khoảng cách giữa các cột */
 }
 
-.status.danger {
-  background-color: rgba(220, 53, 69, 0.2);
-  color: #dc3545;
+/* ========== RESPONSIVE FORM ROW ========== */
+/* Khi màn hình nhỏ hơn 640px */
+@media (max-width: 640px) {
+  /* Chuyển form row từ 2-3 cột thành 1 cột */
+  .form-row,
+  .form-row-3 {
+    grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+  }
 }
 
-.actions {
-  color: #8b92a7;
-  cursor: pointer;
+/* ========== TEXTAREA MÔ TẢ SẢN PHẨM ========== */
+/* Ô nhập mô tả sản phẩm */
+textarea[name="description"] {
+  min-height: 100px; /* Chiều cao tối thiểu */
+  resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
+  font-family: inherit; /* Kế thừa font từ phần tử cha */
+  line-height: 1.5; /* Chiều cao dòng */
 }
 
-.pagination {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  background-color: #1a1f2e;
+/* ========== INPUT SỐ (GIÁ, SỐ LƯỢNG) ========== */
+/* Input nhập số cho giá và số lượng */
+input[type="number"] {
+  -moz-appearance: textfield; /* Ẩn mũi tên tăng/giảm trên Firefox */
 }
 
-.pagination button {
-  background-color: #2a3142;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
+/* ========== ẨN MŨI TÊN TĂNG/GIẢM TRÊN CHROME ========== */
+/* Ẩn mũi tên tăng/giảm trên Chrome/Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Ẩn mũi tên */
+  margin: 0; /* Không có margin */
+}
+
+/* ========== CONTAINER THUỘC TÍNH ĐỘNG ========== */
+/* Container chứa các trường thuộc tính động theo danh mục */
+#categoryFields {
+  margin-top: 16px; /* Khoảng cách trên */
+  padding-top: 16px; /* Padding trên */
+  border-top: 1px solid var(--border); /* Viền trên */
+}
+
+/* ========== RESPONSIVE (THIẾT BỊ DI ĐỘNG) ========== */
+/* Khi màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+  /* Form row 3 cột chuyển thành 1 cột */
+  .form-row-3 {
+    grid-template-columns: 1fr; /* Chỉ còn 1 cột */
+  }
+  
+  /* Modal content giảm padding */
+  #productModal .modal-content {
+    width: 95%; /* Chiều rộng 95% */
+    max-width: none; /* Bỏ giới hạn chiều rộng tối đa */
+  }
+  
+  /* Vùng upload ảnh nhỏ hơn */
+  .image-upload-box {
+    width: 120px; /* Chiều rộng 120px */
+    height: 120px; /* Chiều cao 120px */
+  }
 }
